@@ -11,3 +11,7 @@ h1 {
 .campsite .park, .campsite .distance {
   color: #aaa;
 }
+
+.campsite .distance {
+  font-size: 12px;
+}
