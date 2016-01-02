@@ -11,7 +11,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "browserify": "browserify -t [ babelify --presets [ react ] ] main.js -o bundle.js"
   },
   "author": "Matthew Landauer",
   "license": "GPL"
