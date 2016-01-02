@@ -14,7 +14,19 @@ var Campsite = React.createClass({
   }
 });
 
+var CampsiteList = React.createClass({
+  render: function() {
+    return (
+      <ul className="list-group">
+        <li className="list-group-item">
+          <Campsite name="Acacia Flat" park="Blue Mountains NP" distance="11 km N"/>
+        </li>
+      </ul>
+    )
+  }
+});
+
 ReactDOM.render(
-  <Campsite name="Acacia Flat" park="Blue Mountains NP" distance="11 km N"/>,
+  <CampsiteList/>,
   document.getElementById('root')
 );
