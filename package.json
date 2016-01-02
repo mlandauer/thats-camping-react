@@ -9,9 +9,13 @@
     "react-dom": "~0.14.5",
     "react": "~0.14.5"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "browserify": "~6.0.3",
+    "watchify": "~2.0.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "watchify -t [ babelify --presets [ react ] ] main.js -o bundle.js -v",
     "browserify": "browserify -t [ babelify --presets [ react ] ] main.js -o bundle.js"
   },
   "author": "Matthew Landauer",
