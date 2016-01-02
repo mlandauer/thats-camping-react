@@ -19,6 +19,22 @@ var distanceInMetres = function(position1, position2) {
   return d;
 };
 
+var bearingInDegrees = function(position1, position2) {
+  if (position1 == null || position2 == null)
+    return null;
+
+  var lon2 = toRad(position2.lng);
+  var lat2 = toRad(position2.lat);
+  var lon1 = toRad(position1.lng);
+  var lat1 = toRad(position1.lat);
+  var dLon = lon1 - lon2;
+  var y = Math.sin(dLon) * Math.cos(lat1);
+  var x = Math.cos(lat2) * Math.sin(lat1) - Math.sin(lat2) * Math.cos(lat1) * Math.cos(dLon);
+  // This is a number between 0 and 360
+  var bearing = (toDeg(Math.atan2(y, x)) + 360.0) % 360;
+  return bearing;
+};
+
 module.exports = Campsite = React.createClass({
   distanceText: function() {
     var distance = distanceInMetres(this.props.userPosition, this.props.position);
@@ -38,6 +54,7 @@ module.exports = Campsite = React.createClass({
   },
 
   render: function() {
+    console.log("bearingInDegrees", bearingInDegrees(this.props.userPosition, this.props.position));
     return (
       <div className="campsite">
         <div className="pull-right distance">{this.distanceText()} {this.props.bearing}</div>
