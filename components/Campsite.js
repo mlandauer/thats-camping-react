@@ -37,9 +37,9 @@ var bearingInDegrees = function(position1, position2) {
 
 module.exports = Campsite = React.createClass({
   distanceText: function() {
-    var distance = distanceInMetres(this.props.userPosition, this.props.position);
+    var distance = distanceInMetres(this.props.position, this.props.userPosition);
     // Distance needs to be in metres
-    units = undefined
+    var units = undefined
     if(distance == null) {
       return "";
     }
@@ -53,11 +53,21 @@ module.exports = Campsite = React.createClass({
     return(distance.toFixed(0) + " " + units);
   },
 
+  bearingText: function() {
+    var bearing = bearingInDegrees(this.props.position, this.props.userPosition);
+    if (bearing == null) {
+      return ""
+    }
+    // Dividing the compass into 8 sectors that are centred on north
+    var sector = Math.floor(((bearing + 22.5) % 360.0) / 45.0);
+    var sectorNames = [ "N", "NE", "E", "SE", "S", "SW", "W", "NW" ];
+    return sectorNames[sector];
+  },
+
   render: function() {
-    console.log("bearingInDegrees", bearingInDegrees(this.props.userPosition, this.props.position));
     return (
       <div className="campsite">
-        <div className="pull-right distance">{this.distanceText()} {this.props.bearing}</div>
+        <div className="pull-right distance">{this.distanceText()} {this.bearingText()}</div>
         <div className="name">{this.props.name}</div>
         <div className="park">{this.props.park}</div>
       </div>
