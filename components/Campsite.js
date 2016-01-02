@@ -1,9 +1,9 @@
 var React = require('react');
-var positionRelationship = require('../libs/positionRelationship');
+var PositionRelationship = require('../libs/PositionRelationship');
 
 module.exports = Campsite = React.createClass({
   distanceText: function() {
-    var distance = positionRelationship.distanceInMetres(this.props.position, this.props.userPosition);
+    var distance = PositionRelationship.distanceInMetres(this.props.position, this.props.userPosition);
     // Distance needs to be in metres
     var units = undefined
     if(distance == null) {
@@ -20,7 +20,7 @@ module.exports = Campsite = React.createClass({
   },
 
   bearingText: function() {
-    var bearing = positionRelationship.bearingInDegrees(this.props.position, this.props.userPosition);
+    var bearing = PositionRelationship.bearingInDegrees(this.props.position, this.props.userPosition);
     if (bearing == null) {
       return ""
     }

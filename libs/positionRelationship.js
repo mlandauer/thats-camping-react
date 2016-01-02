@@ -6,7 +6,7 @@ var toDeg = function(rad) {
   return (rad * 180 / Math.PI);
 }
 
-module.exports = positionRelationship = {
+module.exports = PositionRelationship = {
   // Distance in metres between two positions given as lat longs
   distanceInMetres: function(position1, position2) {
     var R = 6371000;
