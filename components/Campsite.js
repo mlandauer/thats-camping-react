@@ -38,7 +38,7 @@ module.exports = Campsite = React.createClass({
     console.log("distanceInMetres", distanceInMetres(this.userPosition(), this.position()));
     return (
       <div className="campsite">
-        <div className="pull-right distance">{this.props.distance}</div>
+        <div className="pull-right distance">{this.props.distance} {this.props.bearing}</div>
         <div className="name">{this.props.name}</div>
         <div className="park">{this.props.park}</div>
       </div>
