@@ -1,0 +1,18 @@
+{
+  "name": "thats-camping-react",
+  "version": "0.0.0",
+  "description": "That's Camping - this time with React",
+  "main": "main.js",
+  "dependencies": {
+    "babelify": "~7.2.0",
+    "babel-preset-react": "~6.3.13",
+    "react-dom": "~0.14.5",
+    "react": "~0.14.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Matthew Landauer",
+  "license": "GPL"
+}
