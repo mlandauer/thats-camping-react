@@ -4,10 +4,10 @@ h1 {
   margin-bottom: 20px;
 }
 
-.tweet .name {
+.campsite .name {
   font-weight: 500;
 }
 
-.tweet .park, .tweet .distance {
+.campsite .park, .campsite .distance {
   color: #aaa;
 }
