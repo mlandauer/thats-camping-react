@@ -20,22 +20,8 @@ var distanceInMetres = function(position1, position2) {
 };
 
 module.exports = Campsite = React.createClass({
-  position: function() {
-    return ({
-      lat: this.props.latitude,
-      lng: this.props.longitude
-    });
-  },
-
-  userPosition: function() {
-    return ({
-      lat: this.props.currentLatitude,
-      lng: this.props.currentLongitude
-    });
-  },
-
   distanceText: function() {
-    var distance = distanceInMetres(this.userPosition(), this.position());
+    var distance = distanceInMetres(this.props.userPosition, this.props.position);
     // Distance needs to be in metres
     units = undefined
     if(distance == null) {
