@@ -1,0 +1,13 @@
+h1 {
+  font-size: 18px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.tweet .name {
+  font-weight: 500;
+}
+
+.tweet .park, .tweet .distance {
+  color: #aaa;
+}
