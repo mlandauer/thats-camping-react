@@ -34,11 +34,27 @@ module.exports = Campsite = React.createClass({
     });
   },
 
+  distanceText: function() {
+    var distance = distanceInMetres(this.userPosition(), this.position());
+    // Distance needs to be in metres
+    units = undefined
+    if(distance == null) {
+      return "";
+    }
+    if(distance > 1000) {
+      distance /= 1000;
+      units = "km";
+    }
+    else {
+      units = "m"
+    }
+    return(distance.toFixed(0) + " " + units);
+  },
+
   render: function() {
-    console.log("distanceInMetres", distanceInMetres(this.userPosition(), this.position()));
     return (
       <div className="campsite">
-        <div className="pull-right distance">{this.props.distance} {this.props.bearing}</div>
+        <div className="pull-right distance">{this.distanceText()} {this.props.bearing}</div>
         <div className="name">{this.props.name}</div>
         <div className="park">{this.props.park}</div>
       </div>
