@@ -2,6 +2,10 @@ body {
   padding-top: 50px;
 }
 
+.container p:first-child{
+  margin-top: 20px;
+}
+
 h1 {
   font-size: 22px;
   text-align: center;
