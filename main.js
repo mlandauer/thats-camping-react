@@ -1,9 +1,16 @@
 // main.js
 var React = require('react');
 var ReactDOM = require('react-dom');
-var App = require('./components/App');
+var Router = require('react-router').Router;
+var Route = require('react-router').Route;
+
+var CampsiteList = require('./components/CampsiteList');
+var CampsiteDetailPage = require('./components/CampsiteDetailPage');
 
 ReactDOM.render(
-  <App/>,
+  <Router>
+    <Route path="/" component={CampsiteList} />
+    <Route path="/campsites/:id" component={CampsiteDetailPage} />
+  </Router>,
   document.getElementById('root')
 );
