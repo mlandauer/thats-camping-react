@@ -3,18 +3,28 @@ body {
 }
 
 h1 {
-  font-size: 18px;
+  font-size: 22px;
   text-align: center;
 }
 
+.campsite {
+  margin: 4px;
+}
+
 .campsite .name {
+  font-size: 20px;
   font-weight: 500;
 }
 
-.campsite .park, .campsite .distance {
+.campsite .park {
+  font-size: 20px;
   color: #aaa;
 }
 
 .campsite .distance {
-  font-size: 12px;
+  color: #aaa;
+}
+
+.campsite .distance {
+  font-size: 18px;
 }
