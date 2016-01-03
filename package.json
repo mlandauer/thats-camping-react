@@ -8,7 +8,9 @@
     "babel-preset-react": "~6.3.13",
     "react-dom": "~0.14.5",
     "react": "~0.14.5",
-    "express": "^4.4.5"
+    "express": "^4.4.5",
+    "history": "^1.17.0",
+    "react-router": "^1.0.3"
   },
   "devDependencies": {
     "browserify": "~6.0.3",
