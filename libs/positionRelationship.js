@@ -9,6 +9,10 @@ var toDeg = function(rad) {
 module.exports = PositionRelationship = {
   // Distance in metres between two positions given as lat longs
   distanceInMetres: function(position1, position2) {
+    if (position1.lat == undefined || position1.lng == undefined || position2.lat == undefined || position2.lng == undefined) {
+      return undefined;
+    }
+
     var R = 6371000;
     var dLat = toRad(position2.lat - position1.lat);
     var dLon = toRad(position2.lng - position1.lng);
@@ -19,6 +23,10 @@ module.exports = PositionRelationship = {
   },
 
   bearingInDegrees: function(position1, position2) {
+    if (position1.lat == undefined || position1.lng == undefined || position2.lat == undefined || position2.lng == undefined) {
+      return undefined;
+    }
+
     var lon2 = toRad(position2.lng);
     var lat2 = toRad(position2.lat);
     var lon1 = toRad(position1.lng);

@@ -29,9 +29,11 @@ module.exports = CampsiteList = React.createClass({
       <ul className="list-group">
         {
           campsites.map(function(campsite) {
+            var distance = PositionRelationship.distanceInMetres(campsite.position, userPosition);
+            var bearing = PositionRelationship.bearingInDegrees(campsite.position, userPosition);
             return (
               <li className="list-group-item" key={campsite.id}>
-                <Campsite name={campsite.name} park={campsite.park} position={campsite.position} userPosition={userPosition}/>
+                <Campsite name={campsite.name} park={campsite.park} distance={distance} bearing={bearing}/>
               </li>
             )
           })
