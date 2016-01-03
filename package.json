@@ -7,16 +7,19 @@
     "babelify": "~7.2.0",
     "babel-preset-react": "~6.3.13",
     "react-dom": "~0.14.5",
-    "react": "~0.14.5"
+    "react": "~0.14.5",
+    "express": "^4.4.5"
   },
   "devDependencies": {
     "browserify": "~6.0.3",
-    "watchify": "~2.0.0"
+    "watchify": "~2.0.0",
+    "nodemon": "^1.2.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "watchify -d -t [ babelify --presets [ react ] ] main.js -o public/bundle.js -v",
-    "browserify": "browserify -d -t [ babelify --presets [ react ] ] main.js -o public/bundle.js"
+    "browserify": "browserify -d -t [ babelify --presets [ react ] ] main.js -o public/bundle.js",
+    "start": "npm run watch & nodemon server.js"
   },
   "author": "Matthew Landauer",
   "license": "GPL"
