@@ -19,9 +19,6 @@ module.exports = PositionRelationship = {
   },
 
   bearingInDegrees: function(position1, position2) {
-    if (position1 == null || position2 == null)
-      return null;
-
     var lon2 = toRad(position2.lng);
     var lat2 = toRad(position2.lat);
     var lon1 = toRad(position1.lng);
