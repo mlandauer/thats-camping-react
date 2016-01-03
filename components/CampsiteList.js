@@ -1,17 +1,41 @@
 var React = require('react');
 var Campsite = require('./Campsite');
+var data = require('../data');
+
+var findParkById = function(id, parks) {
+  return parks.find(function(p) {
+    return (p.id == id);
+  });
+};
 
 module.exports = CampsiteList = React.createClass({
   render: function() {
     var userPosition = {lat: -33.7125, lng: 150.3119};
+
+    // Munge information in data into the right form
+    var campsites = data.campsites.map(function(c) {
+      return ({
+        name: c.shortName,
+        position: {
+          lat: c.latitude,
+          lng: c.longitude
+        },
+        park: findParkById(c.park, data.parks).shortName,
+        id: c.id
+      });
+    });
+
     return (
       <ul className="list-group">
-        <li className="list-group-item">
-          <Campsite name="Acacia Flat" park="Blue Mountains NP" position={{lat: -33.6149, lng: 150.3553}} userPosition={userPosition}/>
-        </li>
-        <li className="list-group-item">
-          <Campsite name="Perrys Lookdown" park="Blue Mountains NP" position={{lat: -33.59935, lng: 150.34592}} userPosition={userPosition}/>
-        </li>
+        {
+          campsites.map(function(campsite) {
+            return (
+              <li className="list-group-item" key={campsite.id}>
+                <Campsite name={campsite.name} park={campsite.park} position={campsite.position} userPosition={userPosition}/>
+              </li>
+            )
+          })
+        }
       </ul>
     )
   }
