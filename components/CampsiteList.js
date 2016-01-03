@@ -25,15 +25,28 @@ module.exports = CampsiteList = React.createClass({
       });
     });
 
+    // Add distance and bearing information
+    var campsites = campsites.map(function(c) {
+      var distance = PositionRelationship.distanceInMetres(c.position, userPosition);
+      var bearing = PositionRelationship.bearingInDegrees(c.position, userPosition);
+      // TODO Do some kind of concat instead
+      return {
+        name: c.name,
+        position: c.position,
+        park: c.park,
+        id: c.id,
+        distance: distance,
+        bearing: bearing
+      };
+    });
+
     return (
       <ul className="list-group">
         {
           campsites.map(function(campsite) {
-            var distance = PositionRelationship.distanceInMetres(campsite.position, userPosition);
-            var bearing = PositionRelationship.bearingInDegrees(campsite.position, userPosition);
             return (
               <li className="list-group-item" key={campsite.id}>
-                <Campsite name={campsite.name} park={campsite.park} distance={distance} bearing={bearing}/>
+                <Campsite name={campsite.name} park={campsite.park} distance={campsite.distance} bearing={campsite.bearing}/>
               </li>
             )
           })
