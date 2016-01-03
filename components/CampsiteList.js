@@ -40,6 +40,26 @@ module.exports = CampsiteList = React.createClass({
       };
     });
 
+    // Sort campsites by distance
+    var campsites = campsites.sort(function(a, b) {
+      if (a.distance == undefined && b.distance == undefined) {
+        return 0;
+      }
+      if (a.distance == undefined) {
+        return 1;
+      }
+      if (b.distance == undefined) {
+        return -1;
+      }
+      if (a.distance > b.distance) {
+        return 1;
+      }
+      if (a.distance < b.distance) {
+        return -1;
+      }
+      return 0;
+    });
+
     return (
       <ul className="list-group">
         {
