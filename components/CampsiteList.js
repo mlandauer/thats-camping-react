@@ -61,17 +61,24 @@ module.exports = CampsiteList = React.createClass({
     });
 
     return (
-      <ul className="list-group">
-        {
-          campsites.map(function(campsite) {
-            return (
-              <li className="list-group-item" key={campsite.id}>
-                <Campsite name={campsite.name} park={campsite.park} distance={campsite.distance} bearing={campsite.bearing}/>
-              </li>
-            )
-          })
-        }
-      </ul>
+      <div className="campsite-list">
+        <nav className="navbar navbar-default navbar-fixed-top">
+          <div className="container">
+            <h1 className="navbar-text">Camping near you</h1>
+          </div>
+        </nav>
+        <ul className="list-group">
+          {
+            campsites.map(function(campsite) {
+              return (
+                <li className="list-group-item" key={campsite.id}>
+                  <Campsite name={campsite.name} park={campsite.park} distance={campsite.distance} bearing={campsite.bearing}/>
+                </li>
+              )
+            })
+          }
+        </ul>
+      </div>
     )
   }
 });
