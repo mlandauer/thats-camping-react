@@ -8,11 +8,11 @@ var Link = require('react-router').Link;
 
 module.exports = App = React.createClass({
   render: function() {
-    // Can swap between two pages here
-    Child = CampsiteDetailPage;
-    Child = CampsiteList;
     return (
-      <Child/>
+      <Router>
+        <Route path="/" component={CampsiteList} />
+        <Route path="/campsites/:id" component={CampsiteDetailPage} />
+      </Router>
     )
   }
 });

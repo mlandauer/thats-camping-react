@@ -1,6 +1,7 @@
 var React = require('react');
 var Campsite = require('./Campsite');
 var data = require('../data');
+var Link = require('react-router').Link;
 
 var findParkById = function(id, parks) {
   return parks.find(function(p) {
@@ -71,9 +72,9 @@ module.exports = CampsiteList = React.createClass({
           {
             campsites.map(function(campsite) {
               return (
-                <li className="list-group-item" key={campsite.id}>
+                <Link to={`/campsites/${campsite.id}`} className="list-group-item" key={campsite.id}>
                   <Campsite name={campsite.name} park={campsite.park} distance={campsite.distance} bearing={campsite.bearing}/>
-                </li>
+                </Link>
               )
             })
           }
