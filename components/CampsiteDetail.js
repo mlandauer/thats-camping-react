@@ -6,7 +6,7 @@ module.exports = CampsiteDetail = React.createClass({
       <div className="campsite-detail">
         <nav className="navbar navbar-default navbar-fixed-top">
           <div className="container">
-            <h1 className="navbar-text">{this.props.name}</h1>
+            <h1>{this.props.name}</h1>
           </div>
         </nav>
         <div className="container">

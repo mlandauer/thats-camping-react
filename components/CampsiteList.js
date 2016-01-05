@@ -60,7 +60,7 @@ module.exports = CampsiteList = React.createClass({
       <div className="campsite-list">
         <nav className="navbar navbar-default navbar-fixed-top">
           <div className="container">
-            <h1 className="navbar-text">Camping near you</h1>
+            <h1>Camping near you</h1>
           </div>
         </nav>
         <ul className="list-group">
