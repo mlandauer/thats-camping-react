@@ -9,6 +9,12 @@ var browserHistory = createBrowserHistory();
 var CampsiteList = require('./components/CampsiteList');
 var CampsiteDetailPage = require('./components/CampsiteDetailPage');
 
+var findParkById = function(id, parks) {
+  return parks.find(function(p) {
+    return (p.id == id);
+  });
+};
+
 // Munge information in data into the right form and make it quick to
 // look up by id
 module.exports = campsites = {};

@@ -2,7 +2,6 @@ var React = require('react');
 var Campsite = require('./Campsite');
 var data = require('../data');
 var Link = require('react-router').Link;
-var findParkById = require('../libs/findParkById');
 
 module.exports = CampsiteList = React.createClass({
   render: function() {
