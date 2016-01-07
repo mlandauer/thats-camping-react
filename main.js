@@ -21,6 +21,8 @@ data.campsites.forEach(function(c) {
       lat: c.latitude,
       lng: c.longitude
     },
+    // TODO Convert line breaks into paragraphs
+    description: c.description,
     park: {
       shortName: park.shortName,
       longName: park.longName
