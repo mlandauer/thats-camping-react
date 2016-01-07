@@ -9,17 +9,18 @@ var browserHistory = createBrowserHistory();
 var CampsiteList = require('./components/CampsiteList');
 var CampsiteDetailPage = require('./components/CampsiteDetailPage');
 
-var findParkById = function(id, parks) {
-  return parks.find(function(p) {
-    return (p.id == id);
-  });
-};
-
 // Munge information in data into the right form and make it quick to
 // look up by id
+var parks = {};
+data.parks.forEach(function(p) {
+  parks[p.id] = {
+    shortName: p.shortName,
+    longName: p.longName
+  };
+});
+
 module.exports = campsites = {};
 data.campsites.forEach(function(c) {
-  var park = findParkById(c.park, data.parks);
   campsites[c.id] = {
     id: c.id,
     name: c.shortName,
@@ -29,10 +30,7 @@ data.campsites.forEach(function(c) {
     },
     // TODO Convert line breaks into paragraphs
     description: c.description,
-    park: {
-      shortName: park.shortName,
-      longName: park.longName
-    }
+    park: parks[c.park]
   };
 });
 
