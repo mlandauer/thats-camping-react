@@ -9,20 +9,13 @@ module.exports = CampsiteList = React.createClass({
     var userPosition = {lat: -33.7125, lng: 150.3119};
 
     // Munge information in data into the right form
-    var campsites = data.campsites.map(function(c) {
-      return ({
-        name: c.shortName,
-        position: {
-          lat: c.latitude,
-          lng: c.longitude
-        },
-        park: findParkById(c.park, data.parks).shortName,
-        id: c.id
-      });
-    });
+    var campsites2 = [];
+    for (var id in campsites) {
+      campsites2.push(campsites[id]);
+    }
 
     // Add distance and bearing information
-    var campsites = campsites.map(function(c) {
+    var campsites2 = campsites2.map(function(c) {
       var distance = PositionRelationship.distanceInMetres(c.position, userPosition);
       var bearing = PositionRelationship.bearingInDegrees(c.position, userPosition);
       // TODO Do some kind of concat instead
@@ -37,7 +30,7 @@ module.exports = CampsiteList = React.createClass({
     });
 
     // Sort campsites by distance
-    var campsites = campsites.sort(function(a, b) {
+    var campsites2 = campsites2.sort(function(a, b) {
       if (a.distance == undefined && b.distance == undefined) {
         return 0;
       }
@@ -65,10 +58,10 @@ module.exports = CampsiteList = React.createClass({
         </nav>
         <ul className="list-group">
           {
-            campsites.map(function(campsite) {
+            campsites2.map(function(campsite) {
               return (
                 <Link to={`/campsites/${campsite.id}`} className="list-group-item" key={campsite.id}>
-                  <Campsite name={campsite.name} park={campsite.park} distance={campsite.distance} bearing={campsite.bearing}/>
+                  <Campsite name={campsite.name} park={campsite.park.shortName} distance={campsite.distance} bearing={campsite.bearing}/>
                 </Link>
               )
             })

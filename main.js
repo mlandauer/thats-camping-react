@@ -9,6 +9,27 @@ var browserHistory = createBrowserHistory();
 var CampsiteList = require('./components/CampsiteList');
 var CampsiteDetailPage = require('./components/CampsiteDetailPage');
 
+// Munge information in data into the right form and make it quick to
+// look up by id
+module.exports = campsites = {};
+data.campsites.forEach(function(c) {
+  var park = findParkById(c.park, data.parks);
+  campsites[c.id] = {
+    id: c.id,
+    name: c.shortName,
+    position: {
+      lat: c.latitude,
+      lng: c.longitude
+    },
+    park: {
+      shortName: park.shortName,
+      longName: park.longName
+    }
+  };
+});
+
+//console.log("campsites", campsites);
+
 ReactDOM.render(
   <Router history={browserHistory}>
     <Route path="/" component={CampsiteList} />
