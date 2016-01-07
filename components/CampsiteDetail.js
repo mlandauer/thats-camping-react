@@ -1,6 +1,10 @@
 var React = require('react');
 
 module.exports = CampsiteDetail = React.createClass({
+  getDescription: function() {
+    return {__html: this.props.children};
+  },
+
   render: function() {
     return (
       <div className="campsite-detail">
@@ -11,7 +15,7 @@ module.exports = CampsiteDetail = React.createClass({
         </nav>
         <div className="container">
           <p>{this.props.park}</p>
-          <p>{this.props.children}</p>
+          <div dangerouslySetInnerHTML={this.getDescription()}/>
         </div>
       </div>
     )

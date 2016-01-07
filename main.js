@@ -9,6 +9,17 @@ var browserHistory = createBrowserHistory();
 var CampsiteList = require('./components/CampsiteList');
 var CampsiteDetailPage = require('./components/CampsiteDetailPage');
 
+var simpleFormat = function(str) {
+  str = str.replace(/\r\n?/, "\n");
+  str = $.trim(str);
+  if (str.length > 0) {
+    str = str.replace(/\n\n+/g, '</p><p>');
+    str = str.replace(/\n/g, '<br />');
+    str = '<p>' + str + '</p>';
+  }
+  return str;
+}
+
 // Munge information in data into the right form and make it quick to
 // look up by id
 var parks = {};
@@ -29,7 +40,7 @@ data.campsites.forEach(function(c) {
       lng: c.longitude
     },
     // TODO Convert line breaks into paragraphs
-    description: c.description,
+    description: simpleFormat(c.description),
     park: parks[c.park]
   };
 });
