@@ -21,6 +21,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "watchify -d -t [ babelify --presets [ react ] ] main.js -o public/bundle.js -v",
     "browserify": "browserify -d -t [ babelify --presets [ react ] ] main.js -o public/bundle.js",
+    "preinstall": "npm run browserify",
     "start": "node server.js"
   },
   "author": "Matthew Landauer",
