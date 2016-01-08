@@ -24,16 +24,42 @@ module.exports = CampsiteDetail = React.createClass({
   },
 
   facilitiesText: function() {
-    return "Has " + listAsText(this.props.campsite.facilities.have) +
-      " but no " + listAsText(this.props.campsite.facilities.notHave);
+    var have = this.props.campsite.facilities.have;
+    var notHave = this.props.campsite.facilities.notHave;
+
+    if (have.length == 0) {
+      if (notHave.length == 0) {
+        return "";
+      } else {
+        return "No " + listAsText(notHave);
+      }
+    } else {
+      if (notHave.length == 0) {
+        return "Has " + listAsText(have);
+      } else {
+        return "Has " + listAsText(have) +
+          " but no " + listAsText(notHave);
+      }
+    }
   },
 
   accessText: function() {
-    if (this.props.campsite.access.have.length == 0) {
-      return "Not for " + listAsText(this.props.campsite.access.notHave);
+    var have = this.props.campsite.access.have;
+    var notHave = this.props.campsite.access.notHave;
+
+    if (have.length == 0) {
+      if (notHave.length == 0) {
+        return "";
+      } else {
+        return "Not for " + listAsText(notHave);
+      }
     } else {
-      return "For " + listAsText(this.props.campsite.access.have) +
-        " but not for " + listAsText(this.props.campsite.access.notHave);
+      if (notHave.length == 0) {
+        return "For " + listAsText(have);
+      } else {
+        return "For " + listAsText(have) +
+          " but not for " + listAsText(notHave);
+      }
     }
   },
 
