@@ -4,14 +4,14 @@
   "description": "That's Camping - this time with React",
   "main": "main.js",
   "dependencies": {
-    "babelify": "~7.2.0",
     "babel-preset-react": "~6.3.13",
-    "react-dom": "~0.14.5",
-    "react": "~0.14.5",
+    "babelify": "~7.2.0",
+    "browserify": "~6.0.3",
     "express": "^4.4.5",
     "history": "^1.17.0",
-    "react-router": "^1.0.3",
-    "browserify": "~6.0.3"
+    "react": "~0.14.5",
+    "react-dom": "~0.14.5",
+    "react-router": "^1.0.3"
   },
   "devDependencies": {
     "watchify": "~2.0.0",
