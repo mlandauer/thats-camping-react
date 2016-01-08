@@ -27,40 +27,38 @@ module.exports = CampsiteDetail = React.createClass({
     var have = this.props.campsite.facilities.have;
     var notHave = this.props.campsite.facilities.notHave;
 
-    if (have.length == 0) {
-      if (notHave.length == 0) {
-        return "";
-      } else {
-        return "No " + listAsText(notHave);
-      }
-    } else {
-      if (notHave.length == 0) {
-        return "Has " + listAsText(have);
-      } else {
-        return "Has " + listAsText(have) +
-          " but no " + listAsText(notHave);
-      }
+    var r = "";
+    if (have.length > 0) {
+      r = r + "Has " + listAsText(have);
     }
+    if (notHave.length > 0) {
+      if (have.length > 0) {
+        r = r + " but no ";
+      } else {
+        r = r + "No ";
+      }
+      r = r + listAsText(notHave);
+    }
+    return r;
   },
 
   accessText: function() {
     var have = this.props.campsite.access.have;
     var notHave = this.props.campsite.access.notHave;
 
-    if (have.length == 0) {
-      if (notHave.length == 0) {
-        return "";
-      } else {
-        return "Not for " + listAsText(notHave);
-      }
-    } else {
-      if (notHave.length == 0) {
-        return "For " + listAsText(have);
-      } else {
-        return "For " + listAsText(have) +
-          " but not for " + listAsText(notHave);
-      }
+    var r = "";
+    if (have.length > 0) {
+      r = r + "For " + listAsText(have);
     }
+    if (notHave.length > 0) {
+      if (have.length > 0) {
+        r = r + " but not for ";
+      } else {
+        r = r + "Not for ";
+      }
+      r = r + listAsText(notHave);
+    }
+    return r;
   },
 
   render: function() {
