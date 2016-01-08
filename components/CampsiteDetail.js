@@ -23,7 +23,7 @@ module.exports = CampsiteDetail = React.createClass({
           </div>
         </nav>
         <div className="container">
-          <p>{this.props.park}</p>
+          <h2>In {this.props.park}</h2>
           <div dangerouslySetInnerHTML={this.getDescription()}/>
         </div>
       </div>
