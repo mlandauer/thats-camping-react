@@ -1,5 +1,17 @@
 var React = require('react');
 
+var listAsText = function(list) {
+  if (list.length == 0) {
+    return null;
+  }
+  else if (list.length == 1) {
+    return list[0];
+  }
+  else {
+    return list.slice(0, -1).join(", ") + " and " + list[list.length - 1];
+  }
+};
+
 module.exports = CampsiteDetail = React.createClass({
   getDescription: function() {
     return {__html: this.props.campsite.description};
@@ -25,6 +37,18 @@ module.exports = CampsiteDetail = React.createClass({
         <div className="container">
           <h2>In {this.props.campsite.park.longName}</h2>
           <div dangerouslySetInnerHTML={this.getDescription()}/>
+          <h2>Facilities</h2>
+          <p>
+            Has {listAsText(this.props.campsite.facilities.have)}
+            <br/>
+            but no {listAsText(this.props.campsite.facilities.notHave)}
+          </p>
+          <h2>Access</h2>
+          <p>
+            For {listAsText(this.props.campsite.access.have)}
+            <br/>
+            but not for {listAsText(this.props.campsite.access.notHave)}
+          </p>
         </div>
       </div>
     )
