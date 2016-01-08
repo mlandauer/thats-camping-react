@@ -2,7 +2,7 @@ var React = require('react');
 
 module.exports = CampsiteDetail = React.createClass({
   getDescription: function() {
-    return {__html: this.props.children};
+    return {__html: this.props.campsite.description};
   },
 
   // TODO Extract back button into its own component
@@ -19,11 +19,11 @@ module.exports = CampsiteDetail = React.createClass({
             <button className="btn btn-link navbar-link navbar-text pull-left" onClick={this.navigateBack}>
               <span className="glyphicon glyphicon-chevron-left back" aria-hidden="true"></span>
             </button>
-            <h1>{this.props.name}</h1>
+            <h1>{this.props.campsite.name}</h1>
           </div>
         </nav>
         <div className="container">
-          <h2>In {this.props.park}</h2>
+          <h2>In {this.props.campsite.park.longName}</h2>
           <div dangerouslySetInnerHTML={this.getDescription()}/>
         </div>
       </div>

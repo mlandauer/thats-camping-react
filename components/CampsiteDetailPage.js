@@ -9,9 +9,7 @@ module.exports = CampsiteDetailPage = React.createClass({
 
   render: function() {
     return (
-      <CampsiteDetail name={this.state.campsite.name} park={this.state.campsite.park.longName}>
-        {this.state.campsite.description}
-      </CampsiteDetail>
+      <CampsiteDetail campsite={this.state.campsite} />
     )
   }
 });
