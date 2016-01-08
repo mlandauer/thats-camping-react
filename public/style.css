@@ -34,3 +34,11 @@ h1 {
 .campsite .distance {
   font-size: 18px;
 }
+
+.back {
+  font-size: 22px;
+}
+
+nav button.btn {
+  padding: 0;
+}
