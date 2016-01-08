@@ -23,6 +23,22 @@ module.exports = CampsiteDetail = React.createClass({
     return false;
   },
 
+  haveFacilitiesText: function() {
+    return "Has " + listAsText(this.props.campsite.facilities.have);
+  },
+
+  notHaveFacilitiesText: function() {
+    return "but no " + listAsText(this.props.campsite.facilities.notHave);
+  },
+
+  haveAccessText: function() {
+    return "For " + listAsText(this.props.campsite.access.have);
+  },
+
+  notHaveAccessText: function() {
+    return "but not for " + listAsText(this.props.campsite.access.notHave);
+  },
+
   render: function() {
     return (
       <div className="campsite-detail">
@@ -39,15 +55,15 @@ module.exports = CampsiteDetail = React.createClass({
           <div dangerouslySetInnerHTML={this.getDescription()}/>
           <h2>Facilities</h2>
           <p>
-            Has {listAsText(this.props.campsite.facilities.have)}
+            {this.haveFacilitiesText()}
             <br/>
-            but no {listAsText(this.props.campsite.facilities.notHave)}
+            {this.notHaveFacilitiesText()}
           </p>
           <h2>Access</h2>
           <p>
-            For {listAsText(this.props.campsite.access.have)}
+            {this.haveAccessText()}
             <br/>
-            but not for {listAsText(this.props.campsite.access.notHave)}
+            {this.notHaveAccessText()}
           </p>
         </div>
       </div>
