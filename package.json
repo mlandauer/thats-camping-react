@@ -10,10 +10,10 @@
     "react": "~0.14.5",
     "express": "^4.4.5",
     "history": "^1.17.0",
-    "react-router": "^1.0.3"
+    "react-router": "^1.0.3",
+    "browserify": "~6.0.3"
   },
   "devDependencies": {
-    "browserify": "~6.0.3",
     "watchify": "~2.0.0",
     "nodemon": "^1.2.1"
   },
