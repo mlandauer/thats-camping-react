@@ -5,7 +5,7 @@ var Link = require('react-router').Link;
 
 module.exports = CampsiteList = React.createClass({
   render: function() {
-    var userPosition = {lat: -33.7125, lng: 150.3119};
+    var userPosition = this.props.userPosition;
 
     // Munge information in data into the right form
     var campsites2 = [];
