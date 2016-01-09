@@ -10,8 +10,6 @@ module.exports = App = React.createClass({
   },
 
   updateLocation: function() {
-    // TODO really should wait for deviceready event before calling this
-    // document.addEventListener('deviceready', this.trulyUpdateLocation, false);
     navigator.geolocation.getCurrentPosition(this.geoLocation, null, {enableHighAccuracy: true});
   },
 
