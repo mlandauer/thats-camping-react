@@ -23,6 +23,7 @@
     "watch": "watchify -d -t [ babelify --presets [ react ] ] main.js -o public/bundle.js -v",
     "browserify": "browserify -t [ babelify --presets [ react ] ] main.js | uglifyjs -c > public/bundle.js",
     "postinstall": "npm run browserify",
+    "development": "npm run watch & nodemon server.js",
     "start": "node server.js"
   },
   "author": "Matthew Landauer",
