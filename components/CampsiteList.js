@@ -13,40 +13,44 @@ module.exports = CampsiteList = React.createClass({
       campsites2.push(campsites[id]);
     }
 
-    // Add distance and bearing information
-    var campsites2 = campsites2.map(function(c) {
-      var distance = PositionRelationship.distanceInMetres(c.position, userPosition);
-      var bearing = PositionRelationship.bearingInDegrees(c.position, userPosition);
-      // TODO Do some kind of concat instead
-      return {
-        name: c.name,
-        position: c.position,
-        park: c.park,
-        id: c.id,
-        distance: distance,
-        bearing: bearing
-      };
-    });
+    if (userPosition == null) {
+      // TODO: Sort campsites by name
+    } else {
+      // Add distance and bearing information
+      var campsites2 = campsites2.map(function(c) {
+        var distance = PositionRelationship.distanceInMetres(c.position, userPosition);
+        var bearing = PositionRelationship.bearingInDegrees(c.position, userPosition);
+        // TODO Do some kind of concat instead
+        return {
+          name: c.name,
+          position: c.position,
+          park: c.park,
+          id: c.id,
+          distance: distance,
+          bearing: bearing
+        };
+      });
 
-    // Sort campsites by distance
-    var campsites2 = campsites2.sort(function(a, b) {
-      if (a.distance == undefined && b.distance == undefined) {
+      // Sort campsites by distance
+      var campsites2 = campsites2.sort(function(a, b) {
+        if (a.distance == undefined && b.distance == undefined) {
+          return 0;
+        }
+        if (a.distance == undefined) {
+          return 1;
+        }
+        if (b.distance == undefined) {
+          return -1;
+        }
+        if (a.distance > b.distance) {
+          return 1;
+        }
+        if (a.distance < b.distance) {
+          return -1;
+        }
         return 0;
-      }
-      if (a.distance == undefined) {
-        return 1;
-      }
-      if (b.distance == undefined) {
-        return -1;
-      }
-      if (a.distance > b.distance) {
-        return 1;
-      }
-      if (a.distance < b.distance) {
-        return -1;
-      }
-      return 0;
-    });
+      });
+    }
 
     return (
       <div className="campsite-list">
