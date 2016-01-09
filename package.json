@@ -11,16 +11,17 @@
     "history": "^1.17.0",
     "react": "~0.14.5",
     "react-dom": "~0.14.5",
-    "react-router": "^1.0.3"
+    "react-router": "^1.0.3",
+    "uglify-js": "^2.6.1"
   },
   "devDependencies": {
-    "watchify": "~2.0.0",
-    "nodemon": "^1.2.1"
+    "nodemon": "^1.8.1",
+    "watchify": "^3.6.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "watchify -d -t [ babelify --presets [ react ] ] main.js -o public/bundle.js -v",
-    "browserify": "browserify -d -t [ babelify --presets [ react ] ] main.js -o public/bundle.js",
+    "browserify": "browserify -t [ babelify --presets [ react ] ] main.js | uglifyjs -c > public/bundle.js",
     "postinstall": "npm run browserify",
     "start": "node server.js"
   },
