@@ -9,7 +9,7 @@ module.exports = CampsiteDetailPage = React.createClass({
 
   render: function() {
     return (
-      <CampsiteDetail campsite={this.state.campsite} />
+      <CampsiteDetail campsite={this.state.campsite} userPosition={this.props.userPosition}/>
     )
   }
 });

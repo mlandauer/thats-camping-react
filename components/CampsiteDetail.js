@@ -61,6 +61,15 @@ module.exports = CampsiteDetail = React.createClass({
     return r;
   },
 
+  mapUrl: function() {
+    if (this.props.userPosition != null) {
+      return "http://maps.google.com/maps?saddr=you+are+here@" +
+        this.props.userPosition.lat + "," + this.props.userPosition.lng +
+        "&daddr=" + this.props.campsite.name + "@" +
+        this.props.campsite.position.lat + "," + this.props.campsite.position.lng;
+    }
+  },
+
   render: function() {
     return (
       <div className="campsite-detail">
@@ -79,6 +88,7 @@ module.exports = CampsiteDetail = React.createClass({
           <p>{this.facilitiesText()}</p>
           <h2>Access</h2>
           <p>{this.accessText()}</p>
+          <a href={this.mapUrl()} className="directions btn btn-default" disabled={this.props.userPosition == null ? "disabled": ""}>Directions to campsite</a>
         </div>
       </div>
     )
