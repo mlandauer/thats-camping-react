@@ -34,7 +34,7 @@ module.exports = CampsiteList = React.createClass({
       // Sort campsites by distance
       var campsites2 = campsites2.sort(function(a, b) {
         if (a.distance == undefined && b.distance == undefined) {
-          return 0;
+          return a.name.localeCompare(b.name);
         }
         if (a.distance == undefined) {
           return 1;
