@@ -9,8 +9,16 @@ body {
 h1 {
   font-size: 22px;
   text-align: center;
-  margin: 15px;
+  margin: 15px auto 15px auto;
   color: #777;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  z-index: -1000;
+}
+
+nav {
+  height: 60px;
 }
 
 .campsite {
