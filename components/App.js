@@ -10,7 +10,8 @@ module.exports = App = React.createClass({
   },
 
   updateLocation: function() {
-    navigator.geolocation.getCurrentPosition(this.geoLocation, null, {enableHighAccuracy: true});
+    navigator.geolocation.getCurrentPosition(this.geoLocation, this.geoError,
+      {enableHighAccuracy: true});
   },
 
   geoLocation: function(location){
@@ -18,6 +19,10 @@ module.exports = App = React.createClass({
       lat: location.coords.latitude,
       lng: location.coords.longitude
     }});
+  },
+
+  geoError: function(err) {
+    console.warn('Error getting location (' + err.code + '): ' + err.message);
   },
 
   render: function() {
