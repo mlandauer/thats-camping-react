@@ -82,7 +82,7 @@ module.exports = CampsiteDetail = React.createClass({
           </div>
         </nav>
         <div className="container">
-          <h2>In {this.props.campsite.park.longName}</h2>
+          <h2>In {parks[this.props.campsite.park_id].longName}</h2>
           <div dangerouslySetInnerHTML={this.getDescription()}/>
           <h2>Facilities</h2>
           <p>{this.facilitiesText()}</p>

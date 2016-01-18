@@ -113,7 +113,7 @@ var facilitiesFields = function(campsite) {
 
 // Munge information in data into the right form and make it quick to
 // look up by id
-var parks = {};
+module.exports = parks = {};
 data.parks.forEach(function(p) {
   parks[p.id] = {
     shortName: p.shortName,
@@ -132,7 +132,7 @@ data.campsites.forEach(function(c) {
     },
     // TODO Convert line breaks into paragraphs
     description: simpleFormat(c.description),
-    park: parks[c.park],
+    park_id: c.park,
     facilities: facilitiesFields(c),
     access: accessFields(c)
   };

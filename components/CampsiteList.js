@@ -24,7 +24,7 @@ module.exports = CampsiteList = React.createClass({
         return {
           name: c.name,
           position: c.position,
-          park: c.park,
+          park_id: c.park_id,
           id: c.id,
           distance: distance,
           bearing: bearing
@@ -64,7 +64,7 @@ module.exports = CampsiteList = React.createClass({
             campsites2.map(function(campsite) {
               return (
                 <Link to={"/campsites/" + campsite.id} className="list-group-item" key={campsite.id}>
-                  <Campsite name={campsite.name} park={campsite.park.shortName} distance={campsite.distance} bearing={campsite.bearing}/>
+                  <Campsite name={campsite.name} park={parks[campsite.park_id].shortName} distance={campsite.distance} bearing={campsite.bearing}/>
                 </Link>
               )
             })
