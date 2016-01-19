@@ -15,11 +15,13 @@
     "uglify-js": "^2.6.1"
   },
   "devDependencies": {
+    "mocha": "^2.3.4",
     "nodemon": "^1.8.1",
     "watchify": "^3.6.1"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha --compilers js:babel-core/register --recursive",
+    "test:watch": "npm test -- --watch",
     "watch": "watchify -d -t [ babelify --presets [ react ] ] main.js -o public/bundle.js -v",
     "browserify": "browserify -t [ babelify --presets [ react ] ] main.js | uglifyjs -c > public/bundle.js",
     "postinstall": "npm run browserify",
