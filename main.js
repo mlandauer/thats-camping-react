@@ -113,30 +113,39 @@ var facilitiesFields = function(campsite) {
 
 // Munge information in data into the right form and make it quick to
 // look up by id
-module.exports = parks = {};
-data.parks.forEach(function(p) {
-  parks[p.id] = {
-    shortName: p.shortName,
-    longName: p.longName
-  };
-});
+var transformDataToParks = function(data) {
+  var parks = {};
+  data.parks.forEach(function(p) {
+    parks[p.id] = {
+      shortName: p.shortName,
+      longName: p.longName
+    };
+  });
+  return parks;
+}
 
-module.exports = campsites = {};
-data.campsites.forEach(function(c) {
-  campsites[c.id] = {
-    id: c.id,
-    name: c.shortName,
-    position: {
-      lat: c.latitude,
-      lng: c.longitude
-    },
-    // TODO Convert line breaks into paragraphs
-    description: simpleFormat(c.description),
-    park_id: c.park,
-    facilities: facilitiesFields(c),
-    access: accessFields(c)
-  };
-});
+var transformDataToCampsites = function(data) {
+  var campsites = {};
+  data.campsites.forEach(function(c) {
+    campsites[c.id] = {
+      id: c.id,
+      name: c.shortName,
+      position: {
+        lat: c.latitude,
+        lng: c.longitude
+      },
+      // TODO Convert line breaks into paragraphs
+      description: simpleFormat(c.description),
+      park_id: c.park,
+      facilities: facilitiesFields(c),
+      access: accessFields(c)
+    };
+  });
+  return campsites;
+}
+
+module.exports = parks = transformDataToParks(data);
+module.exports = campsites = transformDataToCampsites(data);
 
 //console.log("campsites", campsites);
 
