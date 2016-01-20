@@ -13,9 +13,6 @@ export default class App extends React.Component {
 
   componentWillMount() {
     this.updateLocation();
-  }
-
-  componentDidMount() {
     this.setState({
       parks: this.transformDataToParks(data),
       campsites: this.transformDataToCampsites(data)
