@@ -1,57 +1,56 @@
-var React = require('react');
-var data = require('./../data');
+import React from 'react';
+import data from './../data';
 
-var App = React.createClass({
-  getInitialState: function() {
-      return {
-        userPosition: null,
-        parks: this.transformDataToParks(data),
-        campsites: this.transformDataToCampsites(data)
-      };
-  },
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      userPosition: null,
+      parks: this.transformDataToParks(data),
+      campsites: this.transformDataToCampsites(data)
+    };
+  }
 
-  componentWillMount: function() {
+  componentWillMount() {
     this.updateLocation();
-  },
+  }
 
-  updateLocation: function() {
-    navigator.geolocation.getCurrentPosition(this.geoLocation, this.geoError,
+  updateLocation() {
+    navigator.geolocation.getCurrentPosition(
+      (location) => {
+        this.setState({userPosition: {
+          lat: location.coords.latitude,
+          lng: location.coords.longitude
+        }});
+      },
+      (err) => {
+        console.warn('Error getting location (' + err.code + '): ' + err.message);
+      },
       {enableHighAccuracy: true});
-  },
+  }
 
-  geoLocation: function(location){
-    this.setState({userPosition: {
-      lat: location.coords.latitude,
-      lng: location.coords.longitude
-    }});
-  },
-
-  geoError: function(err) {
-    console.warn('Error getting location (' + err.code + '): ' + err.message);
-  },
-
-  render: function() {
+  render() {
     return React.cloneElement(this.props.children, {
       userPosition: this.state.userPosition,
       campsites: this.state.campsites,
       parks: this.state.parks
     });
-  },
+  }
 
   // Munge information in data into the right form and make it quick to
   // look up by id
-  transformDataToParks: function(data) {
+  transformDataToParks(data) {
     var parks = {};
-    data.parks.forEach(function(p) {
+    data.parks.forEach((p) => {
       parks[p.id] = {
         shortName: p.shortName,
         longName: p.longName
       };
     });
     return parks;
-  },
+  }
 
-  transformDataToCampsites: function(data) {
+  transformDataToCampsites(data) {
     var campsites = {};
     data.campsites.forEach((c) => {
       campsites[c.id] = {
@@ -69,9 +68,9 @@ var App = React.createClass({
       };
     });
     return campsites;
-  },
+  }
 
-  accessFields: function(campsite) {
+  accessFields(campsite) {
     var have = [];
     var notHave = [];
 
@@ -99,9 +98,9 @@ var App = React.createClass({
     }
 
     return {have: have, notHave: notHave};
-  },
+  }
 
-  facilitiesFields: function(campsite) {
+  facilitiesFields(campsite) {
     var have = [];
     var notHave = [];
 
@@ -157,9 +156,9 @@ var App = React.createClass({
       notHave.push("drinking water");
     }
     return {have: have, notHave: notHave};
-  },
+  }
 
-  simpleFormat: function(str) {
+  simpleFormat(str) {
     str = str.replace(/\r\n?/, "\n");
     str = $.trim(str);
     if (str.length > 0) {
@@ -169,6 +168,6 @@ var App = React.createClass({
     }
     return str;
   }
-});
+}
 
 module.exports = App;
