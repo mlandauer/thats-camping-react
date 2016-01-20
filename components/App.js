@@ -1,4 +1,5 @@
 var React = require('react');
+var data = require('./../data');
 
 var simpleFormat = function(str) {
   str = str.replace(/\r\n?/, "\n");
@@ -132,7 +133,7 @@ var transformDataToCampsites = function(data) {
   return campsites;
 }
 
-module.exports = App = React.createClass({
+var App = React.createClass({
   getInitialState: function() {
       return {
         userPosition: null,
@@ -169,3 +170,5 @@ module.exports = App = React.createClass({
     });
   }
 });
+
+module.exports = App;

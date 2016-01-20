@@ -6,7 +6,8 @@ var Route = require('react-router').Route;
 var IndexRoute = require('react-router').IndexRoute;
 var Redirect = require('react-router').Redirect;
 var createBrowserHistory = require('history/lib/createBrowserHistory');
-module.exports = browserHistory = createBrowserHistory();
+var browserHistory = createBrowserHistory();
+module.exports = browserHistory;
 
 var App = require('./components/App');
 var CampsiteList = require('./components/CampsiteList');

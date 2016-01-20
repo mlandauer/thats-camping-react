@@ -6,7 +6,7 @@ var toDeg = function(rad) {
   return (rad * 180 / Math.PI);
 }
 
-module.exports = PositionRelationship = {
+var PositionRelationship = {
   // Distance in metres between two positions given as lat longs
   distanceInMetres: function(position1, position2) {
     if (position1.lat == undefined || position1.lng == undefined || position2.lat == undefined || position2.lng == undefined) {
@@ -39,3 +39,5 @@ module.exports = PositionRelationship = {
     return bearing;
   }
 }
+
+module.exports = PositionRelationship;

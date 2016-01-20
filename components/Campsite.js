@@ -1,13 +1,13 @@
 var React = require('react');
 var PositionRelationship = require('../libs/PositionRelationship');
 
-module.exports = Campsite = React.createClass({
+var Campsite = React.createClass({
   distanceText: function() {
     var distance = this.props.distance;
     if (distance == undefined) {
       return "";
     }
-    
+
     // Distance needs to be in metres
     var units = undefined
     if(distance > 1000) {
@@ -38,3 +38,5 @@ module.exports = Campsite = React.createClass({
     );
   }
 });
+
+module.exports = Campsite;

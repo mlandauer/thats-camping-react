@@ -1,7 +1,7 @@
 var React = require('react');
 var CampsiteDetail = require('./CampsiteDetail');
 
-module.exports = CampsiteDetailPage = React.createClass({
+var CampsiteDetailPage = React.createClass({
   componentWillMount: function() {
     const id = this.props.params.id
     var campsite = this.props.campsites[id];
@@ -15,3 +15,5 @@ module.exports = CampsiteDetailPage = React.createClass({
     )
   }
 });
+
+module.exports = CampsiteDetailPage;

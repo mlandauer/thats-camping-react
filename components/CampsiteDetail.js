@@ -1,5 +1,9 @@
 var React = require('react');
 
+// Ugh
+var createBrowserHistory = require('history/lib/createBrowserHistory');
+var browserHistory = createBrowserHistory();
+
 var listAsText = function(list) {
   if (list.length == 0) {
     return null;
@@ -12,7 +16,7 @@ var listAsText = function(list) {
   }
 };
 
-module.exports = CampsiteDetail = React.createClass({
+var CampsiteDetail = React.createClass({
   getDescription: function() {
     return {__html: this.props.campsite.description};
   },
@@ -94,3 +98,5 @@ module.exports = CampsiteDetail = React.createClass({
     )
   }
 });
+
+module.exports = CampsiteDetail;

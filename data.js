@@ -1,4 +1,4 @@
-module.exports = data = {
+var data = {
   "campsites": [
     {
       "shortName": "Acacia Flat",
@@ -5714,3 +5714,5 @@ module.exports = data = {
     }
   ]
 }
+
+module.exports = data;
