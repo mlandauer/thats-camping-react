@@ -6,13 +6,20 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       userPosition: null,
-      parks: this.transformDataToParks(data),
-      campsites: this.transformDataToCampsites(data)
+      parks: [],
+      campsites: []
     };
   }
 
   componentWillMount() {
     this.updateLocation();
+  }
+
+  componentDidMount() {
+    this.setState({
+      parks: this.transformDataToParks(data),
+      campsites: this.transformDataToCampsites(data)
+    })
   }
 
   updateLocation() {
