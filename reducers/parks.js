@@ -1,9 +1,11 @@
-import { ADD_PARK } from '../constants/ActionTypes'
+import { ADD_PARK, ADD_PARKS } from '../constants/ActionTypes'
 
 export default function parks(state = [], action) {
   switch(action.type) {
     case ADD_PARK:
       return [...state, action.park]
+    case ADD_PARKS:
+      return state.concat(action.parks)
     default:
       return state
   }
