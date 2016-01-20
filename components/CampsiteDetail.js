@@ -1,21 +1,21 @@
-var React = require('react');
+import React from 'react';
 
 // Ugh
-var createBrowserHistory = require('history/lib/createBrowserHistory');
+import createBrowserHistory from 'history/lib/createBrowserHistory';
 var browserHistory = createBrowserHistory();
 
-var CampsiteDetail = React.createClass({
-  getDescription: function() {
+class CampsiteDetail extends React.Component {
+  getDescription() {
     return {__html: this.props.campsite.description};
-  },
+  }
 
   // TODO Extract back button into its own component
-  navigateBack: function() {
+  navigateBack() {
     browserHistory.goBack();
     return false;
-  },
+  }
 
-  facilitiesText: function() {
+  facilitiesText() {
     var have = this.props.campsite.facilities.have;
     var notHave = this.props.campsite.facilities.notHave;
 
@@ -32,9 +32,9 @@ var CampsiteDetail = React.createClass({
       r = r + this.listAsText(notHave);
     }
     return r;
-  },
+  }
 
-  accessText: function() {
+  accessText() {
     var have = this.props.campsite.access.have;
     var notHave = this.props.campsite.access.notHave;
 
@@ -51,18 +51,18 @@ var CampsiteDetail = React.createClass({
       r = r + this.listAsText(notHave);
     }
     return r;
-  },
+  }
 
-  mapUrl: function() {
+  mapUrl() {
     if (this.props.userPosition != null) {
       return "http://maps.google.com/maps?saddr=you+are+here@" +
         this.props.userPosition.lat + "," + this.props.userPosition.lng +
         "&daddr=" + this.props.campsite.name + "@" +
         this.props.campsite.position.lat + "," + this.props.campsite.position.lng;
     }
-  },
+  }
 
-  render: function() {
+  render() {
     return (
       <div className="campsite-detail">
         <nav className="navbar navbar-default navbar-fixed-top">
@@ -84,9 +84,9 @@ var CampsiteDetail = React.createClass({
         </div>
       </div>
     )
-  },
+  }
 
-  listAsText: function(list) {
+  listAsText(list) {
     if (list.length == 0) {
       return null;
     }
@@ -97,6 +97,6 @@ var CampsiteDetail = React.createClass({
       return list.slice(0, -1).join(", ") + " and " + list[list.length - 1];
     }
   }
-});
+}
 
 module.exports = CampsiteDetail;
