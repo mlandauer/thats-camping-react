@@ -6,6 +6,8 @@ var Link = require('react-router').Link;
 module.exports = CampsiteList = React.createClass({
   render: function() {
     var userPosition = this.props.userPosition;
+    var campsites = this.props.campsites;
+    var parks = this.props.parks;
 
     // Munge information in data into the right form
     var campsites2 = [];
