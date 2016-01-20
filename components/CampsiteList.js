@@ -1,11 +1,11 @@
-var React = require('react');
-var Campsite = require('./Campsite');
-var data = require('../data');
-var Link = require('react-router').Link;
-var PositionRelationship = require('../libs/PositionRelationship');
+import React from 'react';
+import Campsite from './Campsite';
+import data from '../data';
+import { Link } from 'react-router';
+import PositionRelationship from '../libs/PositionRelationship';
 
-var CampsiteList = React.createClass({
-  render: function() {
+class CampsiteList extends React.Component {
+  render() {
     var userPosition = this.props.userPosition;
     var campsites = this.props.campsites;
     var parks = this.props.parks;
@@ -76,6 +76,6 @@ var CampsiteList = React.createClass({
       </div>
     )
   }
-});
+}
 
 module.exports = CampsiteList;
