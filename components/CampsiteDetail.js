@@ -54,9 +54,9 @@ export default class CampsiteDetail extends React.Component {
   }
 
   mapUrl() {
-    if (this.props.userPosition != null) {
+    if (this.props.position != null) {
       return "http://maps.google.com/maps?saddr=you+are+here@" +
-        this.props.userPosition.lat + "," + this.props.userPosition.lng +
+        this.props.position.lat + "," + this.props.position.lng +
         "&daddr=" + this.props.campsite.name + "@" +
         this.props.campsite.position.lat + "," + this.props.campsite.position.lng;
     }
@@ -80,7 +80,7 @@ export default class CampsiteDetail extends React.Component {
           <p>{this.facilitiesText()}</p>
           <h2>Access</h2>
           <p>{this.accessText()}</p>
-          <a href={this.mapUrl()} className="directions btn btn-default" disabled={this.props.userPosition == null ? "disabled": ""}>Directions to campsite</a>
+          <a href={this.mapUrl()} className="directions btn btn-default" disabled={this.props.position == null ? "disabled": ""}>Directions to campsite</a>
         </div>
       </div>
     )

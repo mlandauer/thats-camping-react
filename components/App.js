@@ -5,7 +5,7 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userPosition: null,
+      position: null,
       parks: [],
       campsites: []
     };
@@ -25,7 +25,7 @@ export default class App extends React.Component {
   updateLocation() {
     navigator.geolocation.getCurrentPosition(
       (location) => {
-        this.setState({userPosition: {
+        this.setState({position: {
           lat: location.coords.latitude,
           lng: location.coords.longitude
         }});
@@ -38,7 +38,7 @@ export default class App extends React.Component {
 
   render() {
     return React.cloneElement(this.props.children, {
-      userPosition: this.state.userPosition,
+      position: this.state.position,
       campsites: this.state.campsites,
       parks: this.state.parks
     });

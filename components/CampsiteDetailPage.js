@@ -11,7 +11,7 @@ export default class CampsiteDetailPage extends React.Component {
 
   render() {
     return (
-      <CampsiteDetail campsite={this.state.campsite} park={this.state.park} userPosition={this.props.userPosition}/>
+      <CampsiteDetail campsite={this.state.campsite} park={this.state.park} position={this.props.position}/>
     )
   }
 }

@@ -6,7 +6,7 @@ import PositionRelationship from '../libs/PositionRelationship';
 
 export default class CampsiteList extends React.Component {
   render() {
-    var userPosition = this.props.userPosition;
+    var position = this.props.position;
     var campsites = this.props.campsites;
     var parks = this.props.parks;
 
@@ -16,13 +16,13 @@ export default class CampsiteList extends React.Component {
       campsites2.push(campsites[id]);
     }
 
-    if (userPosition == null) {
+    if (position == null) {
       // TODO: Sort campsites by name
     } else {
       // Add distance and bearing information
       var campsites2 = campsites2.map(function(c) {
-        var distance = PositionRelationship.distanceInMetres(c.position, userPosition);
-        var bearing = PositionRelationship.bearingInDegrees(c.position, userPosition);
+        var distance = PositionRelationship.distanceInMetres(c.position, position);
+        var bearing = PositionRelationship.bearingInDegrees(c.position, position);
         // TODO Do some kind of concat instead
         return {
           name: c.name,
