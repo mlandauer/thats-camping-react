@@ -9,26 +9,6 @@ describe('parks reducer', () => {
     ).toEqual([])
   })
 
-  it('should handle ADD_PARK with existing parks', () => {
-    const park1 = {
-      id: 1,
-      shortName: "Blue Mountains NP",
-      longName: "Blue Mountains National Park"
-    }
-    const park2 = {
-      id: 2,
-      shortName: "South East Forest NP",
-      longName: "South East Forest National Park"
-    }
-
-    expect(
-      reducer([park1], {
-        type: types.ADD_PARK,
-        park: park2
-      })
-    ).toEqual([park1, park2])
-  })
-
   it('should handle ADD_PARKS with existing parks', () => {
     const park1 = {
       id: 1,
