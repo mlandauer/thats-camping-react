@@ -4,18 +4,6 @@ var React = require('react');
 var createBrowserHistory = require('history/lib/createBrowserHistory');
 var browserHistory = createBrowserHistory();
 
-var listAsText = function(list) {
-  if (list.length == 0) {
-    return null;
-  }
-  else if (list.length == 1) {
-    return list[0];
-  }
-  else {
-    return list.slice(0, -1).join(", ") + " and " + list[list.length - 1];
-  }
-};
-
 var CampsiteDetail = React.createClass({
   getDescription: function() {
     return {__html: this.props.campsite.description};
@@ -33,7 +21,7 @@ var CampsiteDetail = React.createClass({
 
     var r = "";
     if (have.length > 0) {
-      r = r + "Has " + listAsText(have);
+      r = r + "Has " + this.listAsText(have);
     }
     if (notHave.length > 0) {
       if (have.length > 0) {
@@ -41,7 +29,7 @@ var CampsiteDetail = React.createClass({
       } else {
         r = r + "No ";
       }
-      r = r + listAsText(notHave);
+      r = r + this.listAsText(notHave);
     }
     return r;
   },
@@ -52,7 +40,7 @@ var CampsiteDetail = React.createClass({
 
     var r = "";
     if (have.length > 0) {
-      r = r + "For " + listAsText(have);
+      r = r + "For " + this.listAsText(have);
     }
     if (notHave.length > 0) {
       if (have.length > 0) {
@@ -60,7 +48,7 @@ var CampsiteDetail = React.createClass({
       } else {
         r = r + "Not for ";
       }
-      r = r + listAsText(notHave);
+      r = r + this.listAsText(notHave);
     }
     return r;
   },
@@ -96,6 +84,18 @@ var CampsiteDetail = React.createClass({
         </div>
       </div>
     )
+  },
+
+  listAsText: function(list) {
+    if (list.length == 0) {
+      return null;
+    }
+    else if (list.length == 1) {
+      return list[0];
+    }
+    else {
+      return list.slice(0, -1).join(", ") + " and " + list[list.length - 1];
+    }
   }
 });
 
