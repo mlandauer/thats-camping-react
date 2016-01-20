@@ -1,7 +1,7 @@
 import React from 'react';
 import data from './../data';
 
-class App extends React.Component {
+export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -169,5 +169,3 @@ class App extends React.Component {
     return str;
   }
 }
-
-module.exports = App;

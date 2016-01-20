@@ -1,7 +1,7 @@
 import React from 'react';
 import PositionRelationship from '../libs/PositionRelationship';
 
-class Campsite extends React.Component {
+export default class Campsite extends React.Component {
   distanceText() {
     var distance = this.props.distance;
     if (distance == undefined) {
@@ -38,5 +38,3 @@ class Campsite extends React.Component {
     );
   }
 }
-
-module.exports = Campsite;

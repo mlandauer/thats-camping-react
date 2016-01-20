@@ -4,7 +4,7 @@ import data from '../data';
 import { Link } from 'react-router';
 import PositionRelationship from '../libs/PositionRelationship';
 
-class CampsiteList extends React.Component {
+export default class CampsiteList extends React.Component {
   render() {
     var userPosition = this.props.userPosition;
     var campsites = this.props.campsites;
@@ -77,5 +77,3 @@ class CampsiteList extends React.Component {
     )
   }
 }
-
-module.exports = CampsiteList;

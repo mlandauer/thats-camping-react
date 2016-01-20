@@ -1,7 +1,7 @@
 import React from 'react';
 import CampsiteDetail from './CampsiteDetail';
 
-class CampsiteDetailPage extends React.Component {
+export default class CampsiteDetailPage extends React.Component {
   componentWillMount() {
     const id = this.props.params.id
     var campsite = this.props.campsites[id];
@@ -15,5 +15,3 @@ class CampsiteDetailPage extends React.Component {
     )
   }
 }
-
-module.exports = CampsiteDetailPage;

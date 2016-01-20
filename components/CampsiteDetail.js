@@ -4,7 +4,7 @@ import React from 'react';
 import createBrowserHistory from 'history/lib/createBrowserHistory';
 var browserHistory = createBrowserHistory();
 
-class CampsiteDetail extends React.Component {
+export default class CampsiteDetail extends React.Component {
   getDescription() {
     return {__html: this.props.campsite.description};
   }
@@ -98,5 +98,3 @@ class CampsiteDetail extends React.Component {
     }
   }
 }
-
-module.exports = CampsiteDetail;
