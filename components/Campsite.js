@@ -1,8 +1,8 @@
-var React = require('react');
-var PositionRelationship = require('../libs/PositionRelationship');
+import React from 'react';
+import PositionRelationship from '../libs/PositionRelationship';
 
-var Campsite = React.createClass({
-  distanceText: function() {
+class Campsite extends React.Component {
+  distanceText() {
     var distance = this.props.distance;
     if (distance == undefined) {
       return "";
@@ -18,17 +18,17 @@ var Campsite = React.createClass({
       units = "m"
     }
     return(distance.toFixed(0) + " " + units);
-  },
+  }
 
-  bearingText: function() {
+  bearingText() {
     var bearing = this.props.bearing;
     // Dividing the compass into 8 sectors that are centred on north
     var sector = Math.floor(((bearing + 22.5) % 360.0) / 45.0);
     var sectorNames = [ "N", "NE", "E", "SE", "S", "SW", "W", "NW" ];
     return sectorNames[sector];
-  },
+  }
 
-  render: function() {
+  render() {
     return (
       <div className="campsite">
         <div className="pull-right distance">{this.distanceText()} {this.bearingText()}</div>
@@ -37,6 +37,6 @@ var Campsite = React.createClass({
       </div>
     );
   }
-});
+}
 
 module.exports = Campsite;
