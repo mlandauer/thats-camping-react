@@ -2,7 +2,7 @@ import expect from 'expect'
 import * as actions from '../../actions/ParksActions'
 import * as types from '../../constants/ActionTypes'
 
-describe('actions', () => {
+describe('parks actions', () => {
   it('addParks', () => {
     const park = {
       id: 1,

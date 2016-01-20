@@ -1,2 +1,3 @@
 export const ADD_PARKS = 'ADD_PARKS'
 export const ADD_CAMPSITES = 'ADD_CAMPSITES'
+export const UPDATE_POSITION = 'UPDATE_POSITION'
