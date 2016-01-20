@@ -1,17 +1,14 @@
 // main.js
-var React = require('react');
-var ReactDOM = require('react-dom');
-var Router = require('react-router').Router;
-var Route = require('react-router').Route;
-var IndexRoute = require('react-router').IndexRoute;
-var Redirect = require('react-router').Redirect;
-var createBrowserHistory = require('history/lib/createBrowserHistory');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Router, Route, IndexRoute, Redirect } from 'react-router';
+import createBrowserHistory from 'history/lib/createBrowserHistory';
 var browserHistory = createBrowserHistory();
 module.exports = browserHistory;
 
-var App = require('./components/App');
-var CampsiteList = require('./components/CampsiteList');
-var CampsiteDetailPage = require('./components/CampsiteDetailPage');
+import App from './components/App';
+import CampsiteList from './components/CampsiteList';
+import CampsiteDetailPage from './components/CampsiteDetailPage';
 
 ReactDOM.render(
   <Router history={browserHistory}>
