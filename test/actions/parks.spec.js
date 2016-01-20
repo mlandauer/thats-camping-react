@@ -11,8 +11,21 @@ describe('actions', () => {
     }
     const expectedAction = {
       type: types.ADD_PARK,
-      park
+      park: park
     }
     expect(actions.addPark(park)).toEqual(expectedAction)
+  })
+
+  it('addParks', () => {
+    const park = {
+      id: 1,
+      shortName: "Blue Mountains NP",
+      longName: "Blue Mountains National Park"
+    }
+    const expectedAction = {
+      type: types.ADD_PARKS,
+      parks: [park]
+    }
+    expect(actions.addParks([park])).toEqual(expectedAction)
   })
 })
