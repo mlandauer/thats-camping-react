@@ -1,4 +1,4 @@
-import { ADD_PARK, ADD_PARKS } from '../constants/ActionTypes'
+import { ADD_PARKS } from '../constants/ActionTypes'
 
 export default function parks(state = [], action) {
   switch(action.type) {

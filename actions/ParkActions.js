@@ -6,3 +6,10 @@ export function addParks(parks) {
     parks: parks
   }
 }
+
+export function addCampsites(campsites) {
+  return {
+    type: types.ADD_CAMPSITES,
+    campsites: campsites
+  }
+}
