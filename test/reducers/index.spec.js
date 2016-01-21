@@ -1,8 +1,8 @@
 import expect from 'expect'
-import reducer from '../../reducers/app'
+import reducer from '../../reducers/index'
 import * as types from '../../constants/ActionTypes'
 
-describe('app reducer', () => {
+describe('index reducer', () => {
   it('should return the initial state', () => {
     expect(
       reducer(undefined, {})
