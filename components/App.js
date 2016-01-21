@@ -37,7 +37,8 @@ export default class App extends React.Component {
         id: p.id,
         shortName: p.shortName,
         longName: p.longName,
-        description: this.simpleFormat(p.description)
+        description: this.simpleFormat(p.description),
+        campsite_ids: p.campsites
       };
     });
   }

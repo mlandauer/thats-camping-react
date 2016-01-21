@@ -52,6 +52,7 @@ export default class CampsiteList extends React.Component {
     // Ugh. For the time being campsites is an array and parks is an object
     var campsitesArray = this.props.campsites;
     var parks = this.props.parks;
+    let hidePark = this.props.hidePark
 
     let sortedCampsites = this.sortCampsitesArrayByDistance(campsitesArray, position)
 
@@ -61,7 +62,7 @@ export default class CampsiteList extends React.Component {
           sortedCampsites.map(function(campsite) {
             return (
               <Link to={"/campsites/" + campsite.id} className="list-group-item" key={campsite.id}>
-                <Campsite name={campsite.name} park={parks[campsite.park_id].shortName} distance={campsite.distance} bearing={campsite.bearing}/>
+                <Campsite name={campsite.name} park={parks[campsite.park_id].shortName} distance={campsite.distance} bearing={campsite.bearing} hidePark={hidePark}/>
               </Link>
             )
           })

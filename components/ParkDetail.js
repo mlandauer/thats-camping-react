@@ -1,4 +1,5 @@
 import React from 'react';
+import CampsiteList from './CampsiteList'
 
 // Ugh
 import createBrowserHistory from 'history/lib/createBrowserHistory';
@@ -16,6 +17,9 @@ export default class ParkDetail extends React.Component {
   }
 
   render() {
+    let campsites = this.props.park.campsite_ids.map((campsite_id) => {
+      return this.props.campsites[campsite_id]
+    })
     return (
       <div className="campsite-detail">
         <nav className="navbar navbar-default navbar-fixed-top">
@@ -30,6 +34,7 @@ export default class ParkDetail extends React.Component {
           <h2>{this.props.park.longName}</h2>
           <div dangerouslySetInnerHTML={this.getDescription()}/>
         </div>
+        <CampsiteList campsites={campsites} parks={this.props.parks} position={this.props.position} hidePark={true} />
       </div>
     )
   }

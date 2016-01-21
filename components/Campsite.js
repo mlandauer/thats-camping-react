@@ -33,7 +33,7 @@ export default class Campsite extends React.Component {
       <div className="campsite">
         <div className="pull-right distance">{this.distanceText()} {this.bearingText()}</div>
         <div className="name">{this.props.name}</div>
-        <div className="park">{this.props.park}</div>
+        <div className="park">{this.props.hidePark ? "" : this.props.park}</div>
       </div>
     );
   }
