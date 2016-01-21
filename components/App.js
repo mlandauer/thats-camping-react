@@ -1,31 +1,29 @@
 import React from 'react';
+import { connect } from 'react-redux'
 import data from './../data';
+import { updatePosition } from '../actions/PositionActions'
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      position: null,
       parks: [],
       campsites: []
     };
   }
 
   componentWillMount() {
-    this.updateLocation();
+    this.startUpdateLocation();
     this.setState({
       parks: this.transformDataToParks(data),
       campsites: this.transformDataToCampsites(data)
     })
   }
 
-  updateLocation() {
+  startUpdateLocation() {
     navigator.geolocation.getCurrentPosition(
       (location) => {
-        this.setState({position: {
-          lat: location.coords.latitude,
-          lng: location.coords.longitude
-        }});
+        this.props.dispatch(updatePosition(location.coords.latitude, location.coords.longitude))
       },
       (err) => {
         console.warn('Error getting location (' + err.code + '): ' + err.message);
@@ -35,7 +33,7 @@ export default class App extends React.Component {
 
   render() {
     return React.cloneElement(this.props.children, {
-      position: this.state.position,
+      position: this.props.position,
       campsites: this.state.campsites,
       parks: this.state.parks
     });
@@ -173,3 +171,11 @@ export default class App extends React.Component {
     return str;
   }
 }
+
+// Which props do we want to inject, given the global state?
+// Note: use https://github.com/faassen/reselect for better performance.
+function select(state) {
+  return state
+}
+// Wrap the component to inject dispatch and state into it
+export default connect(select)(App)
