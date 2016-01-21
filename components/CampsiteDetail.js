@@ -55,6 +55,7 @@ export default class CampsiteDetail extends React.Component {
   }
 
   mapUrl() {
+    // TODO Disable this button if there is no internet connection
     if (this.props.position != null) {
       return "https://maps.google.com/maps?" +
         "daddr=" +
