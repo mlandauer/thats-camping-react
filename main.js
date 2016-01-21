@@ -15,6 +15,7 @@ module.exports = browserHistory;
 import App from './components/App';
 import CampsiteList from './components/CampsiteList';
 import CampsiteDetailPage from './components/CampsiteDetailPage';
+import ParkDetailPage from './components/ParkDetailPage';
 import reducer from './reducers'
 
 let store = createStore(reducer)
@@ -27,6 +28,9 @@ ReactDOM.render(
         <Route path="/campsites">
           <IndexRoute component={CampsiteList} />
           <Route path=":id" component={CampsiteDetailPage} />
+        </Route>
+        <Route path="/parks">
+          <Route path=":id" component={ParkDetailPage} />
         </Route>
       </Route>
     </Router>

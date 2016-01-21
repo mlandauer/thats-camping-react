@@ -54,7 +54,8 @@ export default class App extends React.Component {
       return {
         id: p.id,
         shortName: p.shortName,
-        longName: p.longName
+        longName: p.longName,
+        description: this.simpleFormat(p.description)
       };
     });
   }
