@@ -55,12 +55,18 @@ export default class CampsiteDetail extends React.Component {
   }
 
   mapUrl() {
-    // TODO Disable this button if there is no internet connection
     if (this.props.position != null) {
       return "https://maps.google.com/maps?" +
         "daddr=" +
         this.props.campsite.position.lat + "," + this.props.campsite.position.lng;
     }
+  }
+
+  // Returns true if the "directions to campsite" button should be enabled
+  // For this we need an internet connection and the campsite needs a location
+  directionsEnabled() {
+    // TODO Disable this button if there is no internet connection
+    return (this.props.campsite.position.lat != undefined && this.props.campsite.position.lng != undefined)
   }
 
   render() {
@@ -83,7 +89,7 @@ export default class CampsiteDetail extends React.Component {
           <p>{this.facilitiesText()}</p>
           <h2>Access</h2>
           <p>{this.accessText()}</p>
-          <a href={this.mapUrl()} className="directions btn btn-default" disabled={this.props.position == null ? "disabled": ""}>Directions to campsite</a>
+          <a href={this.mapUrl()} className="directions btn btn-default" disabled={this.directionsEnabled() ? "" : "disabled"}>Directions to campsite</a>
         </div>
       </div>
     )
