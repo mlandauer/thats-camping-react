@@ -166,7 +166,7 @@ export default class App extends React.Component {
 
   simpleFormat(str) {
     str = str.replace(/\r\n?/, "\n");
-    str = $.trim(str);
+    str = jQuery.trim(str);
     if (str.length > 0) {
       str = str.replace(/\n\n+/g, '</p><p>');
       str = str.replace(/\n/g, '<br />');
