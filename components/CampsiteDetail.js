@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 // Ugh
 import createBrowserHistory from 'history/lib/createBrowserHistory';
@@ -74,7 +75,9 @@ export default class CampsiteDetail extends React.Component {
           </div>
         </nav>
         <div className="container">
-          <h2>In {this.props.park.longName}</h2>
+          <h2>
+            In <Link to={"/parks/" + this.props.park.id}>{this.props.park.longName}</Link>
+          </h2>
           <div dangerouslySetInnerHTML={this.getDescription()}/>
           <h2>Facilities</h2>
           <p>{this.facilitiesText()}</p>
