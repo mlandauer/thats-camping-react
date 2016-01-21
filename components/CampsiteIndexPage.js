@@ -4,7 +4,7 @@ import data from '../data';
 import { Link } from 'react-router';
 import PositionRelationship from '../libs/PositionRelationship';
 
-export default class CampsiteList extends React.Component {
+export default class CampsiteIndexPage extends React.Component {
   render() {
     var position = this.props.position;
     var campsites = this.props.campsites;

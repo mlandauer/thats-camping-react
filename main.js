@@ -13,7 +13,7 @@ var browserHistory = createBrowserHistory();
 module.exports = browserHistory;
 
 import App from './components/App';
-import CampsiteList from './components/CampsiteList';
+import CampsiteIndexPage from './components/CampsiteIndexPage';
 import CampsiteDetailPage from './components/CampsiteDetailPage';
 import ParkDetailPage from './components/ParkDetailPage';
 import reducer from './reducers'
@@ -26,7 +26,7 @@ ReactDOM.render(
       <Redirect from="/" to="/campsites" />
       <Route path="/" component={App}>
         <Route path="/campsites">
-          <IndexRoute component={CampsiteList} />
+          <IndexRoute component={CampsiteIndexPage} />
           <Route path=":id" component={CampsiteDetailPage} />
         </Route>
         <Route path="/parks">
