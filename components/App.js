@@ -14,6 +14,7 @@ export default class App extends React.Component {
 
   componentWillMount() {
     this.startUpdateLocation();
+
     this.setState({
       parks: this.transformDataToParks(data),
       campsites: this.transformDataToCampsites(data)
@@ -43,33 +44,45 @@ export default class App extends React.Component {
   // look up by id
   transformDataToParks(data) {
     var parks = {};
-    data.parks.forEach((p) => {
-      parks[p.id] = {
-        shortName: p.shortName,
-        longName: p.longName
-      };
+    this.transformDataToParks2(data).forEach((p) => {
+      parks[p.id] = p
     });
     return parks;
   }
 
   transformDataToCampsites(data) {
     var campsites = {};
-    data.campsites.forEach((c) => {
-      campsites[c.id] = {
+    this.transformDataToCampsites2(data).forEach((c) => {
+      campsites[c.id] = c
+    });
+    return campsites;
+  }
+
+  transformDataToParks2(data) {
+    return data.parks.map((p) => {
+      return {
+        id: p.id,
+        shortName: p.shortName,
+        longName: p.longName
+      };
+    });
+  }
+
+  transformDataToCampsites2(data) {
+    return data.campsites.map((c) => {
+      return {
         id: c.id,
         name: c.shortName,
         position: {
           lat: c.latitude,
           lng: c.longitude
         },
-        // TODO Convert line breaks into paragraphs
         description: this.simpleFormat(c.description),
         park_id: c.park,
         facilities: this.facilitiesFields(c),
         access: this.accessFields(c)
-      };
-    });
-    return campsites;
+      }
+    })
   }
 
   accessFields(campsite) {
