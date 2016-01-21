@@ -2,16 +2,14 @@ import React from 'react';
 import CampsiteDetail from './CampsiteDetail';
 
 export default class CampsiteDetailPage extends React.Component {
-  componentWillMount() {
-    const id = this.props.params.id
-    var campsite = this.props.campsites[id];
-    var park = this.props.parks[campsite.park_id];
-    this.setState({campsite: campsite, park: park});
-  }
-
   render() {
+    let campsite = this.props.campsites[this.props.params.id]
+    if (campsite == undefined) {
+      return (<div></div>)
+    }
+    let park = this.props.parks[campsite.park_id]
     return (
-      <CampsiteDetail campsite={this.state.campsite} park={this.state.park} position={this.props.position}/>
+      <CampsiteDetail campsite={campsite} park={park} position={this.props.position}/>
     )
   }
 }

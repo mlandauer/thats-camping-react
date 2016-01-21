@@ -7,9 +7,9 @@ import { updatePosition } from '../actions/PositionActions'
 
 export default class App extends React.Component {
   componentWillMount() {
-    this.startUpdateLocation();
     this.props.dispatch(addParks(this.transformDataToParks2(data)))
     this.props.dispatch(addCampsites(this.transformDataToCampsites2(data)))
+    this.startUpdateLocation();
   }
 
   startUpdateLocation() {
