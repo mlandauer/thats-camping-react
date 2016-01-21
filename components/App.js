@@ -1,24 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import data from './../data';
+import { addParks } from '../actions/ParksActions'
+import { addCampsites } from '../actions/CampsitesActions'
 import { updatePosition } from '../actions/PositionActions'
 
 export default class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      parks: [],
-      campsites: []
-    };
-  }
-
   componentWillMount() {
     this.startUpdateLocation();
-
-    this.setState({
-      parks: this.transformDataToParks(data),
-      campsites: this.transformDataToCampsites(data)
-    })
+    this.props.dispatch(addParks(this.transformDataToParks2(data)))
+    this.props.dispatch(addCampsites(this.transformDataToCampsites2(data)))
   }
 
   startUpdateLocation() {
@@ -35,8 +26,8 @@ export default class App extends React.Component {
   render() {
     return React.cloneElement(this.props.children, {
       position: this.props.position,
-      campsites: this.state.campsites,
-      parks: this.state.parks
+      campsites: this.props.campsites,
+      parks: this.props.parks
     });
   }
 
