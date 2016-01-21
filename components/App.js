@@ -7,8 +7,8 @@ import { updatePosition } from '../actions/PositionActions'
 
 export default class App extends React.Component {
   componentWillMount() {
-    this.props.dispatch(addParks(this.transformDataToParks2(data)))
-    this.props.dispatch(addCampsites(this.transformDataToCampsites2(data)))
+    this.props.dispatch(addParks(this.transformDataToParks(data)))
+    this.props.dispatch(addCampsites(this.transformDataToCampsites(data)))
     this.startUpdateLocation();
   }
 
@@ -31,25 +31,7 @@ export default class App extends React.Component {
     });
   }
 
-  // Munge information in data into the right form and make it quick to
-  // look up by id
   transformDataToParks(data) {
-    var parks = {};
-    this.transformDataToParks2(data).forEach((p) => {
-      parks[p.id] = p
-    });
-    return parks;
-  }
-
-  transformDataToCampsites(data) {
-    var campsites = {};
-    this.transformDataToCampsites2(data).forEach((c) => {
-      campsites[c.id] = c
-    });
-    return campsites;
-  }
-
-  transformDataToParks2(data) {
     return data.parks.map((p) => {
       return {
         id: p.id,
@@ -60,7 +42,7 @@ export default class App extends React.Component {
     });
   }
 
-  transformDataToCampsites2(data) {
+  transformDataToCampsites(data) {
     return data.campsites.map((c) => {
       return {
         id: c.id,
