@@ -56,9 +56,9 @@ export default class CampsiteDetail extends React.Component {
 
   mapUrl() {
     if (this.props.position != null) {
-      return "comgooglemaps://?saddr=you+are+here@" +
+      return "https://maps.google.com/maps?saddr=" +
         this.props.position.lat + "," + this.props.position.lng +
-        "&daddr=" + this.props.campsite.name + "@" +
+        "&daddr=" +
         this.props.campsite.position.lat + "," + this.props.campsite.position.lng;
     }
   }
