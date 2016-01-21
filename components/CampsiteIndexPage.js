@@ -5,13 +5,7 @@ import { Link } from 'react-router';
 import PositionRelationship from '../libs/PositionRelationship';
 
 export default class CampsiteIndexPage extends React.Component {
-  campsitesSortedByDistance(campsites, position) {
-    // Munge information in data into the right form
-    var campsites2 = [];
-    for (var id in campsites) {
-      campsites2.push(campsites[id]);
-    }
-
+  sortCampsitesArrayByDistance(campsites2, position) {
     if (position == null) {
       // TODO: Sort campsites by name
     } else {
@@ -58,7 +52,12 @@ export default class CampsiteIndexPage extends React.Component {
     var campsites = this.props.campsites;
     var parks = this.props.parks;
 
-    let campsites2 = this.campsitesSortedByDistance(campsites, position)
+    // First make an array of the campsites we want to show here
+    let campsitesArray = [];
+    for (var id in campsites) {
+      campsitesArray.push(campsites[id]);
+    }
+    let campsites2 = this.sortCampsitesArrayByDistance(campsitesArray, position)
 
     return (
       <div className="campsite-list">
