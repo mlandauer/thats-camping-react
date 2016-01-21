@@ -6,7 +6,7 @@ describe('parks reducer', () => {
   it('should return the initial state', () => {
     expect(
       reducer(undefined, {})
-    ).toEqual([])
+    ).toEqual({})
   })
 
   it('should handle ADD_PARKS with existing parks', () => {
@@ -27,10 +27,10 @@ describe('parks reducer', () => {
     }
 
     expect(
-      reducer([park1], {
+      reducer({1: park1}, {
         type: types.ADD_PARKS,
         parks: [park2, park3]
       })
-    ).toEqual([park1, park2, park3])
+    ).toEqual({1: park1, 2: park2, 3: park3})
   })
 })

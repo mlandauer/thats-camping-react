@@ -6,7 +6,7 @@ describe('campsites reducer', () => {
   it('should return the initial state', () => {
     expect(
       reducer(undefined, {})
-    ).toEqual([])
+    ).toEqual({})
   })
 
   it('should handle ADD_CAMPSITES with existing campsites', () => {
@@ -24,10 +24,10 @@ describe('campsites reducer', () => {
     }
 
     expect(
-      reducer([campsite1], {
+      reducer({1: campsite1}, {
         type: types.ADD_CAMPSITES,
         campsites: [campsite2, campsite3]
       })
-    ).toEqual([campsite1, campsite2, campsite3])
+    ).toEqual({1: campsite1, 2: campsite2, 3: campsite3})
   })
 })
