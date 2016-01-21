@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import { Router, Route, IndexRoute, Redirect } from 'react-router';
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
+require('bootstrap')
 import createBrowserHistory from 'history/lib/createBrowserHistory';
 var browserHistory = createBrowserHistory();
 module.exports = browserHistory;
