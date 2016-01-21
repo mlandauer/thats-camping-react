@@ -23,9 +23,11 @@ ReactDOM.render(
   <Provider store={store}>
     <Router history={browserHistory}>
       <Redirect from="/" to="/campsites" />
-      <Route path="/campsites" component={App}>
-        <IndexRoute component={CampsiteList} />
-        <Route path=":id" component={CampsiteDetailPage} />
+      <Route path="/" component={App}>
+        <Route path="/campsites">
+          <IndexRoute component={CampsiteList} />
+          <Route path=":id" component={CampsiteDetailPage} />
+        </Route>
       </Route>
     </Router>
   </Provider>,
