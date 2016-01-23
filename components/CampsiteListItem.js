@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import PositionRelationship from '../libs/PositionRelationship';
 
-export default class Campsite extends React.Component {
+export default class CampsiteListItem extends React.Component {
   distanceText() {
     var distance = this.props.distance;
     if (distance == undefined) {
@@ -39,7 +39,7 @@ export default class Campsite extends React.Component {
   }
 }
 
-Campsite.propTypes = {
+CampsiteListItem.propTypes = {
   campsiteName: PropTypes.string.isRequired,
   parkName: PropTypes.string,
   distance: PropTypes.number,

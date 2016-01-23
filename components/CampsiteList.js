@@ -1,5 +1,5 @@
 import React from 'react';
-import Campsite from './Campsite';
+import CampsiteListItem from './CampsiteListItem';
 import data from '../data';
 import { Link } from 'react-router';
 import PositionRelationship from '../libs/PositionRelationship';
@@ -64,7 +64,7 @@ export default class CampsiteList extends React.Component {
             let parkName = hidePark ? "" : parks[campsite.park_id].shortName
             return (
               <Link to={"/campsites/" + campsite.id} className="list-group-item" key={campsite.id}>
-                <Campsite campsiteName={campsite.name} parkName={parkName} distance={campsite.distance} bearing={campsite.bearing} />
+                <CampsiteListItem campsiteName={campsite.name} parkName={parkName} distance={campsite.distance} bearing={campsite.bearing} />
               </Link>
             )
           })
