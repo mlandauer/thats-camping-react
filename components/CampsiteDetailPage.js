@@ -8,8 +8,9 @@ export default class CampsiteDetailPage extends React.Component {
       return (<div></div>)
     }
     let park = this.props.parks[campsite.park_id]
+    campsite = Object.assign({}, campsite, {park: park})
     return (
-      <CampsiteDetail campsite={campsite} park={park} />
+      <CampsiteDetail campsite={campsite} />
     )
   }
 }

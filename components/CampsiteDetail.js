@@ -80,7 +80,7 @@ export default class CampsiteDetail extends React.Component {
         </nav>
         <div className="container">
           <h2>
-            In <Link to={"/parks/" + this.props.park.id}>{this.props.park.longName}</Link>
+            In <Link to={"/parks/" + this.props.campsite.park.id}>{this.props.campsite.park.longName}</Link>
           </h2>
           <div dangerouslySetInnerHTML={this.getDescription()}/>
           <h2>Facilities</h2>
@@ -122,10 +122,10 @@ CampsiteDetail.propTypes = {
       lat: PropTypes.number,
       lng: PropTypes.number
     }).isRequired,
-    name: PropTypes.string.isRequired
+    name: PropTypes.string.isRequired,
+    park: PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      longName: PropTypes.string.isRequired
+    }).isRequired
   }).isRequired,
-  park: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    longName: PropTypes.string.isRequired
-  }).isRequired
 }
