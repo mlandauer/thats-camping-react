@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import CampsiteListItem from './CampsiteListItem';
 import data from '../data';
 import { Link } from 'react-router';
@@ -49,7 +49,6 @@ export default class CampsiteList extends React.Component {
 
   render() {
     var position = this.props.position;
-    // Ugh. For the time being campsites is an array and parks is an object
     var campsitesArray = this.props.campsites;
     var parks = this.props.parks;
     let hidePark = this.props.hidePark
@@ -72,4 +71,12 @@ export default class CampsiteList extends React.Component {
       </ul>
     )
   }
+}
+
+
+CampsiteList.propTypes = {
+  // Ugh. For the time being campsites is an array and parks is an object
+  campsites: PropTypes.arrayOf(PropTypes.object).isRequired,
+  parks: PropTypes.objectOf(PropTypes.object).isRequired,
+  position: PropTypes.object
 }
