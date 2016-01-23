@@ -19,7 +19,7 @@ export default class CampsiteList extends React.Component {
       // Sort campsites by distance
       var campsites = campsites.sort(function(a, b) {
         if (a.distance == undefined && b.distance == undefined) {
-          return a.name.localeCompare(b.name);
+          return a.shortName.localeCompare(b.shortName);
         }
         if (a.distance == undefined) {
           return 1;
@@ -53,7 +53,7 @@ export default class CampsiteList extends React.Component {
             let parkName = campsite.park == undefined ? "" : campsite.park.shortName
             return (
               <Link to={"/campsites/" + campsite.id} className="list-group-item" key={campsite.id}>
-                <CampsiteListItem campsiteName={campsite.name} parkName={parkName} distance={campsite.distance} bearing={campsite.bearing} />
+                <CampsiteListItem campsiteName={campsite.shortName} parkName={parkName} distance={campsite.distance} bearing={campsite.bearing} />
               </Link>
             )
           })

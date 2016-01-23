@@ -47,7 +47,7 @@ export default class App extends React.Component {
     return data.campsites.map((c) => {
       return {
         id: c.id,
-        name: c.shortName,
+        shortName: c.shortName,
         position: {
           lat: c.latitude,
           lng: c.longitude

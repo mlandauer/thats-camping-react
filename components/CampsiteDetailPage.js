@@ -26,7 +26,7 @@ export default class CampsiteDetailPage extends React.Component {
             <button className="btn btn-link navbar-link navbar-text pull-left" onClick={this.navigateBack}>
               <span className="glyphicon glyphicon-chevron-left back" aria-hidden="true"></span>
             </button>
-            <h1>{campsite.name}</h1>
+            <h1>{campsite.shortName}</h1>
           </div>
         </nav>
         <div className="container">
