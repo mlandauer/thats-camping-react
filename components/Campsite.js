@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import PositionRelationship from '../libs/PositionRelationship';
 
 export default class Campsite extends React.Component {
@@ -37,4 +37,12 @@ export default class Campsite extends React.Component {
       </div>
     );
   }
+}
+
+Campsite.propTypes = {
+  name: PropTypes.string.isRequired,
+  park: PropTypes.string.isRequired,
+  distance: PropTypes.number,
+  bearing: PropTypes.number,
+  hidePark: PropTypes.bool
 }
