@@ -11,8 +11,8 @@ export default class CampsiteIndexPage extends React.Component {
     let campsitesArray = [];
     for (var id in campsites) {
       let campsite = campsites[id]
-      campsite.park = parks[campsite.park_id]
-      campsitesArray.push(campsite)
+      let campsite2 = Object.assign({}, campsite, {park: parks[campsite.park_id]})
+      campsitesArray.push(campsite2)
     }
 
     return (
