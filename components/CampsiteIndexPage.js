@@ -10,7 +10,9 @@ export default class CampsiteIndexPage extends React.Component {
     // First make an array of the campsites we want to show here
     let campsitesArray = [];
     for (var id in campsites) {
-      campsitesArray.push(campsites[id]);
+      let campsite = campsites[id]
+      campsite.park = parks[campsite.park_id]
+      campsitesArray.push(campsite)
     }
 
     return (
@@ -20,7 +22,7 @@ export default class CampsiteIndexPage extends React.Component {
             <h1>Camping near you</h1>
           </div>
         </nav>
-        <CampsiteList campsites={campsitesArray} parks={parks} position={position} />
+        <CampsiteList campsites={campsitesArray} position={position} />
       </div>
     )
   }

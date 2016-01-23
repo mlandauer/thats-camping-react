@@ -47,12 +47,11 @@ export default class CampsiteList extends React.Component {
 
     let sortedCampsites = this.sortCampsitesArrayByDistance(campsitesArray, position)
 
-
     return (
       <ul className="list-group">
         {
           sortedCampsites.map(function(campsite) {
-            let parkName = hidePark ? "" : parks[campsite.park_id].shortName
+            let parkName = hidePark ? "" : campsite.park.shortName
             return (
               <Link to={"/campsites/" + campsite.id} className="list-group-item" key={campsite.id}>
                 <CampsiteListItem campsiteName={campsite.name} parkName={parkName} distance={campsite.distance} bearing={campsite.bearing} />
@@ -67,8 +66,6 @@ export default class CampsiteList extends React.Component {
 
 
 CampsiteList.propTypes = {
-  // Ugh. For the time being campsites is an array and parks is an object
   campsites: PropTypes.arrayOf(PropTypes.object).isRequired,
-  parks: PropTypes.objectOf(PropTypes.object).isRequired,
   position: PropTypes.object
 }
