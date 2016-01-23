@@ -9,7 +9,7 @@ export default class CampsiteDetailPage extends React.Component {
     }
     let park = this.props.parks[campsite.park_id]
     return (
-      <CampsiteDetail campsite={campsite} park={park} position={this.props.position}/>
+      <CampsiteDetail campsite={campsite} park={park} />
     )
   }
 }

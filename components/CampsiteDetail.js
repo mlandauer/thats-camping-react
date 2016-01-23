@@ -55,11 +55,9 @@ export default class CampsiteDetail extends React.Component {
   }
 
   mapUrl() {
-    if (this.props.position != null) {
-      return "https://maps.google.com/maps?" +
-        "daddr=" +
-        this.props.campsite.position.lat + "," + this.props.campsite.position.lng;
-    }
+    return "https://maps.google.com/maps?" +
+      "daddr=" +
+      this.props.campsite.position.lat + "," + this.props.campsite.position.lng;
   }
 
   // Returns true if the "directions to campsite" button should be enabled
@@ -125,6 +123,8 @@ CampsiteDetail.propTypes = {
     }),
     name: PropTypes.string
   }).isRequired,
-  park: PropTypes.object.isRequired,
-  position: PropTypes.object
+  park: PropTypes.shape({
+    id: PropTypes.number,
+    longName: PropTypes.string
+  }).isRequired
 }
