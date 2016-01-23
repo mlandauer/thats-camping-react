@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import CampsiteList from './CampsiteList'
 
 // Ugh
@@ -38,4 +38,13 @@ export default class ParkDetail extends React.Component {
       </div>
     )
   }
+}
+
+ParkDetail.propTypes = {
+  park: PropTypes.object.isRequired,
+  campsites: PropTypes.objectOf(PropTypes.object).isRequired,
+  position: PropTypes.shape({
+    lat: PropTypes.number,
+    lng: PropTypes.number
+  })
 }
