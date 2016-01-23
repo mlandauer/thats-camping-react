@@ -17,9 +17,6 @@ export default class ParkDetail extends React.Component {
   }
 
   render() {
-    let campsites = this.props.park.campsite_ids.map((campsite_id) => {
-      return this.props.campsites[campsite_id]
-    })
     return (
       <div className="campsite-detail">
         <nav className="navbar navbar-default navbar-fixed-top">
@@ -34,7 +31,7 @@ export default class ParkDetail extends React.Component {
           <h2>{this.props.park.longName}</h2>
           <div dangerouslySetInnerHTML={this.getDescription()}/>
         </div>
-        <CampsiteList campsites={campsites} position={this.props.position} />
+        <CampsiteList campsites={this.props.park.campsites} position={this.props.position} />
       </div>
     )
   }
@@ -42,7 +39,6 @@ export default class ParkDetail extends React.Component {
 
 ParkDetail.propTypes = {
   park: PropTypes.object.isRequired,
-  campsites: PropTypes.objectOf(PropTypes.object).isRequired,
   position: PropTypes.shape({
     lat: PropTypes.number,
     lng: PropTypes.number

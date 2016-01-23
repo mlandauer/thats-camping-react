@@ -7,10 +7,13 @@ export default class ParkDetailPage extends React.Component {
     if (park == undefined) {
       return (<div></div>)
     }
-    // Really horrible that we're having to pass campsites down the chain
-    // TODO Fix this
+    let campsites = park.campsite_ids.map((campsite_id) => {
+      return this.props.campsites[campsite_id]
+    })
+    park = Object.assign({}, park, {campsites: campsites})
+
     return (
-      <ParkDetail park={park} campsites={this.props.campsites} position={this.props.position}/>
+      <ParkDetail park={park} position={this.props.position}/>
     )
   }
 }
