@@ -22,7 +22,6 @@ export default class ParkDetail extends React.Component {
 ParkDetail.propTypes = {
   park: PropTypes.shape({
     description: PropTypes.string,
-    shortName: PropTypes.string,
     longName: PropTypes.string,
     campsites: PropTypes.array
   }).isRequired,

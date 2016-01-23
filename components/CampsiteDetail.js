@@ -102,7 +102,6 @@ CampsiteDetail.propTypes = {
       lat: PropTypes.number,
       lng: PropTypes.number
     }).isRequired,
-    name: PropTypes.string.isRequired,
     park: PropTypes.shape({
       id: PropTypes.number.isRequired,
       longName: PropTypes.string.isRequired
