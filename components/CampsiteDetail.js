@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
 // Ugh
@@ -106,4 +106,25 @@ export default class CampsiteDetail extends React.Component {
       return list.slice(0, -1).join(", ") + " and " + list[list.length - 1];
     }
   }
+}
+
+CampsiteDetail.propTypes = {
+  campsite: PropTypes.shape({
+    description: PropTypes.string,
+    facilities: PropTypes.shape({
+      have: PropTypes.arrayOf(PropTypes.string),
+      notHave: PropTypes.arrayOf(PropTypes.string)
+    }),
+    access: PropTypes.shape({
+      have: PropTypes.arrayOf(PropTypes.string),
+      notHave: PropTypes.arrayOf(PropTypes.string)
+    }),
+    position: PropTypes.shape({
+      lat: PropTypes.number,
+      lng: PropTypes.number
+    }),
+    name: PropTypes.string
+  }).isRequired,
+  park: PropTypes.object.isRequired,
+  position: PropTypes.object
 }
