@@ -62,7 +62,7 @@ export default class CampsiteList extends React.Component {
           sortedCampsites.map(function(campsite) {
             return (
               <Link to={"/campsites/" + campsite.id} className="list-group-item" key={campsite.id}>
-                <Campsite name={campsite.name} park={parks[campsite.park_id].shortName} distance={campsite.distance} bearing={campsite.bearing} hidePark={hidePark}/>
+                <Campsite campsiteName={campsite.name} parkName={parks[campsite.park_id].shortName} distance={campsite.distance} bearing={campsite.bearing} hidePark={hidePark}/>
               </Link>
             )
           })
