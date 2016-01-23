@@ -108,23 +108,24 @@ export default class CampsiteDetail extends React.Component {
 
 CampsiteDetail.propTypes = {
   campsite: PropTypes.shape({
-    description: PropTypes.string,
+    description: PropTypes.string.isRequired,
     facilities: PropTypes.shape({
-      have: PropTypes.arrayOf(PropTypes.string),
-      notHave: PropTypes.arrayOf(PropTypes.string)
-    }),
+      have: PropTypes.arrayOf(PropTypes.string).isRequired,
+      notHave: PropTypes.arrayOf(PropTypes.string).isRequired,
+    }).isRequired,
     access: PropTypes.shape({
-      have: PropTypes.arrayOf(PropTypes.string),
-      notHave: PropTypes.arrayOf(PropTypes.string)
-    }),
+      have: PropTypes.arrayOf(PropTypes.string).isRequired,
+      notHave: PropTypes.arrayOf(PropTypes.string).isRequired
+    }).isRequired,
+    // TODO If position is not present then position should be null, not position.lat
     position: PropTypes.shape({
       lat: PropTypes.number,
       lng: PropTypes.number
-    }),
-    name: PropTypes.string
+    }).isRequired,
+    name: PropTypes.string.isRequired
   }).isRequired,
   park: PropTypes.shape({
-    id: PropTypes.number,
-    longName: PropTypes.string
+    id: PropTypes.number.isRequired,
+    longName: PropTypes.string.isRequired
   }).isRequired
 }
