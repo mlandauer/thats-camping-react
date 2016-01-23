@@ -38,9 +38,11 @@ export default class ParkDetail extends React.Component {
 }
 
 ParkDetail.propTypes = {
-  park: PropTypes.object.isRequired,
-  position: PropTypes.shape({
-    lat: PropTypes.number,
-    lng: PropTypes.number
-  })
+  park: PropTypes.shape({
+    description: PropTypes.string,
+    shortName: PropTypes.string,
+    longName: PropTypes.string,
+    campsites: PropTypes.array
+  }).isRequired,
+  position: PropTypes.object
 }
