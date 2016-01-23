@@ -33,7 +33,7 @@ export default class Campsite extends React.Component {
       <div className="campsite">
         <div className="pull-right distance">{this.distanceText()} {this.bearingText()}</div>
         <div className="name">{this.props.campsiteName}</div>
-        <div className="park">{this.props.hidePark ? "" : this.props.parkName}</div>
+        <div className="park">{this.props.parkName}</div>
       </div>
     );
   }
@@ -41,8 +41,7 @@ export default class Campsite extends React.Component {
 
 Campsite.propTypes = {
   campsiteName: PropTypes.string.isRequired,
-  parkName: PropTypes.string.isRequired,
+  parkName: PropTypes.string,
   distance: PropTypes.number,
-  bearing: PropTypes.number,
-  hidePark: PropTypes.bool
+  bearing: PropTypes.number
 }

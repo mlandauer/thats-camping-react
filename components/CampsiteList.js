@@ -56,13 +56,15 @@ export default class CampsiteList extends React.Component {
 
     let sortedCampsites = this.sortCampsitesArrayByDistance(campsitesArray, position)
 
+
     return (
       <ul className="list-group">
         {
           sortedCampsites.map(function(campsite) {
+            let parkName = hidePark ? "" : parks[campsite.park_id].shortName
             return (
               <Link to={"/campsites/" + campsite.id} className="list-group-item" key={campsite.id}>
-                <Campsite campsiteName={campsite.name} parkName={parks[campsite.park_id].shortName} distance={campsite.distance} bearing={campsite.bearing} hidePark={hidePark}/>
+                <Campsite campsiteName={campsite.name} parkName={parkName} distance={campsite.distance} bearing={campsite.bearing} />
               </Link>
             )
           })
