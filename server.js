@@ -7,6 +7,10 @@ const app = express()
 app.use(express.static(__dirname + '/public'))
 app.use('/fonts', express.static(__dirname + '/fonts'))
 
+app.get('/api/data.json', function (request, response){
+  response.sendFile(path.resolve(__dirname, 'data.json'))
+})
+
 // handle every other route with index.html, which will contain
 // a script tag to your application's JavaScript file(s).
 app.get('*', function (request, response){
