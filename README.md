@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/mlandauer/thats-camping-react.png?label=ready&title=Ready)](https://waffle.io/mlandauer/thats-camping-react)
 # It's raining and my weetbix is wet. That's Camping!
 
 Find campsites near you in New South Wales, Australia. It covers camping on public, common land such as National Parks, State Forests and Local Councils.
