@@ -12,7 +12,7 @@ This is my latest attempt, this time built with [React](https://facebook.github.
 It should work even when you're out in the middle of nowhere (when does that
 ever happen camping?) and you have no phone signal.
 
-** It's still very much a work in progress. I wouldn't even call it a [minimal viable product](https://en.wikipedia.org/wiki/Minimum_viable_product) yet. **
+**It's still very much a work in progress. I wouldn't even call it a [minimal viable product](https://en.wikipedia.org/wiki/Minimum_viable_product) yet.**
 
 ## Development
 
