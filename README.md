@@ -2,8 +2,8 @@
 
 Find campsites near you in New South Wales, Australia. It covers camping on public, common land such as National Parks, State Forests and Local Councils.
 
-Originally, quite some years ago now, I made this as an iPhone app. I've had
-several brief attempts over the years at redeveloping it as a javascript
+Originally, quite some years ago now, I made this as an [iPhone app](https://github.com/mlandauer/ThatsCamping). I've had
+[several](https://github.com/mlandauer/thats-camping-2-aborted-attempt) [brief](https://github.com/mlandauer/thats-camping-2) [attempts](https://github.com/mlandauer/thats-camping-3) over the years at redeveloping it as a javascript
 application with the idea to make it  easy for people to add their own
 campsite information. I was never quite happy with the result or the direction things were taking. Either the performance was dreadful, the framework was too painful to work with, or as is the way with these things, I just put is aside while other things took priority.
 
