@@ -4,6 +4,7 @@ import data from './../data';
 import { addParks } from '../actions/ParksActions'
 import { addCampsites, startSync } from '../actions/CampsitesActions'
 import { updatePosition } from '../actions/PositionActions'
+import PromisedLocation from 'promised-location'
 
 export default class App extends React.Component {
   componentWillMount() {
@@ -12,14 +13,13 @@ export default class App extends React.Component {
   }
 
   startUpdateLocation() {
-    navigator.geolocation.getCurrentPosition(
-      (location) => {
-        this.props.dispatch(updatePosition(location.coords.latitude, location.coords.longitude))
-      },
-      (err) => {
-        console.warn('Error getting location (' + err.code + '): ' + err.message);
-      },
-      {enableHighAccuracy: true});
+    let locator = new PromisedLocation({enableHighAccuracy: true})
+    locator.then((location) => {
+      this.props.dispatch(updatePosition(location.coords.latitude, location.coords.longitude))
+    })
+    .catch((err) => {
+      console.warn('Error getting location (' + err.code + '): ' + err.message)
+    })
   }
 
   render() {
