@@ -22,7 +22,7 @@ npm install
 npm run development
 ```
 
-Point your web browser at http://localhost:3000
+Point your web browser at [http://localhost:3000](http://localhost:3000)
 
 And for testing goodness:
 ```
