@@ -2,8 +2,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, IndexRoute, Redirect } from 'react-router';
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
+import thunkMiddleware from 'redux-thunk'
 
 global.jQuery = require('jquery');
 require('bootstrap');
@@ -18,7 +19,11 @@ import CampsiteDetailPage from './components/CampsiteDetailPage';
 import ParkDetailPage from './components/ParkDetailPage';
 import reducer from './reducers'
 
-let store = createStore(reducer)
+const createStoreWithMiddleware = applyMiddleware(
+  thunkMiddleware
+)(createStore)
+
+let store = createStoreWithMiddleware(reducer)
 
 ReactDOM.render(
   <Provider store={store}>
