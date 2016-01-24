@@ -3,23 +3,12 @@ import { connect } from 'react-redux'
 import data from './../data';
 import { addParks } from '../actions/ParksActions'
 import { addCampsites, startSync } from '../actions/CampsitesActions'
-import { updatePosition } from '../actions/PositionActions'
-import PromisedLocation from 'promised-location'
+import { startUpdatePosition } from '../actions/PositionActions'
 
 export default class App extends React.Component {
   componentWillMount() {
     this.props.dispatch(startSync())
-    this.startUpdateLocation();
-  }
-
-  startUpdateLocation() {
-    let locator = new PromisedLocation({enableHighAccuracy: true})
-    locator.then((location) => {
-      this.props.dispatch(updatePosition(location.coords.latitude, location.coords.longitude))
-    })
-    .catch((err) => {
-      console.warn('Error getting location (' + err.code + '): ' + err.message)
-    })
+    this.props.dispatch(startUpdatePosition())
   }
 
   render() {
