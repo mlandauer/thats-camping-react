@@ -32,3 +32,7 @@ npm run test:watch
 ## Production
 
 It currently runs without any issues on [Heroku](https://www.heroku.com/).
+
+## Copyright & License
+
+Copyright Matthew Landauer. Licensed under the GPL v3. See LICENSE.md for more details.
