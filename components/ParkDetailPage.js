@@ -13,10 +13,13 @@ export default class ParkDetailPage extends React.Component {
   }
 
   render() {
-    let park = this.props.parks[this.props.params.id]
-    if (park == undefined) {
+    // Temporary workaround for the fact that parks and campsites do not get
+    // update atomically. Only a problem when this page is loaded as the first page
+    // TODO Fix this monstrosity
+    if (Object.keys(this.props.parks).length == 0 || Object.keys(this.props.campsites).length == 0) {
       return (<div></div>)
     }
+    let park = this.props.parks[this.props.params.id]
     let campsites = park.campsite_ids.map((campsite_id) => {
       return this.props.campsites[campsite_id]
     })

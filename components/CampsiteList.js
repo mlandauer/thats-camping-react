@@ -45,7 +45,6 @@ export default class CampsiteList extends React.Component {
     var parks = this.props.parks;
 
     let sortedCampsites = this.sortCampsitesArrayByDistance(campsitesArray, position)
-
     return (
       <ul className="list-group">
         {
