@@ -13,7 +13,9 @@ export default class ParkDetail extends React.Component {
           <h2>{this.props.park.longName}</h2>
           <div dangerouslySetInnerHTML={this.getDescription()}/>
         </div>
-        <CampsiteList campsites={this.props.park.campsites} position={this.props.position} />
+        <div className="park-campsite-list">
+          <CampsiteList campsites={this.props.park.campsites} position={this.props.position} />
+        </div>
       </div>
     )
   }
