@@ -11,6 +11,7 @@
     "browserify": "~6.0.3",
     "express": "^4.4.5",
     "history": "^1.17.0",
+    "isomorphic-fetch": "^2.2.1",
     "jquery": "^2.2.0",
     "promised-location": "^1.0.1",
     "react": "~0.14.5",
