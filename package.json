@@ -42,5 +42,5 @@
     "start": "node server.js"
   },
   "author": "Matthew Landauer",
-  "license": "GPL"
+  "license": "GPL-3.0"
 }
