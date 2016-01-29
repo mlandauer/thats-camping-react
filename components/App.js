@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import data from './../data';
 import { addParks } from '../actions/ParksActions'
 import { addCampsites, startSync } from '../actions/CampsitesActions'
 import { startUpdatePosition } from '../actions/PositionActions'

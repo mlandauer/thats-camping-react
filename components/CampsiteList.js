@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import CampsiteListItem from './CampsiteListItem';
-import data from '../data';
 import { Link } from 'react-router';
 import PositionRelationship from '../libs/PositionRelationship';
 
