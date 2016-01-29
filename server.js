@@ -1,7 +1,32 @@
 const express = require('express')
 const path = require('path')
+const cacheManifest = require('connect-cache-manifest')
+
 const port = process.env.PORT || 3000
 const app = express()
+
+// Serving the manifest file to help the app work offline
+app.use(cacheManifest({
+  manifestPath: '/application.manifest',
+  files: [{
+    file: __dirname + '/public/bundle.js',
+    path: '/bundle.js'
+  }, {
+    file: __dirname + '/public/bootstrap.min.css',
+    path: '/bootstrap.min.css'
+  }, {
+    file: __dirname + '/public/style.css',
+    path: '/style.css'
+  }, {
+    file: __dirname + '/data.json',
+    path: '/api/data.json'
+  }, {
+    dir: __dirname + '/fonts',
+    prefix: '/fonts/'
+  }],
+  networks: ['*'],
+  fallbacks: []
+}))
 
 // serve static assets normally
 app.use(express.static(__dirname + '/public'))
