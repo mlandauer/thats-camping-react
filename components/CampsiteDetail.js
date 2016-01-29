@@ -53,8 +53,7 @@ export default class CampsiteDetail extends React.Component {
   // Returns true if the "directions to campsite" button should be enabled
   // For this we need an internet connection and the campsite needs a location
   directionsEnabled() {
-    // TODO Disable this button if there is no internet connection
-    return (this.props.campsite.position.lat != undefined && this.props.campsite.position.lng != undefined)
+    return (this.props.campsite.position.lat != undefined && this.props.campsite.position.lng != undefined && navigator.onLine)
   }
 
   render() {
