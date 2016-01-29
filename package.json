@@ -25,7 +25,8 @@
     "react-router": "^1.0.3",
     "redux": "^3.0.5",
     "redux-thunk": "^1.0.3",
-    "uglify-js": "^2.6.1"
+    "uglify-js": "^2.6.1",
+    "uglifyify": "^3.0.1"
   },
   "devDependencies": {
     "expect": "^1.13.4",
@@ -37,7 +38,7 @@
     "test": "mocha --compilers js:babel-core/register --recursive",
     "test:watch": "npm test -- --watch",
     "watch": "watchify -d -t babelify main.js -o public/bundle.js -v",
-    "browserify": "browserify -t babelify main.js | uglifyjs -c > public/bundle.js",
+    "browserify": "browserify -t babelify -g uglifyify main.js -o public/bundle.js",
     "postinstall": "npm run browserify",
     "development": "npm run watch & nodemon server.js",
     "start": "node server.js"
