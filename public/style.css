@@ -21,6 +21,10 @@ nav {
   height: 60px;
 }
 
+nav .btn {
+  font-size: 22px;
+}
+
 .campsite {
   margin: 4px;
 }
@@ -41,10 +45,6 @@ nav {
 
 .campsite .distance {
   font-size: 18px;
-}
-
-.back {
-  font-size: 22px;
 }
 
 nav button.btn {
