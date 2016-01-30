@@ -18,7 +18,7 @@ export default class CampsiteIndexPage extends React.Component {
 
     return (
       <div className="campsite-list">
-        <Header title="Camping near you" hideBackButton={true}/>
+        <Header title="Camping near you" hideBackButton={true} showAboutButton={true}/>
         <div className="content">
           <CampsiteList campsites={campsitesArray} position={position} />
         </div>

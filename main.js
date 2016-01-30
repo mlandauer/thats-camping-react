@@ -31,6 +31,7 @@ import App from './components/App';
 import CampsiteIndexPage from './components/CampsiteIndexPage';
 import CampsiteDetailPage from './components/CampsiteDetailPage';
 import ParkDetailPage from './components/ParkDetailPage';
+import AboutPage from './components/AboutPage'
 import reducer from './reducers'
 
 const createStoreWithMiddleware = applyMiddleware(
@@ -51,6 +52,7 @@ ReactDOM.render(
         <Route path="/parks">
           <Route path=":id" component={ParkDetailPage} />
         </Route>
+        <Route path="/about" component={AboutPage} />
       </Route>
     </Router>
   </Provider>,

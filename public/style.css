@@ -21,7 +21,13 @@ nav {
   height: 60px;
 }
 
+.navbar-text {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
 nav .btn {
+  padding: 0;
   font-size: 22px;
 }
 
@@ -45,10 +51,6 @@ nav .btn {
 
 .campsite .distance {
   font-size: 18px;
-}
-
-nav button.btn {
-  padding: 0;
 }
 
 p {
