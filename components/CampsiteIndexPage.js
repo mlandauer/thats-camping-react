@@ -23,7 +23,7 @@ export default class CampsiteIndexPage extends React.Component {
           </div>
         </nav>
         <div className="content">
-          <CampsiteList campsites={campsitesArray} position={position} />          
+          <CampsiteList campsites={campsitesArray} position={position} />
         </div>
       </div>
     )
