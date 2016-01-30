@@ -1,5 +1,6 @@
 import React from 'react';
 import CampsiteList from './CampsiteList'
+import Header from './Header'
 
 export default class CampsiteIndexPage extends React.Component {
   render() {
@@ -17,11 +18,7 @@ export default class CampsiteIndexPage extends React.Component {
 
     return (
       <div className="campsite-list">
-        <nav className="navbar navbar-default navbar-fixed-top">
-          <div className="container">
-            <h1>Camping near you</h1>
-          </div>
-        </nav>
+        <Header title="Camping near you" hideBackButton={true}/>
         <div className="content">
           <CampsiteList campsites={campsitesArray} position={position} />
         </div>

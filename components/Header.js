@@ -6,7 +6,7 @@ export default class Header extends React.Component {
     return (
       <nav className="navbar navbar-default navbar-fixed-top">
         <div className="container">
-          <BackButton />
+          {this.props.hideBackButton ? null : <BackButton />}
           <h1>{this.props.title}</h1>
         </div>
       </nav>
