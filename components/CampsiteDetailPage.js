@@ -29,8 +29,10 @@ export default class CampsiteDetailPage extends React.Component {
             <h1>{campsite.shortName}</h1>
           </div>
         </nav>
-        <div className="container">
-          <CampsiteDetail campsite={campsite} />
+        <div className="content">
+          <div className="container">
+            <CampsiteDetail campsite={campsite} />
+          </div>
         </div>
       </div>
     )

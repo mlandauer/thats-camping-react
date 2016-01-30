@@ -35,7 +35,9 @@ export default class ParkDetailPage extends React.Component {
             <h1>{park.shortName}</h1>
           </div>
         </nav>
-        <ParkDetail park={park} position={this.props.position}/>
+        <div className="content">
+          <ParkDetail park={park} position={this.props.position}/>
+        </div>
       </div>
     )
   }
