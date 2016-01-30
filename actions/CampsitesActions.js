@@ -35,13 +35,21 @@ function transformDataToParks(data) {
 
 function transformDataToCampsites(data) {
   return data.campsites.map((c) => {
+    var lat = c.latitude
+    var lng = c.longitude
+    // Some of the position data in data.json is accidently included as strings
+    // Let's fix this here
+    if (typeof(lat) == "string") {
+      lat = Number(lat)
+    }
+    if (typeof(lng) == "string") {
+      lng = Number(lng)
+    }
+
     return {
       id: c.id,
       shortName: c.shortName,
-      position: {
-        lat: c.latitude,
-        lng: c.longitude
-      },
+      position: { lat: lat, lng: lng },
       description: simpleFormat(c.description),
       park_id: c.park,
       facilities: facilitiesFields(c),
