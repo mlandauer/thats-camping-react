@@ -23,16 +23,18 @@ global.jQuery = require('jquery');
 // require('bootstrap/js/tab.js')
 // require('bootstrap/js/affix.js')
 
-import createBrowserHistory from 'history/lib/createBrowserHistory';
-var browserHistory = createBrowserHistory();
-module.exports = browserHistory;
-
 import App from './components/App';
 import CampsiteIndexPage from './components/CampsiteIndexPage';
 import CampsiteDetailPage from './components/CampsiteDetailPage';
 import ParkDetailPage from './components/ParkDetailPage';
 import AboutPage from './components/AboutPage'
 import reducer from './reducers'
+
+import createHistory from 'history/lib/createHashHistory'
+// Opt-out of persistent state, not recommended.
+var history = createHistory({
+  queryKey: false
+});
 
 const createStoreWithMiddleware = applyMiddleware(
   thunkMiddleware
@@ -42,7 +44,7 @@ let store = createStoreWithMiddleware(reducer)
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={browserHistory}>
+    <Router history={history}>
       <Redirect from="/" to="/campsites" />
       <Route path="/" component={App}>
         <Route path="/campsites">
