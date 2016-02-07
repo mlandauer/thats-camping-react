@@ -12,6 +12,9 @@ app.use(cacheManifest({
     file: __dirname + '/public/bundle.js',
     path: '/bundle.js'
   }, {
+    file: __dirname + '/public/apple-touch-icon.png',
+    path: 'apple-touch-icon.png'
+  }, {
     file: __dirname + '/public/bootstrap.min.css',
     path: '/bootstrap.min.css'
   }, {
