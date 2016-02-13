@@ -10,7 +10,7 @@ h1 {
   font-size: 22px;
   text-align: center;
   margin: 15px auto 15px auto;
-  color: #777;
+  color: white;
   width: 100%;
   position: absolute;
   left: 0;
@@ -71,4 +71,17 @@ h2 {
 
 .park-campsite-list {
   margin-top: 2em;
+}
+
+/*
+   Override bootstrap styles directly below. It would be better to do this
+   by using less but we'll leave that as an exercise for another day.
+*/
+
+.navbar-default {
+    background-color: #97b13d;
+}
+
+.navbar-default .navbar-link {
+  color: white;
 }
