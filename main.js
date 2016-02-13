@@ -30,6 +30,9 @@ import ParkDetailPage from './components/ParkDetailPage';
 import AboutPage from './components/AboutPage'
 import reducer from './reducers'
 
+import attachFastClick from 'fastclick'
+attachFastClick(document.body)
+
 import createHistory from 'history/lib/createHashHistory'
 // Opt-out of persistent state, not recommended.
 var history = createHistory({
