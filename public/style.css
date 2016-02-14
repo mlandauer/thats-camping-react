@@ -92,6 +92,15 @@ h2 {
    by using less but we'll leave that as an exercise for another day.
 */
 
+a, a:focus, a:hover {
+  color: #333;
+  text-decoration: underline;
+}
+
+a.list-group-item {
+  text-decoration: none;
+}
+
 .navbar-default {
     background-color: #97b13d;
 }
