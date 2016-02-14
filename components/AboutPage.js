@@ -25,6 +25,13 @@ export default class AboutPage extends React.Component {
             </p>
 
             <p>Made by <a href="https://twitter.com/matthewlandauer">Matthew Landauer</a></p>
+
+            <h2>Things you might want to do</h2>
+            <p>
+              <a href="https://github.com/mlandauer/thats-camping-react/issues">
+                Suggest a <strong>feature</strong> or report an <strong>issue</strong>
+              </a>
+            </p>
           </div>
         </div>
       </div>
