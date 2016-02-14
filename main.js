@@ -34,10 +34,10 @@ import attachFastClick from 'fastclick'
 attachFastClick(document.body)
 
 import createHistory from 'history/lib/createHashHistory'
+import useScroll from 'scroll-behavior/lib/useStandardScroll'
+
 // Opt-out of persistent state, not recommended.
-var history = createHistory({
-  queryKey: false
-});
+const historyWithScroll = useScroll(createHistory)({queryKey: false})
 
 const createStoreWithMiddleware = applyMiddleware(
   thunkMiddleware
@@ -47,7 +47,7 @@ let store = createStoreWithMiddleware(reducer)
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={history}>
+    <Router history={historyWithScroll}>
       <Redirect from="/" to="/campsites" />
       <Route path="/" component={App}>
         <Route path="/campsites">
