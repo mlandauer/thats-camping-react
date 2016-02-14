@@ -13,12 +13,15 @@ export default class AboutPage extends React.Component {
             </h2>
 
             <p>
-              Find campsites near you in New South Wales, Australia. It covers camping on public, common land such as National Parks, State Forests and Local Councils.
+              Find campsites near you in New South Wales, Australia.
+              It covers camping on public, common land such as National Parks,
+              State Forests and Local Council land.
             </p>
 
             <p>
-              It should work even when you're out in the middle of nowhere (when does that
-            ever happen camping?) and you have no phone signal.
+              It works completely offline, even when you're out in the middle of
+              nowhere (when does that ever happen camping?) and you have no
+              phone signal.
             </p>
 
             <p>Made by <a href="https://twitter.com/matthewlandauer">Matthew Landauer</a></p>
