@@ -22,6 +22,19 @@ nav {
   height: 60px;
 }
 
+/* When we're running in fullscreen mode we need an extra 20px at the top
+   of the screen because we're using the special apple meta tag that puts
+   the status bar over the top of the content */
+
+#app.fullscreen nav {
+  padding-top: 20px;
+  height: 80px;
+}
+
+#app.fullscreen .content {
+  padding-top: 70px;
+}
+
 .navbar-text {
   margin-left: 0px;
   margin-right: 0px;

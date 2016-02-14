@@ -11,11 +11,20 @@ export default class App extends React.Component {
   }
 
   render() {
-    return React.cloneElement(this.props.children, {
+    let children = React.cloneElement(this.props.children, {
       position: this.props.position,
       campsites: this.props.campsites,
       parks: this.props.parks
     });
+    // If this application is running in fullscreen on mobile
+    // then set class on top level div so that we can easily adjust layout
+    // for this case
+    let fullscreen = window.navigator.standalone
+    return (
+      <div id="app" className={fullscreen ? 'fullscreen' : null}>
+        {children}
+      </div>
+    )
   }
 }
 
