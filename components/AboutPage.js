@@ -19,9 +19,9 @@ export default class AboutPage extends React.Component {
             </p>
 
             <p>
-              It works completely offline, even when you're out in the middle of
-              nowhere (when does that ever happen camping?) and you have no
-              phone signal.
+              It works <strong>completely offline</strong>, even when you're
+              far far away from a mobile phone tower. When does that ever happen
+              while camping?
             </p>
 
             <p>Made by <a href="https://twitter.com/matthewlandauer">Matthew Landauer</a></p>
