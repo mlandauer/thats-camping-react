@@ -10,9 +10,10 @@ export default class CampsiteList extends React.Component {
     } else {
       // Add distance and bearing information
       var campsites = campsites.map(function(c) {
+        let positions = new PositionRelationship(c.position, position)
         return Object.assign({}, c, {
-          distance: PositionRelationship.distanceInMetres(c.position, position),
-          bearing: PositionRelationship.bearingInDegrees(c.position, position)})
+          distance: positions.distanceInMetres(),
+          bearing: positions.bearingInDegrees()})
       });
 
       // Sort campsites by distance

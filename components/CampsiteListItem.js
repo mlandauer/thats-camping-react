@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react';
-import PositionRelationship from '../libs/PositionRelationship';
 
 export default class CampsiteListItem extends React.Component {
   distanceText() {
