@@ -3,9 +3,6 @@ import Header from './Header'
 
 export default class AboutPage extends React.Component {
   render() {
-    // Don't expect this to do anything sensible yet as we're not using envify
-    console.log("SOURCE_VERSION", process.env.SOURCE_VERSION)
-
     return (
       <div className="about">
         <Header title="About"/>
