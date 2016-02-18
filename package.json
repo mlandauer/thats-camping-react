@@ -16,6 +16,7 @@
     "connect-cache-manifest": "^0.2.2",
     "express": "^4.4.5",
     "fastclick": "^1.0.6",
+    "git-rev-sync": "^1.4.0",
     "history": "^1.17.0",
     "isomorphic-fetch": "^2.2.1",
     "jquery": "^2.2.0",
@@ -27,6 +28,7 @@
     "redux": "^3.0.5",
     "redux-thunk": "^1.0.3",
     "scroll-behavior": "^0.3.2",
+    "through2": "^2.0.1",
     "uglify-js": "^2.6.1",
     "uglifyify": "^3.0.1"
   },
@@ -39,8 +41,8 @@
   "scripts": {
     "test": "mocha --compilers js:babel-core/register --recursive",
     "test:watch": "npm test -- --watch",
-    "watch": "watchify -d -t babelify main.js -o public/bundle.js -v",
-    "browserify": "browserify -t babelify -g uglifyify main.js -o public/bundle.js",
+    "watch": "watchify -d -t babelify -t ./gitify main.js -o public/bundle.js -v",
+    "browserify": "browserify -t babelify -t ./gitify main.js -o public/bundle.js",
     "postinstall": "npm run browserify",
     "development": "npm run watch & nodemon server.js",
     "start": "node server.js"
