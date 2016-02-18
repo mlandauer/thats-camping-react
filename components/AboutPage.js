@@ -27,7 +27,7 @@ export default class AboutPage extends React.Component {
             </p>
 
             <p>
-              You're currently using version __git_revision_short__.
+              You're currently using version <a href="https://github.com/mlandauer/thats-camping-react/commit/__git_revision__">__git_revision_short__</a>.
             </p>
 
             <h2>Things you might want to do</h2>
