@@ -26,6 +26,10 @@ export default class AboutPage extends React.Component {
               Made by <a href="https://twitter.com/matthewlandauer">Matthew Landauer</a> based on an iOS app by Matthew and <a href="https://twitter.com/katska">Katherine Szuminska</a>. It's free and <a href="https://github.com/mlandauer/thats-camping-react">open source</a> because that's the way it ought to be.
             </p>
 
+            <p>
+              You're currently using version <a href="https://github.com/mlandauer/thats-camping-react/commit/__git_revision__">__git_revision_short__</a>.
+            </p>
+
             <h2>Things you might want to do</h2>
 
             <p>
