@@ -7,7 +7,7 @@ var git = require('git-rev-sync');
 
 module.exports = function (file) {
     return through(function (buf, enc, next) {
-        // If we're building this on heroku there will be an environment
+        // If we're building this on Heroku there will be an environment
         // variable SOURCE_VERSION. First try using that
         var revision = process.env.SOURCE_VERSION;
         // If that doesn't work then try using a local git repository
