@@ -43,6 +43,15 @@ nav {
 nav .btn {
   padding: 0;
   font-size: 22px;
+  width: 40%;
+}
+
+nav .btn.pull-left {
+  text-align: left;
+}
+
+nav .btn.pull-right {
+  text-align: right;
 }
 
 .campsite {
