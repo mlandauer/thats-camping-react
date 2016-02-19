@@ -112,7 +112,7 @@ a, a:focus, a:hover {
   text-decoration: underline;
 }
 
-a.list-group-item {
+a.list-group-item, .btn {
   text-decoration: none;
 }
 
