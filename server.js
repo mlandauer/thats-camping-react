@@ -9,6 +9,9 @@ const app = express()
 app.use(cacheManifest({
   manifestPath: '/application.manifest',
   files: [{
+    file: __dirname + '/public/index.html',
+    path: '/index.html'    
+  }, {
     file: __dirname + '/public/bundle.js',
     path: '/bundle.js'
   }, {
