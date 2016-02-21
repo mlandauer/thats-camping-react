@@ -123,3 +123,7 @@ a.list-group-item, .btn {
 .navbar-default .navbar-link {
   color: white;
 }
+
+.btn:active {
+  box-shadow: none;
+}
