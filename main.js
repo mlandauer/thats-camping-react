@@ -2,7 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, IndexRoute, Redirect } from 'react-router';
-import { createStore, applyMiddleware } from 'redux'
+import { createStore, applyMiddleware, compose } from 'redux'
 import { Provider } from 'react-redux'
 import thunkMiddleware from 'redux-thunk'
 
@@ -39,8 +39,9 @@ import useScroll from 'scroll-behavior/lib/useStandardScroll'
 // Opt-out of persistent state, not recommended.
 const historyWithScroll = useScroll(createHistory)({queryKey: false})
 
-const createStoreWithMiddleware = applyMiddleware(
-  thunkMiddleware
+const createStoreWithMiddleware = compose(
+  applyMiddleware(thunkMiddleware),
+  window.devToolsExtension ? window.devToolsExtension() : f => f
 )(createStore)
 
 let store = createStoreWithMiddleware(reducer)
