@@ -5,6 +5,8 @@ import { Router, Route, IndexRoute, Redirect } from 'react-router';
 import { createStore, applyMiddleware, compose } from 'redux'
 import { Provider } from 'react-redux'
 import thunkMiddleware from 'redux-thunk'
+import * as storage from 'redux-storage'
+import createEngine from 'redux-storage-engine-localstorage'
 
 global.jQuery = require('jquery');
 
@@ -39,12 +41,19 @@ import useScroll from 'scroll-behavior/lib/useStandardScroll'
 // Opt-out of persistent state, not recommended.
 const historyWithScroll = useScroll(createHistory)({queryKey: false})
 
+const reducerWithStorage = storage.reducer(reducer)
+const engine = createEngine('thats-camping')
+const storageMiddleware = storage.createMiddleware(engine)
+
 const createStoreWithMiddleware = compose(
-  applyMiddleware(thunkMiddleware),
+  applyMiddleware(thunkMiddleware, storageMiddleware),
   window.devToolsExtension ? window.devToolsExtension() : f => f
 )(createStore)
 
-let store = createStoreWithMiddleware(reducer)
+let store = createStoreWithMiddleware(reducerWithStorage)
+
+const load = storage.createLoader(engine)
+load(store)
 
 // Check if a new cache is available on page load.
 window.addEventListener('load', function(e) {
