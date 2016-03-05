@@ -36,8 +36,18 @@ export default class App extends React.Component {
 
 // Which props do we want to inject, given the global state?
 // Note: use https://github.com/faassen/reselect for better performance.
-function select(state) {
-  return state
+function mapStateToProps(state) {
+  // Put the star state directly into each campsite object to make things easier
+  // elsewhere
+  // Ugh. This is all fairly horrible
+  let new_campsites = {}
+  for (var id in state.campsites) {
+    // Don't want to use strict equality (with indexOf) as a workaround
+    let i = state.starred.findIndex((v) => {return v == id})
+    let starred = i != -1
+    new_campsites[id] = Object.assign({}, state.campsites[id], {starred: starred})
+  }
+  return Object.assign({}, state, {campsites: new_campsites})
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -50,4 +60,4 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 // Wrap the component to inject dispatch and state into it
-export default connect(select, mapDispatchToProps)(App)
+export default connect(mapStateToProps, mapDispatchToProps)(App)
