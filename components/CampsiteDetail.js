@@ -60,7 +60,7 @@ export default class CampsiteDetail extends React.Component {
   render() {
     return (
       <div className="campsite-detail">
-        <Star onClick={this.props.onStarClick}/>
+        <Star onClick={() => {this.props.onStarClick(this.props.campsite.id)}}/>
         <h2>
           In <Link to={"/parks/" + this.props.campsite.park.id}>{this.props.campsite.park.longName}</Link>
         </h2>

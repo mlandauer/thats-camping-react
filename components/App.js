@@ -10,8 +10,13 @@ export default class App extends React.Component {
     this.props.dispatch(startUpdatePosition())
   }
 
+  onStarClick(id) {
+    console.log("The star for campsite " + id + " has been clicked!")
+  }
+
   render() {
     let children = React.cloneElement(this.props.children, {
+      onStarClick: this.onStarClick,
       position: this.props.position,
       campsites: this.props.campsites,
       parks: this.props.parks

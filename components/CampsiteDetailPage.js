@@ -3,10 +3,6 @@ import Header from './Header'
 import CampsiteDetail from './CampsiteDetail';
 
 class CampsiteDetailPage extends React.Component {
-  onStarClick() {
-    console.log("The star has been clicked!")
-  }
-
   render() {
     let campsite = this.props.campsites[this.props.params.id]
     if (campsite == undefined) {
@@ -19,7 +15,7 @@ class CampsiteDetailPage extends React.Component {
         <Header title={campsite.shortName}/>
         <div className="content">
           <div className="container">
-            <CampsiteDetail campsite={campsite} onStarClick={this.onStarClick}/>
+            <CampsiteDetail campsite={campsite} onStarClick={this.props.onStarClick}/>
           </div>
         </div>
       </div>
