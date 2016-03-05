@@ -18,22 +18,30 @@ export default class CampsiteList extends React.Component {
 
       // Sort campsites by distance
       var campsites = campsites.sort(function(a, b) {
-        if (a.distance == undefined && b.distance == undefined) {
-          return a.shortName.localeCompare(b.shortName);
+        if (a.starred == b.starred) {
+          if (a.distance == undefined && b.distance == undefined) {
+            return a.shortName.localeCompare(b.shortName);
+          }
+          if (a.distance == undefined) {
+            return 1;
+          }
+          if (b.distance == undefined) {
+            return -1;
+          }
+          if (a.distance > b.distance) {
+            return 1;
+          }
+          if (a.distance < b.distance) {
+            return -1;
+          }
+          return 0;
         }
-        if (a.distance == undefined) {
-          return 1;
-        }
-        if (b.distance == undefined) {
+        else if (a.starred && !b.starred) {
           return -1;
         }
-        if (a.distance > b.distance) {
+        else {
           return 1;
         }
-        if (a.distance < b.distance) {
-          return -1;
-        }
-        return 0;
       });
     }
     return campsites;
