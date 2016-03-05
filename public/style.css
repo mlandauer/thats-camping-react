@@ -102,6 +102,11 @@ h2 {
   margin-top: 2em;
 }
 
+.campsite-detail .star {
+  float: right;
+  font-size: 24px;
+}
+
 /*
    Override bootstrap styles directly below. It would be better to do this
    by using less but we'll leave that as an exercise for another day.

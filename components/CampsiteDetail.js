@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
+import Star from './Star'
 
 export default class CampsiteDetail extends React.Component {
   getDescription() {
