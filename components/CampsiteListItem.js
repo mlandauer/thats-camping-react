@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import Star from './Star'
 
 export default class CampsiteListItem extends React.Component {
   distanceText() {
@@ -30,7 +31,10 @@ export default class CampsiteListItem extends React.Component {
   render() {
     return (
       <div className="campsite">
-        <div className="pull-right distance">{this.distanceText()} {this.bearingText()}</div>
+        <div className="pull-right">
+          <div className="distance">{this.distanceText()} {this.bearingText()}</div>
+          <Star starred={this.props.starred}/>
+        </div>
         <div className="name">{this.props.campsiteName}</div>
         <div className="park">{this.props.parkName}</div>
       </div>
