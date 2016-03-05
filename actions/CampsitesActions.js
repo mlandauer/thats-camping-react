@@ -49,6 +49,7 @@ function transformDataToCampsites(data) {
     return {
       id: c.id,
       shortName: c.shortName,
+      longName: c.longName,
       position: { lat: lat, lng: lng },
       description: simpleFormat(c.description),
       park_id: c.park,
