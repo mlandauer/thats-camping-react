@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { addParks } from '../actions/ParksActions'
 import { addCampsites, startSync } from '../actions/CampsitesActions'
 import { startUpdatePosition } from '../actions/PositionActions'
+import { toggleStarredCampsite } from '../actions/StarredActions'
 
 export default class App extends React.Component {
   componentWillMount() {
@@ -16,7 +17,7 @@ export default class App extends React.Component {
 
   render() {
     let children = React.cloneElement(this.props.children, {
-      onStarClick: this.onStarClick,
+      onStarClick: this.props.onStarClick,
       position: this.props.position,
       campsites: this.props.campsites,
       parks: this.props.parks
@@ -38,5 +39,15 @@ export default class App extends React.Component {
 function select(state) {
   return state
 }
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    dispatch,
+    onStarClick: (id) => {
+      dispatch(toggleStarredCampsite(id))
+    }
+  }
+}
+
 // Wrap the component to inject dispatch and state into it
-export default connect(select)(App)
+export default connect(select, mapDispatchToProps)(App)
