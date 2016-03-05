@@ -120,6 +120,10 @@ h2 {
   color: #97b13d;
 }
 
+.park-detail-page .star {
+  display: none;
+}
+
 /*
    Override bootstrap styles directly below. It would be better to do this
    by using less but we'll leave that as an exercise for another day.
