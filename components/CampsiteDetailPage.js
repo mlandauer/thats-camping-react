@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { PropTypes } from 'react'
 import Header from './Header'
 import CampsiteDetail from './CampsiteDetail';
 
-export default class CampsiteDetailPage extends React.Component {
+class CampsiteDetailPage extends React.Component {
+  onStarClick() {
+    console.log("The star has been clicked!")
+  }
+
   render() {
     let campsite = this.props.campsites[this.props.params.id]
     if (campsite == undefined) {
@@ -15,10 +19,12 @@ export default class CampsiteDetailPage extends React.Component {
         <Header title={campsite.shortName}/>
         <div className="content">
           <div className="container">
-            <CampsiteDetail campsite={campsite} />
+            <CampsiteDetail campsite={campsite} onStarClick={this.onStarClick}/>
           </div>
         </div>
       </div>
     )
   }
 }
+
+export default CampsiteDetailPage

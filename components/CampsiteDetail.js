@@ -60,6 +60,7 @@ export default class CampsiteDetail extends React.Component {
   render() {
     return (
       <div className="campsite-detail">
+        <Star onClick={this.props.onStarClick}/>
         <h2>
           In <Link to={"/parks/" + this.props.campsite.park.id}>{this.props.campsite.park.longName}</Link>
         </h2>
@@ -87,6 +88,7 @@ export default class CampsiteDetail extends React.Component {
 }
 
 CampsiteDetail.propTypes = {
+  onStarClick: PropTypes.func.isRequired,
   campsite: PropTypes.shape({
     description: PropTypes.string.isRequired,
     facilities: PropTypes.shape({
