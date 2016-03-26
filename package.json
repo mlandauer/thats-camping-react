@@ -35,9 +35,11 @@
     "uglifyify": "^3.0.1"
   },
   "devDependencies": {
+    "enzyme": "^2.2.0",
     "expect": "^1.13.4",
     "mocha": "^2.3.4",
     "nodemon": "^1.8.1",
+    "react-addons-test-utils": "^0.14.7",
     "watchify": "^3.6.1"
   },
   "scripts": {
