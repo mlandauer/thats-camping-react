@@ -1,6 +1,7 @@
 import fetch from 'isomorphic-fetch'
 import * as types from '../constants/ActionTypes'
 import { addParks } from './ParksActions'
+import simpleFormat from '../libs/simpleFormat'
 
 export function addCampsites(campsites) {
   return {
@@ -57,17 +58,6 @@ function transformDataToCampsites(data) {
       access: accessFields(c)
     }
   })
-}
-
-function simpleFormat(str) {
-  str = str.replace(/\r\n?/, "\n");
-  str = jQuery.trim(str);
-  if (str.length > 0) {
-    str = str.replace(/\n\n+/g, '</p><p>');
-    str = str.replace(/\n/g, '<br />');
-    str = '<p>' + str + '</p>';
-  }
-  return str;
 }
 
 function accessFields(campsite) {
