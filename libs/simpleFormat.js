@@ -1,6 +1,7 @@
 export default function simpleFormat(str) {
+  // Not sure why we're replacing \r when it doesn't seem to appear in data.json
   str = str.replace(/\r\n?/, "\n");
-  str = jQuery.trim(str);
+  str = str.trim();
   if (str.length > 0) {
     str = str.replace(/\n\n+/g, '</p><p>');
     str = str.replace(/\n/g, '<br />');

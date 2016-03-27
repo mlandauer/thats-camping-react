@@ -8,8 +8,6 @@ import thunkMiddleware from 'redux-thunk'
 import * as storage from 'redux-storage'
 import createEngine from 'redux-storage-engine-localstorage'
 
-global.jQuery = require('jquery');
-
 // Uncomment the bits of bootstrap javascript belowwhen we need them
 //
 // require('bootstrap/js/transition.js')
