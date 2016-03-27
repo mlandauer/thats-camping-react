@@ -1,7 +1,6 @@
 import fetch from 'isomorphic-fetch'
 import * as types from '../constants/ActionTypes'
 import { addParks } from './ParksActions'
-import simpleFormat from '../libs/simpleFormat'
 
 export function addCampsites(campsites) {
   return {
@@ -28,7 +27,7 @@ function transformDataToParks(data) {
       id: p.id,
       shortName: p.shortName,
       longName: p.longName,
-      description: simpleFormat(p.description),
+      description: p.description,
       campsite_ids: p.campsites
     };
   });
@@ -52,7 +51,7 @@ function transformDataToCampsites(data) {
       shortName: c.shortName,
       longName: c.longName,
       position: { lat: lat, lng: lng },
-      description: simpleFormat(c.description),
+      description: c.description,
       park_id: c.park,
       facilities: facilitiesFields(c),
       access: accessFields(c)

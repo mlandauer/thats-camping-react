@@ -1,9 +1,10 @@
 import React, { PropTypes } from 'react';
+import simpleFormat from '../libs/simpleFormat'
 import CampsiteList from './CampsiteList'
 
 export default class ParkDetail extends React.Component {
   getDescription() {
-    return {__html: this.props.park.description};
+    return {__html: simpleFormat(this.props.park.description)};
   }
 
   render() {
