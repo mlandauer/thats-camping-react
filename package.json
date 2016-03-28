@@ -48,7 +48,8 @@
     "browserify": "browserify -t babelify -t ./gitify main.js -o public/bundle.js",
     "postinstall": "npm run browserify",
     "development": "npm run watch & nodemon server.js",
-    "start": "node server.js"
+    "start": "node server.js",
+    "transform_data": "node transform_data.js"
   },
   "author": "Matthew Landauer",
   "license": "GPL-3.0"
