@@ -8,8 +8,8 @@ export default class CampsiteDetail extends React.Component {
     return {__html: simpleFormat(this.props.campsite.description)};
   }
 
-  facilitiesText() {
-    var fields = this.facilitiesFields(this.props.campsite.facilities)
+  facilitiesText(facilities) {
+    var fields = this.facilitiesFields(facilities)
     var have = fields.have;
     var notHave = fields.notHave;
 
@@ -28,8 +28,8 @@ export default class CampsiteDetail extends React.Component {
     return r;
   }
 
-  accessText() {
-    var fields = this.accessFields(this.props.campsite.access)
+  accessText(access) {
+    var fields = this.accessFields(access)
     var have = fields.have;
     var notHave = fields.notHave;
 
@@ -48,13 +48,13 @@ export default class CampsiteDetail extends React.Component {
     return r;
   }
 
-  accessFields(campsite) {
+  accessFields(access) {
     var have = [];
     var notHave = [];
 
-    var caravans = campsite.caravans;
-    var trailers = campsite.trailers;
-    var car = campsite.car;
+    var caravans = access.caravans;
+    var trailers = access.trailers;
+    var car = access.car;
 
     if (caravans) {
       have.push("caravans");
@@ -78,15 +78,15 @@ export default class CampsiteDetail extends React.Component {
     return {have: have, notHave: notHave};
   }
 
-  facilitiesFields(campsite) {
+  facilitiesFields(facilities) {
     var have = [];
     var notHave = [];
 
-    var toilets = campsite.toilets;
-    var picnicTables = campsite.picnicTables;
-    var barbecues = campsite.barbecues;
-    var showers = campsite.showers;
-    var drinkingWater = campsite.drinkingWater;
+    var toilets = facilities.toilets;
+    var picnicTables = facilities.picnicTables;
+    var barbecues = facilities.barbecues;
+    var showers = facilities.showers;
+    var drinkingWater = facilities.drinkingWater;
 
     if (toilets == "flush") {
       have.push("flush toilets");
@@ -156,9 +156,9 @@ export default class CampsiteDetail extends React.Component {
         <p>in <Link to={"/parks/" + this.props.campsite.park.id}>{this.props.campsite.park.longName}</Link>.</p>
         <div dangerouslySetInnerHTML={this.getDescription()}/>
         <h2>Facilities</h2>
-        <p>{this.facilitiesText()}</p>
+        <p>{this.facilitiesText(this.props.campsite.facilities)}</p>
         <h2>Access</h2>
-        <p>{this.accessText()}</p>
+        <p>{this.accessText(this.props.campsite.access)}</p>
         <a href={this.mapUrl()} className="directions btn btn-default" disabled={this.directionsEnabled() ? "" : "disabled"}>Directions to campsite</a>
       </div>
     )
