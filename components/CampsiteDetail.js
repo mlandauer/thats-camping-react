@@ -94,8 +94,13 @@ export default class CampsiteDetail extends React.Component {
   }
 
   merge(r, t) {
-    r["have"].push(t["have"])
-    r["notHave"].push(t["notHave"])
+    // TODO Generalise this
+    if (t["have"]) {
+      r["have"].push(t["have"])
+    }
+    if (t["notHave"]) {
+      r["notHave"].push(t["notHave"])
+    }
   }
 
   picnicTables(picnicTables) {
@@ -145,9 +150,6 @@ export default class CampsiteDetail extends React.Component {
     else {
       r["notHave"].push("drinking water");
     }
-
-    r["have"] = r["have"].filter(function(s) { return s != undefined })
-    r["notHave"] = r["notHave"].filter(function(s) { return s != undefined })
 
     return r;
   }
