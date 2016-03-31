@@ -93,59 +93,63 @@ export default class CampsiteDetail extends React.Component {
     }
   }
 
-  facilitiesFields(facilities) {
-    var have = [];
-    var notHave = [];
+  merge(r, t) {
+    r["have"].push(t["have"])
+    r["notHave"].push(t["notHave"])
+  }
 
-    var picnicTables = facilities.picnicTables;
+  picnicTables(picnicTables) {
+    if (picnicTables) {
+      return {have: "picnic tables"}
+    }
+    else {
+      return {notHave: "picnic tables"}
+    }
+  }
+
+  facilitiesFields(facilities) {
+    var r = {have: [], notHave: []}
+
     var barbecues = facilities.barbecues;
     var showers = facilities.showers;
     var drinkingWater = facilities.drinkingWater;
 
-    var t = this.toilets(facilities.toilets)
-    have.push(t.have)
-    notHave.push(t.notHave)
-
-    if (picnicTables) {
-      have.push("picnic tables");
-    }
-    else {
-      notHave.push("picnic tables");
-    }
+    this.merge(r, this.toilets(facilities.toilets))
+    this.merge(r, this.picnicTables(facilities.picnicTables))
 
     // TODO: show whether you need to bring your own firewood elsewhere
     // Like "You will need to bring firewood (if you want to use the wood BBQs) and drinking water"
     if(barbecues == "wood" || barbecues == "wood_supplied" || barbecues == "wood_bring_your_own") {
-      have.push("wood BBQs");
+      r["have"].push("wood BBQs");
     }
     else if (barbecues == "gas_electric") {
-      have.push("gas/electric BBQs");
+      r["have"].push("gas/electric BBQs");
     }
     else if (barbecues == "none") {
-      notHave.push("BBQs");
+      r["notHave"].push("BBQs");
     }
 
     if (showers == "hot") {
-      have.push("hot showers");
+      r["have"].push("hot showers");
     }
     else if (showers == "cold") {
-      have.push("cold showers");
+      r["have"].push("cold showers");
     }
     else if (showers == "none") {
-      notHave.push("showers");
+      r["notHave"].push("showers");
     }
 
     if (drinkingWater) {
-      have.push("drinking water");
+      r["have"].push("drinking water");
     }
     else {
-      notHave.push("drinking water");
+      r["notHave"].push("drinking water");
     }
 
-    have = have.filter(function(s) { return s != undefined })
-    notHave = notHave.filter(function(s) { return s != undefined })
+    r["have"] = r["have"].filter(function(s) { return s != undefined })
+    r["notHave"] = r["notHave"].filter(function(s) { return s != undefined })
 
-    return {have: have, notHave: notHave};
+    return r;
   }
 
   mapUrl() {

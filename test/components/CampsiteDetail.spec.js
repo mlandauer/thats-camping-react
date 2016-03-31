@@ -55,4 +55,16 @@ describe('<CampsiteDetail />', () => {
     expect(c.facilitiesText({toilets: undefined, picnicTables: true, drinkingWater: true}))
       .toEqual("Has picnic tables and drinking water")
   })
+
+  it('facilitiesText', () => {
+    var c = new CampsiteDetail
+    expect(c.facilitiesText({picnicTables: true, drinkingWater: true}))
+      .toEqual("Has picnic tables and drinking water")
+  })
+
+  it('facilitiesText', () => {
+    var c = new CampsiteDetail
+    expect(c.facilitiesText({picnicTables: false, drinkingWater: true}))
+      .toEqual("Has drinking water but no picnic tables")
+  })
 })
