@@ -129,26 +129,30 @@ export default class CampsiteDetail extends React.Component {
     }
   }
 
+  showers(showers) {
+    if (showers == "hot") {
+      return {"have": "hot showers"}
+    }
+    else if (showers == "cold") {
+      return {"have": "cold showers"}
+    }
+    else if (showers == "none") {
+      return {"notHave": "showers"}
+    }
+    else {
+      return {}
+    }
+  }
+
   facilitiesFields(facilities) {
     var r = {"have": [], "notHave": []}
 
-    var barbecues = facilities.barbecues;
-    var showers = facilities.showers;
     var drinkingWater = facilities.drinkingWater;
 
     this.merge(r, this.toilets(facilities.toilets))
     this.merge(r, this.picnicTables(facilities.picnicTables))
     this.merge(r, this.barbecues(facilities.barbecues))
-
-    if (showers == "hot") {
-      r["have"].push("hot showers");
-    }
-    else if (showers == "cold") {
-      r["have"].push("cold showers");
-    }
-    else if (showers == "none") {
-      r["notHave"].push("showers");
-    }
+    this.merge(r, this.showers(facilities.showers))
 
     if (drinkingWater) {
       r["have"].push("drinking water");
