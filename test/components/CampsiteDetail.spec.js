@@ -97,4 +97,34 @@ describe('<CampsiteDetail />', () => {
     expect(c.facilitiesText({barbecues: "none", picnicTables: true, drinkingWater: true}))
       .toEqual("Has picnic tables and drinking water but no BBQs")
   })
+
+  it('facilitiesText', () => {
+    var c = new CampsiteDetail
+    expect(c.facilitiesText({showers: "hot", picnicTables: true, drinkingWater: true}))
+      .toEqual("Has picnic tables, hot showers and drinking water")
+  })
+
+  it('facilitiesText', () => {
+    var c = new CampsiteDetail
+    expect(c.facilitiesText({showers: "cold", picnicTables: true, drinkingWater: true}))
+      .toEqual("Has picnic tables, cold showers and drinking water")
+  })
+
+  it('facilitiesText', () => {
+    var c = new CampsiteDetail
+    expect(c.facilitiesText({showers: "none", picnicTables: true, drinkingWater: true}))
+      .toEqual("Has picnic tables and drinking water but no showers")
+  })
+
+  it('facilitiesText', () => {
+    var c = new CampsiteDetail
+    expect(c.facilitiesText({drinkingWater: true, picnicTables: true}))
+      .toEqual("Has picnic tables and drinking water")
+  })
+
+  it('facilitiesText', () => {
+    var c = new CampsiteDetail
+    expect(c.facilitiesText({drinkingWater: false, picnicTables: true}))
+      .toEqual("Has picnic tables but no drinking water")
+  })
 })
