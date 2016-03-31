@@ -144,22 +144,23 @@ export default class CampsiteDetail extends React.Component {
     }
   }
 
+  drinkingWater(drinkingWater) {
+    if (drinkingWater) {
+      return {"have": "drinking water"}
+    }
+    else {
+      return {"notHave": "drinking water"}
+    }
+  }
+
   facilitiesFields(facilities) {
     var r = {"have": [], "notHave": []}
-
-    var drinkingWater = facilities.drinkingWater;
 
     this.merge(r, this.toilets(facilities.toilets))
     this.merge(r, this.picnicTables(facilities.picnicTables))
     this.merge(r, this.barbecues(facilities.barbecues))
     this.merge(r, this.showers(facilities.showers))
-
-    if (drinkingWater) {
-      r["have"].push("drinking water");
-    }
-    else {
-      r["notHave"].push("drinking water");
-    }
+    this.merge(r, this.drinkingWater(facilities.drinkingWater))
 
     return r;
   }
