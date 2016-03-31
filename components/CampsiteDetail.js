@@ -78,25 +78,33 @@ export default class CampsiteDetail extends React.Component {
     return {have: have, notHave: notHave};
   }
 
+  toilets(toilets) {
+    if (toilets == "flush") {
+      return {have: "flush toilets"}
+    }
+    else if (toilets == "non_flush") {
+      return {have: "non-flush toilets"}
+    }
+    else if (toilets == "none") {
+      return {notHave: "toilets"}
+    }
+    else {
+      return {}
+    }
+  }
+
   facilitiesFields(facilities) {
     var have = [];
     var notHave = [];
 
-    var toilets = facilities.toilets;
     var picnicTables = facilities.picnicTables;
     var barbecues = facilities.barbecues;
     var showers = facilities.showers;
     var drinkingWater = facilities.drinkingWater;
 
-    if (toilets == "flush") {
-      have.push("flush toilets");
-    }
-    else if (toilets == "non_flush") {
-      have.push("non-flush toilets");
-    }
-    else if (toilets == "none") {
-      notHave.push("toilets");
-    }
+    var t = this.toilets(facilities.toilets)
+    have.push(t.have)
+    notHave.push(t.notHave)
 
     if (picnicTables) {
       have.push("picnic tables");
@@ -133,6 +141,10 @@ export default class CampsiteDetail extends React.Component {
     else {
       notHave.push("drinking water");
     }
+
+    have = have.filter(function(s) { return s != undefined })
+    notHave = notHave.filter(function(s) { return s != undefined })
+
     return {have: have, notHave: notHave};
   }
 
