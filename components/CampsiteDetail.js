@@ -80,13 +80,13 @@ export default class CampsiteDetail extends React.Component {
 
   toilets(toilets) {
     if (toilets == "flush") {
-      return {have: "flush toilets"}
+      return {"have": "flush toilets"}
     }
     else if (toilets == "non_flush") {
-      return {have: "non-flush toilets"}
+      return {"have": "non-flush toilets"}
     }
     else if (toilets == "none") {
-      return {notHave: "toilets"}
+      return {"notHave": "toilets"}
     }
     else {
       return {}
@@ -105,15 +105,32 @@ export default class CampsiteDetail extends React.Component {
 
   picnicTables(picnicTables) {
     if (picnicTables) {
-      return {have: "picnic tables"}
+      return {"have": "picnic tables"}
     }
     else {
-      return {notHave: "picnic tables"}
+      return {"notHave": "picnic tables"}
+    }
+  }
+
+  barbecues(barbecues) {
+    // TODO: show whether you need to bring your own firewood elsewhere
+    // Like "You will need to bring firewood (if you want to use the wood BBQs) and drinking water"
+    if (barbecues == "wood" || barbecues == "wood_supplied" || barbecues == "wood_bring_your_own") {
+      return {"have": "wood BBQs"}
+    }
+    else if (barbecues == "gas_electric") {
+      return {"have": "gas/electric BBQs"}
+    }
+    else if (barbecues == "none") {
+      return {"notHave": "BBQs"}
+    }
+    else {
+      return {}
     }
   }
 
   facilitiesFields(facilities) {
-    var r = {have: [], notHave: []}
+    var r = {"have": [], "notHave": []}
 
     var barbecues = facilities.barbecues;
     var showers = facilities.showers;
@@ -121,18 +138,7 @@ export default class CampsiteDetail extends React.Component {
 
     this.merge(r, this.toilets(facilities.toilets))
     this.merge(r, this.picnicTables(facilities.picnicTables))
-
-    // TODO: show whether you need to bring your own firewood elsewhere
-    // Like "You will need to bring firewood (if you want to use the wood BBQs) and drinking water"
-    if(barbecues == "wood" || barbecues == "wood_supplied" || barbecues == "wood_bring_your_own") {
-      r["have"].push("wood BBQs");
-    }
-    else if (barbecues == "gas_electric") {
-      r["have"].push("gas/electric BBQs");
-    }
-    else if (barbecues == "none") {
-      r["notHave"].push("BBQs");
-    }
+    this.merge(r, this.barbecues(facilities.barbecues))
 
     if (showers == "hot") {
       r["have"].push("hot showers");
