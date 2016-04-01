@@ -55,4 +55,4 @@ data.parks = data.parks.map(function(park) {
 });
 
 var fs = require('fs');
-fs.writeFileSync('data2.json', JSON.stringify(data));
+fs.writeFileSync('data_simplified.json', JSON.stringify(data, null, 2));
