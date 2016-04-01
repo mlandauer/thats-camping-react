@@ -15,17 +15,15 @@ export default class CampsiteDetail extends React.Component {
 
     var r = "";
     if (have.length > 0) {
-      r = r + "Has " + this.listAsText(have);
+      r = r + "has " + this.listAsText(have);
     }
     if (notHave.length > 0) {
       if (have.length > 0) {
-        r = r + " but no ";
-      } else {
-        r = r + "No ";
+        r = r + " but "
       }
-      r = r + this.listAsText(notHave);
+      r = r + "no " + this.listAsText(notHave);
     }
-    return r;
+    return this.capitaliseFirstLetter(r)
   }
 
   accessText(access) {
@@ -35,64 +33,51 @@ export default class CampsiteDetail extends React.Component {
 
     var r = "";
     if (have.length > 0) {
-      r = r + "For " + this.listAsText(have);
+      r = r + "for " + this.listAsText(have)
     }
     if (notHave.length > 0) {
       if (have.length > 0) {
-        r = r + " but not for ";
-      } else {
-        r = r + "Not for ";
+        r = r + " but "
       }
-      r = r + this.listAsText(notHave);
+      r = r + "not for " + this.listAsText(notHave);
     }
-    return r;
+    return this.capitaliseFirstLetter(r);
+  }
+
+  capitaliseFirstLetter(text) {
+    return text.charAt(0).toUpperCase() + text.slice(1)
+  }
+
+  caravans(caravans) {
+    switch(caravans) {
+      case true: return {"have":    "caravans"}
+      default:   return {"notHave": "caravans"}
+    }
+  }
+
+  trailers(trailers) {
+    switch(trailers) {
+      case true: return {"have":    "trailers"}
+      default:   return {"notHave": "trailers"}
+    }
+  }
+
+  car(car) {
+    switch(car) {
+      case true: return {"have":    "car camping"}
+      default:   return {"notHave": "car camping"}
+    }
   }
 
   accessFields(access) {
-    var have = [];
-    var notHave = [];
-
-    var caravans = access.caravans;
-    var trailers = access.trailers;
-    var car = access.car;
-
-    if (caravans) {
-      have.push("caravans");
-    }
-    else {
-      notHave.push("caravans");
-    }
-    if (trailers) {
-      have.push("trailers");
-    }
-    else {
-      notHave.push("trailers");
-    }
-    if (car) {
-      have.push("car camping");
-    }
-    else {
-      notHave.push("car camping");
-    }
-
-    return {have: have, notHave: notHave};
+    var r = {"have": [], "notHave": []}
+    this.merge(r, this.caravans(access.caravans))
+    this.merge(r, this.trailers(access.trailers))
+    this.merge(r, this.car(access.car))
+    return r
   }
 
-  toilets(toilets) {
-    if (toilets == "flush") {
-      return {"have": "flush toilets"}
-    }
-    else if (toilets == "non_flush") {
-      return {"have": "non-flush toilets"}
-    }
-    else if (toilets == "none") {
-      return {"notHave": "toilets"}
-    }
-    else {
-      return {}
-    }
-  }
-
+  // WARNING changes r
   merge(r, t) {
     // TODO Generalise this
     if (t["have"]) {
@@ -101,67 +86,61 @@ export default class CampsiteDetail extends React.Component {
     if (t["notHave"]) {
       r["notHave"].push(t["notHave"])
     }
+    return r
+  }
+
+  toilets(toilets) {
+    switch(toilets) {
+      case "flush":     return {"have":    "flush toilets"}
+      case "non_flush": return {"have":    "non-flush toilets"}
+      case "none":      return {"notHave": "toilets"}
+      default:          return {}
+    }
   }
 
   picnicTables(picnicTables) {
-    if (picnicTables) {
-      return {"have": "picnic tables"}
-    }
-    else {
-      return {"notHave": "picnic tables"}
+    switch(picnicTables) {
+      case true: return {"have":    "picnic tables"}
+      default:   return {"notHave": "picnic tables"}
     }
   }
 
   barbecues(barbecues) {
-    // TODO: show whether you need to bring your own firewood elsewhere
-    // Like "You will need to bring firewood (if you want to use the wood BBQs) and drinking water"
-    if (barbecues == "wood" || barbecues == "wood_supplied" || barbecues == "wood_bring_your_own") {
-      return {"have": "wood BBQs"}
-    }
-    else if (barbecues == "gas_electric") {
-      return {"have": "gas/electric BBQs"}
-    }
-    else if (barbecues == "none") {
-      return {"notHave": "BBQs"}
-    }
-    else {
-      return {}
+    switch(barbecues) {
+      // TODO: show whether you need to bring your own firewood elsewhere
+      // Like "You will need to bring firewood (if you want to use the wood BBQs) and drinking water"
+      case "wood":
+      case "wood_supplied":
+      case "wood_bring_your_own": return {"have":    "wood BBQs"}
+      case "gas_electric":        return {"have":    "gas/electric BBQs"}
+      case "none":                return {"notHave": "BBQs"}
+      default:                    return {}
     }
   }
 
   showers(showers) {
-    if (showers == "hot") {
-      return {"have": "hot showers"}
-    }
-    else if (showers == "cold") {
-      return {"have": "cold showers"}
-    }
-    else if (showers == "none") {
-      return {"notHave": "showers"}
-    }
-    else {
-      return {}
+    switch(showers) {
+      case "hot":  return {"have":    "hot showers"}
+      case "cold": return {"have":    "cold showers"}
+      case "none": return {"notHave": "showers"}
+      default:     return {}
     }
   }
 
   drinkingWater(drinkingWater) {
-    if (drinkingWater) {
-      return {"have": "drinking water"}
-    }
-    else {
-      return {"notHave": "drinking water"}
+    switch(drinkingWater) {
+      case true: return {"have":    "drinking water"}
+      default:   return {"notHave": "drinking water"}
     }
   }
 
   facilitiesFields(facilities) {
     var r = {"have": [], "notHave": []}
-
     this.merge(r, this.toilets(facilities.toilets))
     this.merge(r, this.picnicTables(facilities.picnicTables))
     this.merge(r, this.barbecues(facilities.barbecues))
     this.merge(r, this.showers(facilities.showers))
     this.merge(r, this.drinkingWater(facilities.drinkingWater))
-
     return r;
   }
 
