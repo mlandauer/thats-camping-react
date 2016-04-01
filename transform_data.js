@@ -1,6 +1,6 @@
 // Transform the data in data.json into a format that is closer to what we
 // need so that there is less processing required in the app itself
-
+var shortenName = require("./libs/shortenName")
 var data = require('./data.json');
 
 data.campsites = data.campsites.map(function(campsite) {
@@ -18,6 +18,10 @@ data.campsites = data.campsites.map(function(campsite) {
   var barbecues = campsite.barbecues
   if (barbecues == "wood_supplied" || barbecues == "wood_bring_your_own") {
     barbecues = "wood"
+  }
+
+  if (shortenName(campsite.longName) != campsite.shortName) {
+    console.log("WARNING:", campsite.longName, "should be shortened to", campsite.shortName)
   }
 
   return ({
