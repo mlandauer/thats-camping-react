@@ -11,7 +11,7 @@ export default class ParkDetail extends React.Component {
     return (
       <div className="park-detail">
         <div className="container">
-          <h2>{this.props.park.longName}</h2>
+          <h2>{this.props.park.name}</h2>
           <div dangerouslySetInnerHTML={this.getDescription()}/>
         </div>
         <div className="park-campsite-list">
@@ -25,7 +25,7 @@ export default class ParkDetail extends React.Component {
 ParkDetail.propTypes = {
   park: PropTypes.shape({
     description: PropTypes.string,
-    longName: PropTypes.string,
+    name: PropTypes.string,
     campsites: PropTypes.array
   }).isRequired,
   position: PropTypes.object

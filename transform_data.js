@@ -27,7 +27,7 @@ data.campsites = data.campsites.map(function(campsite) {
   return ({
     id: campsite.id,
     park_id: campsite.park,
-    longName: campsite.longName,
+    name: campsite.longName,
     description: campsite.description,
     position: { lat: lat, lng: lng },
     facilities: {
@@ -52,7 +52,7 @@ data.parks = data.parks.map(function(park) {
 
   return ({
     id: park.id,
-    longName: park.longName,
+    name: park.longName,
     description: park.description,
     campsite_ids: park.campsites
   });

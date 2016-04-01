@@ -21,7 +21,7 @@ export default class CampsiteList extends React.Component {
       var campsites = campsites.sort(function(a, b) {
         if (a.starred == b.starred) {
           if (a.distance == undefined && b.distance == undefined) {
-            return a.longName.localeCompare(b.longName);
+            return a.name.localeCompare(b.name);
           }
           if (a.distance == undefined) {
             return 1;
@@ -58,10 +58,10 @@ export default class CampsiteList extends React.Component {
       <ul className="list-group">
         {
           sortedCampsites.map(function(campsite) {
-            let parkName = campsite.park == undefined ? "" : shortenName(campsite.park.longName)
+            let parkName = campsite.park == undefined ? "" : shortenName(campsite.park.name)
             return (
               <Link to={"/campsites/" + campsite.id} className="list-group-item" key={campsite.id}>
-                <CampsiteListItem campsiteName={shortenName(campsite.longName)} parkName={parkName} distance={campsite.distance} bearing={campsite.bearing} starred={campsite.starred}/>
+                <CampsiteListItem campsiteName={shortenName(campsite.name)} parkName={parkName} distance={campsite.distance} bearing={campsite.bearing} starred={campsite.starred}/>
               </Link>
             )
           })

@@ -6,7 +6,7 @@ describe('parks actions', () => {
   it('addParks', () => {
     const park = {
       id: 1,
-      longName: "Blue Mountains National Park"
+      name: "Blue Mountains National Park"
     }
     const expectedAction = {
       type: types.ADD_PARKS,

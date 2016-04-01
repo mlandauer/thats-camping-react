@@ -13,7 +13,7 @@ class CampsiteDetailPage extends React.Component {
     campsite = Object.assign({}, campsite, {park: park})
     return (
       <div className="campsite-detail-page">
-        <Header title={shortenName(campsite.longName)}/>
+        <Header title={shortenName(campsite.name)}/>
         <div className="content">
           <div className="container">
             <CampsiteDetail campsite={campsite} onStarClick={this.props.onStarClick}/>

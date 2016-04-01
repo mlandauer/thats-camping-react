@@ -12,15 +12,15 @@ describe('campsites reducer', () => {
   it('should handle ADD_CAMPSITES with existing campsites', () => {
     const campsite1 = {
       id: 1,
-      longName: "A campsite"
+      name: "A campsite"
     }
     const campsite2 = {
       id: 2,
-      longName: "Another campsite"
+      name: "Another campsite"
     }
     const campsite3 = {
       id: 3,
-      longName: "And another"
+      name: "And another"
     }
 
     expect(

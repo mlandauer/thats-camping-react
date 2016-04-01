@@ -6,7 +6,7 @@ describe('campsites actions', () => {
   it('addCampsites', () => {
     const campsite = {
       id: 1,
-      longName: "A campsite"
+      name: "A campsite"
     }
     const expectedAction = {
       type: types.ADD_CAMPSITES,

@@ -7,6 +7,7 @@ import { Provider } from 'react-redux'
 import thunkMiddleware from 'redux-thunk'
 import * as storage from 'redux-storage'
 import createEngine from 'redux-storage-engine-localstorage'
+import migrate from 'redux-storage-decorator-migrate'
 
 // Uncomment the bits of bootstrap javascript belowwhen we need them
 //
@@ -40,7 +41,16 @@ import useScroll from 'scroll-behavior/lib/useStandardScroll'
 const historyWithScroll = useScroll(createHistory)({queryKey: false})
 
 const reducerWithStorage = storage.reducer(reducer)
-const engine = createEngine('thats-camping')
+var engine = createEngine('thats-camping')
+engine = migrate(engine, 1)
+
+engine.addMigration(1, (state) => {
+  // We rename longName in parks and campsites to name
+  // We handle this by emptying out parks and campsites.
+  // It will get reloaded from the API
+  return Object.assign({}, state, {parks: {}, campsites: {}})
+});
+
 const storageMiddleware = storage.createMiddleware(engine)
 
 const createStoreWithMiddleware = compose(

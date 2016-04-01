@@ -152,8 +152,8 @@ export default class CampsiteDetail extends React.Component {
     return (
       <div className="campsite-detail">
         <Star starred={this.props.campsite.starred} onClick={() => {this.props.onStarClick(this.props.campsite.id)}}/>
-        <h2>{this.props.campsite.longName}</h2>
-        <p>in <Link to={"/parks/" + this.props.campsite.park.id}>{this.props.campsite.park.longName}</Link>.</p>
+        <h2>{this.props.campsite.name}</h2>
+        <p>in <Link to={"/parks/" + this.props.campsite.park.id}>{this.props.campsite.park.name}</Link>.</p>
         <div dangerouslySetInnerHTML={this.getDescription()}/>
         <h2>Facilities</h2>
         <p>{this.facilitiesText(this.props.campsite.facilities)}</p>
@@ -190,7 +190,7 @@ CampsiteDetail.propTypes = {
     }).isRequired,
     park: PropTypes.shape({
       id: PropTypes.number.isRequired,
-      longName: PropTypes.string.isRequired
+      name: PropTypes.string.isRequired
     }).isRequired
   }).isRequired,
 }

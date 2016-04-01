@@ -19,7 +19,7 @@ export default class ParkDetailPage extends React.Component {
 
     return (
       <div className="park-detail-page">
-        <Header title={shortenName(park.longName)}/>
+        <Header title={shortenName(park.name)}/>
         <div className="content">
           <ParkDetail park={park} position={this.props.position}/>
         </div>
