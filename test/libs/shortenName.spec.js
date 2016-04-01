@@ -25,5 +25,6 @@ describe('shortenName', () => {
     expect(shortenName("The Glen Nature Reserve")).toEqual("The Glen NR")
     expect(shortenName("Arakoon State Conservation Area")).toEqual("Arakoon SCA")
     expect(shortenName("Hill End Historic Site")).toEqual("Hill End")
+    expect(shortenName("Euroka campground - Appletree Flat campervan and camper trailer area")).toEqual("Euroka - Appletree Flat")
   })
 })
