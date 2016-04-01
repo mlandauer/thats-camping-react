@@ -14,5 +14,10 @@ var shortenName = module.exports = function(name) {
     .replace("camping area", "")
     .replace("rest area", "")
     .replace("tourist park", "")
+    .replace("Karst Conservation Reserve", "KCR")
+    .replace("National Park", "NP")
+    .replace("Nature Reserve", "NR")
+    .replace("State Conservation Area", "SCA")
+    .replace("Historic Site", "")
     .trim()
 }

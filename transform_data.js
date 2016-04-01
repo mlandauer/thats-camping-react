@@ -48,6 +48,10 @@ data.campsites = data.campsites.map(function(campsite) {
 });
 
 data.parks = data.parks.map(function(park) {
+  if (shortenName(park.longName) != park.shortName) {
+    console.log("WARNING:", park.longName, "should be shortened to", park.shortName)
+  }
+
   return ({
     id: park.id,
     // TODO Derive shortName at runtime from longName
