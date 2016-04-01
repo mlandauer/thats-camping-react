@@ -102,12 +102,10 @@ export default class CampsiteDetail extends React.Component {
     switch(barbecues) {
       // TODO: show whether you need to bring your own firewood elsewhere
       // Like "You will need to bring firewood (if you want to use the wood BBQs) and drinking water"
-      case "wood":
-      case "wood_supplied":
-      case "wood_bring_your_own": return {"have":    "wood BBQs"}
-      case "gas_electric":        return {"have":    "gas/electric BBQs"}
-      case "none":                return {"notHave": "BBQs"}
-      default:                    return {}
+      case "wood":         return {"have":    "wood BBQs"}
+      case "gas_electric": return {"have":    "gas/electric BBQs"}
+      case "none":         return {"notHave": "BBQs"}
+      default:             return {}
     }
   }
 

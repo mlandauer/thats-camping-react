@@ -15,6 +15,11 @@ data.campsites = data.campsites.map(function(campsite) {
     lng = Number(lng)
   }
 
+  var barbecues = campsite.barbecues
+  if (barbecues == "wood_supplied" || barbecues == "wood_bring_your_own") {
+    barbecues = "wood"
+  }
+
   return ({
     id: campsite.id,
     park_id: campsite.park,
@@ -26,7 +31,7 @@ data.campsites = data.campsites.map(function(campsite) {
     facilities: {
       toilets: campsite.toilets,
       picnicTables: campsite.picnicTables,
-      barbecues: campsite.barbecues,
+      barbecues: barbecues,
       showers: campsite.showers,
       drinkingWater: campsite.drinkingWater
     },

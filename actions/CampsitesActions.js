@@ -46,6 +46,11 @@ function transformDataToCampsites(data) {
       lng = Number(lng)
     }
 
+    var barbecues = c.barbecues
+    if (barbecues == "wood_supplied" || barbecues == "wood_bring_your_own") {
+      barbecues = "wood"
+    }
+
     return {
       id: c.id,
       shortName: c.shortName,
@@ -56,7 +61,7 @@ function transformDataToCampsites(data) {
       facilities: {
         toilets: c.toilets,
         picnicTables: c.picnicTables,
-        barbecues: c.barbecues,
+        barbecues: barbecues,
         showers: c.showers,
         drinkingWater: c.drinkingWater
       },

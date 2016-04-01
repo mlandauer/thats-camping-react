@@ -97,8 +97,6 @@ describe('<CampsiteDetail />', () => {
     it('barbecues', () => {
       var c = new CampsiteDetail
       expect(c.barbecues("wood")).toEqual({"have": "wood BBQs"})
-      expect(c.barbecues("wood_supplied")).toEqual({"have": "wood BBQs"})
-      expect(c.barbecues("wood_bring_your_own")).toEqual({"have": "wood BBQs"})
       expect(c.barbecues("gas_electric")).toEqual({"have": "gas/electric BBQs"})
       expect(c.barbecues("none")).toEqual({"notHave": "BBQs"})
       expect(c.barbecues(undefined)).toEqual({})
