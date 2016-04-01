@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react'
 import Header from './Header'
 import CampsiteDetail from './CampsiteDetail';
+import shortenName from '../libs/shortenName'
 
 class CampsiteDetailPage extends React.Component {
   render() {
@@ -12,7 +13,7 @@ class CampsiteDetailPage extends React.Component {
     campsite = Object.assign({}, campsite, {park: park})
     return (
       <div className="campsite-detail-page">
-        <Header title={campsite.shortName}/>
+        <Header title={shortenName(campsite.longName)}/>
         <div className="content">
           <div className="container">
             <CampsiteDetail campsite={campsite} onStarClick={this.props.onStarClick}/>

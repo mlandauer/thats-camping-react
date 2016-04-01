@@ -1,6 +1,7 @@
 import React from 'react'
 import ParkDetail from './ParkDetail'
 import Header from './Header'
+import shortenName from '../libs/shortenName'
 
 export default class ParkDetailPage extends React.Component {
   render() {
@@ -18,7 +19,7 @@ export default class ParkDetailPage extends React.Component {
 
     return (
       <div className="park-detail-page">
-        <Header title={park.shortName}/>
+        <Header title={shortenName(park.longName)}/>
         <div className="content">
           <ParkDetail park={park} position={this.props.position}/>
         </div>

@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import CampsiteListItem from './CampsiteListItem';
 import { Link } from 'react-router';
 import PositionRelationship from '../libs/PositionRelationship';
+import shortenName from '../libs/shortenName'
 
 export default class CampsiteList extends React.Component {
   sortCampsitesArrayByDistance(campsites, position) {
@@ -20,7 +21,7 @@ export default class CampsiteList extends React.Component {
       var campsites = campsites.sort(function(a, b) {
         if (a.starred == b.starred) {
           if (a.distance == undefined && b.distance == undefined) {
-            return a.shortName.localeCompare(b.shortName);
+            return a.longName.localeCompare(b.longName);
           }
           if (a.distance == undefined) {
             return 1;
@@ -57,10 +58,10 @@ export default class CampsiteList extends React.Component {
       <ul className="list-group">
         {
           sortedCampsites.map(function(campsite) {
-            let parkName = campsite.park == undefined ? "" : campsite.park.shortName
+            let parkName = campsite.park == undefined ? "" : shortenName(campsite.park.longName)
             return (
               <Link to={"/campsites/" + campsite.id} className="list-group-item" key={campsite.id}>
-                <CampsiteListItem campsiteName={campsite.shortName} parkName={parkName} distance={campsite.distance} bearing={campsite.bearing} starred={campsite.starred}/>
+                <CampsiteListItem campsiteName={shortenName(campsite.longName)} parkName={parkName} distance={campsite.distance} bearing={campsite.bearing} starred={campsite.starred}/>
               </Link>
             )
           })
