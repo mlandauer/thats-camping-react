@@ -39,7 +39,7 @@ app.use(express.static(__dirname + '/public'))
 app.use('/fonts', express.static(__dirname + '/fonts'))
 
 app.get('/api/data.json', function (request, response){
-  response.sendFile(path.resolve(__dirname, 'data.json'))
+  response.sendFile(path.resolve(__dirname, 'data_simplified.json'))
 })
 
 // When running on heroku (which sets the x-forwarded-proto header) forward
