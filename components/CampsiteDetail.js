@@ -8,40 +8,29 @@ export default class CampsiteDetail extends React.Component {
     return {__html: simpleFormat(this.props.campsite.description)};
   }
 
-  facilitiesText(facilities) {
-    var fields = this.facilitiesFields(facilities)
+  sentenceFromFields(fields, haveWord, notHaveWord) {
     var have = fields.have;
     var notHave = fields.notHave;
 
     var r = "";
     if (have.length > 0) {
-      r = r + "has " + this.listAsText(have);
+      r = r + haveWord + " " + this.listAsText(have);
     }
     if (notHave.length > 0) {
       if (have.length > 0) {
         r = r + " but "
       }
-      r = r + "no " + this.listAsText(notHave);
+      r = r + notHaveWord + " " + this.listAsText(notHave);
     }
     return this.capitaliseFirstLetter(r)
   }
 
-  accessText(access) {
-    var fields = this.accessFields(access)
-    var have = fields.have;
-    var notHave = fields.notHave;
+  facilitiesText(facilities) {
+    return this.sentenceFromFields(this.facilitiesFields(facilities), "has", "no")
+  }
 
-    var r = "";
-    if (have.length > 0) {
-      r = r + "for " + this.listAsText(have)
-    }
-    if (notHave.length > 0) {
-      if (have.length > 0) {
-        r = r + " but "
-      }
-      r = r + "not for " + this.listAsText(notHave);
-    }
-    return this.capitaliseFirstLetter(r);
+  accessText(access) {
+    return this.sentenceFromFields(this.accessFields(access), "for", "not for")
   }
 
   capitaliseFirstLetter(text) {
