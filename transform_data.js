@@ -27,8 +27,6 @@ data.campsites = data.campsites.map(function(campsite) {
   return ({
     id: campsite.id,
     park_id: campsite.park,
-    // TODO: Derive shortName from longName at runtime
-    shortName: campsite.shortName,
     longName: campsite.longName,
     description: campsite.description,
     position: { lat: lat, lng: lng },
@@ -54,8 +52,6 @@ data.parks = data.parks.map(function(park) {
 
   return ({
     id: park.id,
-    // TODO Derive shortName at runtime from longName
-    shortName: park.shortName,
     longName: park.longName,
     description: park.description,
     campsite_ids: park.campsites

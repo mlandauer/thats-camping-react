@@ -12,17 +12,14 @@ describe('parks reducer', () => {
   it('should handle ADD_PARKS with existing parks', () => {
     const park1 = {
       id: 1,
-      shortName: "Blue Mountains NP",
       longName: "Blue Mountains National Park"
     }
     const park2 = {
       id: 2,
-      shortName: "South East Forest NP",
       longName: "South East Forest National Park"
     }
     const park3 = {
       id: 3,
-      shortName: "Oxley Wild Rivers NP",
       longName: "Oxley Wild Rivers National Park"
     }
 
