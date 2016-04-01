@@ -50,22 +50,25 @@ export default class CampsiteDetail extends React.Component {
 
   caravans(caravans) {
     switch(caravans) {
-      case true: return {"have":    "caravans"}
-      default:   return {"notHave": "caravans"}
+      case true:  return {"have":    "caravans"}
+      case false: return {"notHave": "caravans"}
+      default:    return {}
     }
   }
 
   trailers(trailers) {
     switch(trailers) {
-      case true: return {"have":    "trailers"}
-      default:   return {"notHave": "trailers"}
+      case true:  return {"have":    "trailers"}
+      case false: return {"notHave": "trailers"}
+      default:    return {}
     }
   }
 
   car(car) {
     switch(car) {
-      case true: return {"have":    "car camping"}
-      default:   return {"notHave": "car camping"}
+      case true:  return {"have":    "car camping"}
+      case false: return {"notHave": "car camping"}
+      default:    return {}
     }
   }
 
@@ -100,8 +103,9 @@ export default class CampsiteDetail extends React.Component {
 
   picnicTables(picnicTables) {
     switch(picnicTables) {
-      case true: return {"have":    "picnic tables"}
-      default:   return {"notHave": "picnic tables"}
+      case true:  return {"have":    "picnic tables"}
+      case false: return {"notHave": "picnic tables"}
+      default:    return {}
     }
   }
 
@@ -129,8 +133,9 @@ export default class CampsiteDetail extends React.Component {
 
   drinkingWater(drinkingWater) {
     switch(drinkingWater) {
-      case true: return {"have":    "drinking water"}
-      default:   return {"notHave": "drinking water"}
+      case true:  return {"have":    "drinking water"}
+      case false: return {"notHave": "drinking water"}
+      default:    return {}
     }
   }
 

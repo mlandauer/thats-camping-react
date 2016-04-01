@@ -5,6 +5,11 @@ describe('<CampsiteDetail />', () => {
   describe("access", () => {
     it('accessText', () => {
       var c = new CampsiteDetail
+      expect(c.accessText({caravans: true})).toEqual("For caravans")
+    })
+
+    it('accessText', () => {
+      var c = new CampsiteDetail
       expect(c.accessText({caravans: true, trailers: true, car: true}))
         .toEqual("For caravans, trailers and car camping")
     })
@@ -31,18 +36,21 @@ describe('<CampsiteDetail />', () => {
       var c = new CampsiteDetail
       expect(c.caravans(true)).toEqual({"have": "caravans"})
       expect(c.caravans(false)).toEqual({"notHave": "caravans"})
+      expect(c.caravans(undefined)).toEqual({})
     })
 
     it('trailers', () => {
       var c = new CampsiteDetail
       expect(c.trailers(true)).toEqual({"have": "trailers"})
       expect(c.trailers(false)).toEqual({"notHave": "trailers"})
+      expect(c.trailers(undefined)).toEqual({})
     })
 
     it('car', () => {
       var c = new CampsiteDetail
       expect(c.car(true)).toEqual({"have": "car camping"})
       expect(c.car(false)).toEqual({"notHave": "car camping"})
+      expect(c.car(undefined)).toEqual({})
     })
   })
 
@@ -83,6 +91,7 @@ describe('<CampsiteDetail />', () => {
       var c = new CampsiteDetail
       expect(c.picnicTables(true)).toEqual({"have": "picnic tables"})
       expect(c.picnicTables(false)).toEqual({"notHave": "picnic tables"})
+      expect(c.picnicTables(undefined)).toEqual({})
     })
 
     it('barbecues', () => {
@@ -107,6 +116,7 @@ describe('<CampsiteDetail />', () => {
       var c = new CampsiteDetail
       expect(c.drinkingWater(true)).toEqual({"have": "drinking water"})
       expect(c.drinkingWater(false)).toEqual({"notHave": "drinking water"})
+      expect(c.drinkingWater(undefined)).toEqual({})
     })
   })
 
