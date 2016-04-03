@@ -52,7 +52,7 @@
     "watch": "webpack --watch",
     "browserify": "browserify -t babelify -t ./gitify main.js -o public/bundle.js",
     "webpack": "webpack",
-    "postinstall": "npm run browserify",
+    "postinstall": "webpack",
     "development": "npm run watch & nodemon server.js",
     "start": "node server.js",
     "transform_data": "node transform_data.js"
