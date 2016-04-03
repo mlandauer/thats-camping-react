@@ -1,3 +1,5 @@
+var GitRevisionPlugin = require('git-revision-webpack-plugin')
+
 module.exports = {
     entry: "./main.js",
     output: {
@@ -12,5 +14,8 @@ module.exports = {
                 exclude: /(node_modules|bower_components)/,
             }
         ],
-    }
+    },
+    plugins: [
+      new GitRevisionPlugin()
+    ]
 };
