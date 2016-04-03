@@ -32,7 +32,7 @@ import AboutPage from './components/AboutPage'
 import reducer from './reducers'
 
 import attachFastClick from 'fastclick'
-attachFastClick(document.body)
+attachFastClick.attach(document.body)
 
 import createHistory from 'history/lib/createHashHistory'
 import useScroll from 'scroll-behavior/lib/useStandardScroll'
