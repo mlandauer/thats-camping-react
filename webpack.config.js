@@ -42,6 +42,9 @@ if (production) {
                 warnings: false, // Suppress uglification warnings
             },
         }),
+        new webpack.DefinePlugin({
+          'process.env.NODE_ENV': JSON.stringify('production')
+        })
     ]);
 }
 
@@ -60,5 +63,7 @@ module.exports = {
             }
         ],
     },
-    plugins: plugins
+    plugins: plugins,
+    debug: !production,
+    devtool: production ? false : 'eval'
 };
