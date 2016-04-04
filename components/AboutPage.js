@@ -1,6 +1,5 @@
 import React from 'react'
 import Header from './Header'
-import revision from 'raw!../public/COMMITHASH'
 
 export default class AboutPage extends React.Component {
   render() {
