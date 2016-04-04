@@ -4,9 +4,7 @@ import revision from 'raw!../public/COMMITHASH'
 
 export default class AboutPage extends React.Component {
   render() {
-    // Shorten sha
-    var shortRevision = revision.substring(0, 7)
-    var githubURL = "https://github.com/mlandauer/thats-camping-react/commit/" + shortRevision
+    var githubURL = "https://github.com/mlandauer/thats-camping-react/commit/" + REVISION
 
     return (
       <div className="about">
@@ -32,7 +30,7 @@ export default class AboutPage extends React.Component {
             </p>
 
             <p>
-              You're currently using version <a href={githubURL}>{shortRevision}</a>.
+              You're currently using version <a href={githubURL}>{REVISION}</a>.
             </p>
 
             <h2>Things you might want to do</h2>

@@ -1,16 +1,16 @@
-var GitRevisionPlugin = require('git-revision-webpack-plugin')
+var webpack = require('webpack')
+var git = require('git-rev-sync')
 
 var production = process.env.NODE_ENV === 'production'
 
-var plugins = []
-
-// We don't have a git repository when compiling in production on Heroku. So,
-// don't even try to use the git revision plugin
-if (!production) {
-  plugins = plugins.concat([
-    new GitRevisionPlugin()
-  ])
+// The full git revision - make this work both in development and in production (on Heroku)
+if (production) {
+  // This environment variable is set by Heroku
+  var revision = process.env.SOURCE_VERSION
+} else {
+  var revision = git.long()
 }
+revision = revision.substring(0, 7)
 
 module.exports = {
     entry: "./main.js",
@@ -27,5 +27,9 @@ module.exports = {
             }
         ],
     },
-    plugins: plugins
+    plugins: [
+      new webpack.DefinePlugin({
+        REVISION: JSON.stringify(revision)
+      })
+    ]
 };
