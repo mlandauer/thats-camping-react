@@ -12,7 +12,7 @@ export default class AboutPage extends React.Component {
           <div className="container">
             <h2>About That's Camping</h2>
 
-            <p><img src="/apple-touch-icon.png" className="img-rounded" width="96"/></p>
+            <img src="/apple-touch-icon.png" className="img-rounded" />
 
             <p>
               Find campsites near you in New South Wales, Australia.

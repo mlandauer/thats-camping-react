@@ -135,6 +135,12 @@ h2 {
   font-size: 20px;
 }
 
+.about {
+  img {
+    float: left;
+    margin: 0 1em 1em 0;
+  }
+}
 
 // Override bootstrap styles directly below. It would be better to do this
 // by using less but we'll leave that as an exercise for another day.
