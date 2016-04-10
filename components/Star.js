@@ -1,11 +1,11 @@
 import React, { PropTypes } from 'react'
 
 const Star = ({onClick, starred, quiet}) => {
-  let icon = starred ? "star" : "star-empty"
+  let icon = starred ? "star" : "star-o"
 
   return (
     <div className={"star star-" + (starred ? "on" : "off")} onClick={onClick}>
-      <span className={"glyphicon glyphicon-" + icon}></span>
+      <span className={"fa fa-" + icon}></span>
     </div>
   )
 }

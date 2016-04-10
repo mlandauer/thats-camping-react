@@ -8,6 +8,8 @@ import thunkMiddleware from 'redux-thunk'
 import * as storage from 'redux-storage'
 import createEngine from 'redux-storage-engine-localstorage'
 import migrate from 'redux-storage-decorator-migrate'
+// This loads everything (for font awesome) with the defaults
+import 'font-awesome-webpack'
 import './styles/style.scss'
 
 // Uncomment the bits of bootstrap javascript belowwhen we need them

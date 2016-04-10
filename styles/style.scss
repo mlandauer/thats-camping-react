@@ -67,6 +67,11 @@ nav {
   .btn:focus, .btn:active:focus {
     outline-style: none;
   }
+
+  i.fa {
+    position: relative;
+    top: -2px;
+  }
 }
 
 .campsite {

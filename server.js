@@ -9,26 +9,11 @@ const app = express()
 app.use(cacheManifest({
   manifestPath: '/application.manifest',
   files: [{
-    file: __dirname + '/public/index.html',
-    path: '/index.html'    
-  }, {
-    file: __dirname + '/public/bundle.js',
-    path: '/bundle.js'
-  }, {
-    file: __dirname + '/public/bundle.css',
-    path: '/bundle.css'
-  }, {
-    file: __dirname + '/public/apple-touch-icon.png',
-    path: 'apple-touch-icon.png'
-  }, {
-    file: __dirname + '/public/bootstrap.min.css',
-    path: '/bootstrap.min.css'
+    dir: __dirname + '/public',
+    prefix: '/'
   }, {
     file: __dirname + '/data.json',
     path: '/api/data.json'
-  }, {
-    dir: __dirname + '/fonts',
-    prefix: '/fonts/'
   }],
   networks: ['*'],
   fallbacks: []
@@ -36,7 +21,6 @@ app.use(cacheManifest({
 
 // serve static assets normally
 app.use(express.static(__dirname + '/public'))
-app.use('/fonts', express.static(__dirname + '/fonts'))
 
 app.get('/api/data.json', function (request, response){
   response.sendFile(path.resolve(__dirname, 'data_simplified.json'))
