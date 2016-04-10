@@ -8,6 +8,7 @@ import thunkMiddleware from 'redux-thunk'
 import * as storage from 'redux-storage'
 import createEngine from 'redux-storage-engine-localstorage'
 import migrate from 'redux-storage-decorator-migrate'
+import './styles/style.scss'
 
 // Uncomment the bits of bootstrap javascript belowwhen we need them
 //

@@ -1,5 +1,6 @@
 var webpack = require('webpack')
 var git = require('git-rev-sync')
+var ExtractPlugin = require('extract-text-webpack-plugin')
 
 var production = process.env.NODE_ENV === 'production'
 
@@ -13,6 +14,7 @@ if (production) {
 revision = revision.substring(0, 7)
 
 var plugins = [
+  new ExtractPlugin('bundle.css'),
   new webpack.DefinePlugin({
     REVISION: JSON.stringify(revision)
   })
@@ -60,7 +62,11 @@ module.exports = {
                 test:   /\.js/,
                 loader: 'babel',
                 exclude: /(node_modules|bower_components)/,
-            }
+            },
+            {
+                test:   /\.scss/,
+                loader: ExtractPlugin.extract('style', 'css!sass'),
+            },
         ],
     },
     plugins: plugins,
