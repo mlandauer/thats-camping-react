@@ -11,7 +11,7 @@ require 'rest-client'
 require 'json'
 
 url = 'http://admin:foo2@thatscamping-kinto.herokuapp.com/v1'
-bucket = "thatscamping3"
+bucket = "thatscamping4"
 
 # puts "Some information about the kinto server:"
 # p JSON.parse(RestClient.get(url + '/'))
@@ -20,7 +20,7 @@ bucket = "thatscamping3"
 # p JSON.parse(RestClient.get(url + '/buckets'))
 
 puts "Create the bucket called #{bucket}:"
-p JSON.parse(RestClient.post(url + '/buckets', {data: {id: bucket}}.to_json, content_type: :json))
+p JSON.parse(RestClient.post(url + '/buckets', {data: {id: bucket}, permissions: {read: ["system.Everyone"]}}.to_json, content_type: :json))
 
-# puts "Get the #{bucket} bucket"
-# p JSON.parse(RestClient.get(url + '/buckets/' + bucket))
+puts "Get the #{bucket} bucket"
+p JSON.parse(RestClient.get(url + '/buckets/' + bucket))
