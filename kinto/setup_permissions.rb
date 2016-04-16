@@ -14,13 +14,20 @@ url = 'http://admin:foo2@thatscamping-kinto.herokuapp.com/v1'
 bucket = "thatscamping4"
 
 # puts "Some information about the kinto server:"
-# p JSON.parse(RestClient.get(url + '/'))
+# p JSON.parse(RestClient.get("#{url}/"))
 
 # puts "All the current buckets:"
-# p JSON.parse(RestClient.get(url + '/buckets'))
+# p JSON.parse(RestClient.get("#{url}/buckets"))
 
-puts "Create the bucket called #{bucket}:"
-p JSON.parse(RestClient.post(url + '/buckets', {data: {id: bucket}, permissions: {read: ["system.Everyone"]}}.to_json, content_type: :json))
+puts "Create the bucket called #{bucket} and make it readable by everyone:"
+p JSON.parse(RestClient.post("#{url}/buckets",
+  {data: {id: bucket}, permissions: {read: ["system.Everyone"]}}.to_json,
+  content_type: :json))
 
-puts "Get the #{bucket} bucket"
-p JSON.parse(RestClient.get(url + '/buckets/' + bucket))
+# puts "Get the #{bucket} bucket:"
+# p JSON.parse(RestClient.get("#{url}/buckets/#{bucket}"))
+
+puts "Create the collection campsites:"
+p JSON.parse(RestClient.post("#{url}/buckets/#{bucket}/collections",
+  {data: {id: "campsites"}}.to_json,
+  content_type: :json))
