@@ -27,7 +27,24 @@ p JSON.parse(RestClient.post("#{url}/buckets",
 # puts "Get the #{bucket} bucket:"
 # p JSON.parse(RestClient.get("#{url}/buckets/#{bucket}"))
 
-puts "Create the collection campsites:"
+puts "Create the collection campsite_versions:"
 p JSON.parse(RestClient.post("#{url}/buckets/#{bucket}/collections",
-  {data: {id: "campsites"}}.to_json,
+  {data: {id: "campsite_versions"}}.to_json,
+  content_type: :json))
+
+puts "List all the campsite records:"
+p JSON.parse(RestClient.get("#{url}/buckets/#{bucket}/collections/campsite_versions/records"))
+
+uuid = SecureRandom.uuid
+puts "Generated a uuid: #{uuid}"
+
+puts "Create the first campsite record:"
+p JSON.parse(RestClient.post("#{url}/buckets/#{bucket}/collections/campsite_versions/records",
+  {data: {
+    id: uuid,
+    campsite_id: 1,
+    park_id: 1,
+    name: "Acacia Flat",
+    description: "Explore the \"cradle of conservation\", the Blue Gum Forest. Enjoy birdwatching, long walks and plenty of photogenic flora.",
+  }}.to_json,
   content_type: :json))
