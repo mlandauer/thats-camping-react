@@ -9,4 +9,8 @@ class JSONClient
   def self.post(url, data)
     JSON.parse(RestClient.post(url, data.to_json, content_type: :json))
   end
+
+  def self.delete(url)
+    JSON.parse(RestClient.delete(url))
+  end
 end
