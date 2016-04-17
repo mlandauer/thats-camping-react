@@ -82,14 +82,19 @@ runner.batch([
   KintoCommand.new(:post, KintoPath.records(bucket, "campsite_versions"),
     {data: {
       id: SecureRandom.uuid,
-      campsite_id: 1,
       park_id: 1,
       name: "Acacia Flat",
       description: "Explore the \"cradle of conservation\", the Blue Gum Forest. Enjoy birdwatching, long walks and plenty of photogenic flora.",
+    }}),
+  KintoCommand.new(:post, KintoPath.records(bucket, "campsite_versions"),
+    {data: {
+      id: SecureRandom.uuid,
+      park_id: 2,
+      name: "Alexanders Hut",
+      description: "An historic timber slab hut that was occupied until the 1980s. Today it provides shelter and very basic facilities for bushwalkers and visitors. Camping on the grounds of the hut is also permitted.\n\nNunnock Swamp walking trail is nearby and there are opportunities for bird-watching and seeing wildflowers. It's an important site for early European cultural heritage."
     }})
   ])
 
 # Now double check that this actually worked
 r = runner.run(KintoCommand.new(:get, KintoPath.records(bucket, "campsite_versions")))
-assert(r["data"].count == 1)
-assert(r["data"].first["name"] == "Acacia Flat")
+assert(r["data"].map{|r| r["name"]}.sort == ["Acacia Flat", "Alexanders Hut"])
