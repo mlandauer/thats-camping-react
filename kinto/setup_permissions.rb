@@ -7,80 +7,36 @@
 
 # First, get some information about the running instance
 
-require 'rest-client'
-require 'json'
+require './lib/kinto_url'
+require './lib/json_client'
 
-class KintoURL
-  attr_reader :base_url
-
-  def initialize(base_url)
-    @base_url = base_url
-  end
-
-  def server
-    "#{base_url}/"
-  end
-
-  def buckets
-    "#{base_url}/buckets"
-  end
-
-  def bucket(bucket_id)
-    "#{buckets}/#{bucket_id}"
-  end
-
-  def collections(bucket_id)
-    "#{bucket(bucket_id)}/collections"
-  end
-
-  def collection(bucket_id, collection_id)
-    "#{collections(bucket_id)}/#{collection_id}"
-  end
-
-  def records(bucket_id, collection_id)
-    "#{collection(bucket_id, collection_id)}/records"
-  end
-end
-
-class JSONClient
-  def self.get(url)
-    JSON.parse(RestClient.get(url))
-  end
-
-  def self.post(url, data)
-    JSON.parse(RestClient.post(url, data.to_json, content_type: :json))
-  end
-end
-
-url = 'http://admin:foo2@thatscamping-kinto.herokuapp.com/v1'
+url = KintoURL.new('http://admin:foo2@thatscamping-kinto.herokuapp.com/v1')
 bucket = "thatscamping4"
 
-kinto_url = KintoURL.new(url)
-
 puts "Some information about the kinto server:"
-p JSONClient.get(kinto_url.server)
+p JSONClient.get(url.server)
 
 puts "All the current buckets:"
-p JSONClient.get(kinto_url.buckets)
+p JSONClient.get(url.buckets)
 
 puts "Create the bucket called #{bucket} and make it readable by everyone:"
-p JSONClient.post(kinto_url.buckets,
+p JSONClient.post(url.buckets,
   {data: {id: bucket}, permissions: {read: ["system.Everyone"]}})
 
 puts "Get the #{bucket} bucket:"
-p JSONClient.get(kinto_url.bucket(bucket))
+p JSONClient.get(url.bucket(bucket))
 
 puts "Create the collection campsite_versions:"
-p JSONClient.post(kinto_url.collections(bucket), {data: {id: "campsite_versions"}})
+p JSONClient.post(url.collections(bucket), {data: {id: "campsite_versions"}})
 
 puts "List all the campsite records:"
-p JSONClient.get(kinto_url.records(bucket, "campsite_versions"))
+p JSONClient.get(url.records(bucket, "campsite_versions"))
 
 uuid = SecureRandom.uuid
 puts "Generated a uuid: #{uuid}"
 
 puts "Create the first campsite record:"
-p JSONClient.post(kinto_url.records(bucket, "campsite_versions"),
+p JSONClient.post(url.records(bucket, "campsite_versions"),
   {data: {
     id: uuid,
     campsite_id: 1,
