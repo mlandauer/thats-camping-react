@@ -15,23 +15,20 @@ require './lib/json_client'
 url = KintoURL.new('http://admin:foo2@thatscamping-kinto.herokuapp.com/v1')
 bucket = "thatscamping4"
 
-puts "Create the bucket called #{bucket} and make it readable by everyone:"
-p JSONClient.post(url.buckets,
+puts "Create the bucket called #{bucket} and make it readable by everyone..."
+JSONClient.post(url.buckets,
   {data: {id: bucket}, permissions: {read: ["system.Everyone"]}})
 
-puts "Delete all writeable collections:"
-p JSONClient.delete(url.collections(bucket))
+puts "Delete all writeable collections..."
+JSONClient.delete(url.collections(bucket))
 
-puts "Create the collection campsite_versions:"
-p JSONClient.post(url.collections(bucket), {data: {id: "campsite_versions"}})
+puts "Create the collection campsite_versions..."
+JSONClient.post(url.collections(bucket), {data: {id: "campsite_versions"}})
 
-uuid = SecureRandom.uuid
-puts "Generated a uuid: #{uuid}"
-
-puts "Create the first campsite record:"
-p JSONClient.post(url.records(bucket, "campsite_versions"),
+puts "Create the first campsite record..."
+JSONClient.post(url.records(bucket, "campsite_versions"),
   {data: {
-    id: uuid,
+    id: SecureRandom.uuid,
     campsite_id: 1,
     park_id: 1,
     name: "Acacia Flat",
