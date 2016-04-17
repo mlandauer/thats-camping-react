@@ -3,6 +3,10 @@ class KintoPath
     "/"
   end
 
+  def self.batch
+    "/batch"
+  end
+
   def self.buckets
     "/buckets"
   end

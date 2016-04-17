@@ -53,7 +53,7 @@ class KintoRunner
       v[:body] = command.body if command.body
       v
     end
-    run(KintoCommand.new(:post, "/batch", {requests: requests}))
+    run(KintoCommand.new(:post, KintoPath.batch, {requests: requests}))
   end
 end
 
