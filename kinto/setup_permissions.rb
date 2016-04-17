@@ -16,21 +16,21 @@ def assert(test)
   raise "Failed" unless test
 end
 
-url = KintoURL.new('http://admin:foo2@thatscamping-kinto.herokuapp.com/v1')
+url = 'http://admin:foo2@thatscamping-kinto.herokuapp.com/v1'
 bucket = "thatscamping4"
 
 puts "Create the bucket called #{bucket} and make it readable by everyone..."
-JSONClient.post(url.buckets,
+JSONClient.post(url + KintoPath.buckets,
   {data: {id: bucket}, permissions: {read: ["system.Everyone"]}})
 
 puts "Delete all writeable collections..."
-JSONClient.delete(url.collections(bucket))
+JSONClient.delete(url + KintoPath.collections(bucket))
 
 puts "Create the collection campsite_versions..."
-JSONClient.post(url.collections(bucket), {data: {id: "campsite_versions"}})
+JSONClient.post(url + KintoPath.collections(bucket), {data: {id: "campsite_versions"}})
 
 puts "Create the first campsite record..."
-JSONClient.post(url.records(bucket, "campsite_versions"),
+JSONClient.post(url + KintoPath.records(bucket, "campsite_versions"),
   {data: {
     id: SecureRandom.uuid,
     campsite_id: 1,
@@ -41,6 +41,6 @@ JSONClient.post(url.records(bucket, "campsite_versions"),
 
 # Now double check that this actually worked
 
-r = JSONClient.get(url.records(bucket, "campsite_versions"))
+r = JSONClient.get(url + KintoPath.records(bucket, "campsite_versions"))
 assert(r["data"].count == 1)
 assert(r["data"].first["name"] == "Acacia Flat")
