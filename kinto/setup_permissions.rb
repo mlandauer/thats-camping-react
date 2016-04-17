@@ -42,43 +42,49 @@ class KintoURL
   end
 end
 
+class JSONClient
+  def self.get(url)
+    JSON.parse(RestClient.get(url))
+  end
+
+  def self.post(url, data)
+    JSON.parse(RestClient.post(url, data.to_json, content_type: :json))
+  end
+end
+
 url = 'http://admin:foo2@thatscamping-kinto.herokuapp.com/v1'
 bucket = "thatscamping4"
 
 kinto_url = KintoURL.new(url)
 
 puts "Some information about the kinto server:"
-p JSON.parse(RestClient.get(kinto_url.server))
+p JSONClient.get(kinto_url.server)
 
 puts "All the current buckets:"
-p JSON.parse(RestClient.get(kinto_url.buckets))
+p JSONClient.get(kinto_url.buckets)
 
 puts "Create the bucket called #{bucket} and make it readable by everyone:"
-p JSON.parse(RestClient.post(kinto_url.buckets,
-  {data: {id: bucket}, permissions: {read: ["system.Everyone"]}}.to_json,
-  content_type: :json))
+p JSONClient.post(kinto_url.buckets,
+  {data: {id: bucket}, permissions: {read: ["system.Everyone"]}})
 
 puts "Get the #{bucket} bucket:"
-p JSON.parse(RestClient.get(kinto_url.bucket(bucket)))
+p JSONClient.get(kinto_url.bucket(bucket))
 
 puts "Create the collection campsite_versions:"
-p JSON.parse(RestClient.post(kinto_url.collections(bucket),
-  {data: {id: "campsite_versions"}}.to_json,
-  content_type: :json))
+p JSONClient.post(kinto_url.collections(bucket), {data: {id: "campsite_versions"}})
 
 puts "List all the campsite records:"
-p JSON.parse(RestClient.get(kinto_url.records(bucket, "campsite_versions")))
+p JSONClient.get(kinto_url.records(bucket, "campsite_versions"))
 
 uuid = SecureRandom.uuid
 puts "Generated a uuid: #{uuid}"
 
 puts "Create the first campsite record:"
-p JSON.parse(RestClient.post(kinto_url.records(bucket, "campsite_versions"),
+p JSONClient.post(kinto_url.records(bucket, "campsite_versions"),
   {data: {
     id: uuid,
     campsite_id: 1,
     park_id: 1,
     name: "Acacia Flat",
     description: "Explore the \"cradle of conservation\", the Blue Gum Forest. Enjoy birdwatching, long walks and plenty of photogenic flora.",
-  }}.to_json,
-  content_type: :json))
+  }})
