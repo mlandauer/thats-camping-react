@@ -9,7 +9,7 @@
 # use with extreme caution. i.e. DON'T USE THIS ON A PRODUCTION INSTANCE
 # WHERE PEOPLE HAVE EDITED INFORMATION - BECAUSE THAT INFORMATION WILL BE LOST!
 
-require './lib/kinto_url'
+require './lib/kinto_path'
 require './lib/json_client'
 
 def assert(test)
