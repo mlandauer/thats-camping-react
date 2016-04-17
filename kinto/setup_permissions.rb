@@ -12,6 +12,10 @@
 require './lib/kinto_url'
 require './lib/json_client'
 
+def assert(test)
+  raise "Failed" unless test
+end
+
 url = KintoURL.new('http://admin:foo2@thatscamping-kinto.herokuapp.com/v1')
 bucket = "thatscamping4"
 
@@ -34,3 +38,9 @@ JSONClient.post(url.records(bucket, "campsite_versions"),
     name: "Acacia Flat",
     description: "Explore the \"cradle of conservation\", the Blue Gum Forest. Enjoy birdwatching, long walks and plenty of photogenic flora.",
   }})
+
+# Now double check that this actually worked
+
+r = JSONClient.get(url.records(bucket, "campsite_versions"))
+assert(r["data"].count == 1)
+assert(r["data"].first["name"] == "Acacia Flat")
