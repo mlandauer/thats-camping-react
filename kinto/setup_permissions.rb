@@ -9,6 +9,7 @@
 # use with extreme caution. i.e. DON'T USE THIS ON A PRODUCTION INSTANCE
 # WHERE PEOPLE HAVE EDITED INFORMATION - BECAUSE THAT INFORMATION WILL BE LOST!
 
+require 'yaml'
 require './lib/kinto_path'
 require './lib/json_client'
 
@@ -42,6 +43,18 @@ class KintoRunner
       raise "Unsupported method"
     end
   end
+
+  def batch(commands)
+    requests = commands.map do |command|
+      v = {
+        method: command.method.upcase,
+        path: command.path,
+      }
+      v[:body] = command.body if command.body
+      v
+    end
+    run(KintoCommand.new(:post, "/batch", {requests: requests}))
+  end
 end
 
 url = 'http://admin:foo2@thatscamping-kinto.herokuapp.com/v1'
@@ -52,22 +65,29 @@ puts "Create the bucket called #{bucket} and make it readable by everyone..."
 runner.run(KintoCommand.new(:post, KintoPath.buckets,
   {data: {id: bucket}, permissions: {read: ["system.Everyone"]}}))
 
+# There appears to be a problem with running this delete command in the same batch
+# as a bunch of commands to add records. Very strange.
+# TODO Need to investigate
+# For the time being keep it out of the batch
 puts "Delete all writeable collections..."
 runner.run(KintoCommand.new(:delete, KintoPath.collections(bucket)))
 
 puts "Create the collection campsite_versions..."
-runner.run(KintoCommand.new(:post, KintoPath.collections(bucket),
-  {data: {id: "campsite_versions"}}))
-
 puts "Create the first campsite record..."
-runner.run(KintoCommand.new(:post, KintoPath.records(bucket, "campsite_versions"),
-  {data: {
-    id: SecureRandom.uuid,
-    campsite_id: 1,
-    park_id: 1,
-    name: "Acacia Flat",
-    description: "Explore the \"cradle of conservation\", the Blue Gum Forest. Enjoy birdwatching, long walks and plenty of photogenic flora.",
-  }}))
+
+# TODO Check return codes on batch command
+runner.batch([
+  KintoCommand.new(:post, KintoPath.collections(bucket),
+    {data: {id: "campsite_versions"}}),
+  KintoCommand.new(:post, KintoPath.records(bucket, "campsite_versions"),
+    {data: {
+      id: SecureRandom.uuid,
+      campsite_id: 1,
+      park_id: 1,
+      name: "Acacia Flat",
+      description: "Explore the \"cradle of conservation\", the Blue Gum Forest. Enjoy birdwatching, long walks and plenty of photogenic flora.",
+    }})
+  ])
 
 # Now double check that this actually worked
 r = runner.run(KintoCommand.new(:get, KintoPath.records(bucket, "campsite_versions")))
