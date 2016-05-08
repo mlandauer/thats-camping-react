@@ -58,26 +58,6 @@ class KintoRunner
   end
 end
 
-url = 'http://admin:foo2@thatscamping-kinto.herokuapp.com/v1'
-bucket = "thatscamping4"
-runner = KintoRunner.new(url)
-
-puts "Create the bucket called #{bucket} and make it readable by everyone..."
-runner.run(KintoCommand.new(:post, KintoPath.buckets,
-  {data: {id: bucket}, permissions: {read: ["system.Everyone"]}}))
-
-# There appears to be a problem with running this delete command in the same batch
-# as a bunch of commands to add records. Very strange.
-# TODO Need to investigate
-# For the time being keep it out of the batch
-puts "Delete all writeable collections..."
-runner.run(KintoCommand.new(:delete, KintoPath.collections(bucket)))
-
-puts "Create the collections..."
-puts "Create the first campsite records..."
-
-park1 = SecureRandom.uuid
-
 def update_attribute_command(bucket, table, id, key, value)
   KintoCommand.new(:post, KintoPath.records(bucket, "#{table}_attributes"), {
       data: {
@@ -99,6 +79,26 @@ def create_attributes_collection(bucket, table)
   KintoCommand.new(:post, KintoPath.collections(bucket),
     {data: {id: "#{table}_attributes"}})
 end
+
+url = 'http://admin:foo2@thatscamping-kinto.herokuapp.com/v1'
+bucket = "thatscamping4"
+runner = KintoRunner.new(url)
+
+puts "Create the bucket called #{bucket} and make it readable by everyone..."
+runner.run(KintoCommand.new(:post, KintoPath.buckets,
+  {data: {id: bucket}, permissions: {read: ["system.Everyone"]}}))
+
+# There appears to be a problem with running this delete command in the same batch
+# as a bunch of commands to add records. Very strange.
+# TODO Need to investigate
+# For the time being keep it out of the batch
+puts "Delete all writeable collections..."
+runner.run(KintoCommand.new(:delete, KintoPath.collections(bucket)))
+
+puts "Create the collections..."
+puts "Create the first campsite records..."
+
+park1 = SecureRandom.uuid
 
 # TODO Check return codes on batch command
 commands = []
