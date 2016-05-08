@@ -95,13 +95,16 @@ def update_attributes(bucket, table, id, attributes)
   end
 end
 
+def create_attributes_collection(bucket, table)
+  KintoCommand.new(:post, KintoPath.collections(bucket),
+    {data: {id: "#{table}_attributes"}})
+end
+
 # TODO Check return codes on batch command
-commands = [
-  KintoCommand.new(:post, KintoPath.collections(bucket),
-    {data: {id: "park_attributes"}}),
-  KintoCommand.new(:post, KintoPath.collections(bucket),
-    {data: {id: "campsite_attributes"}})
-]
+commands = []
+
+commands << create_attributes_collection(bucket, "park")
+commands << create_attributes_collection(bucket, "campsite")
 
 commands += update_attributes(bucket, "park", park1,
   name: "Blue Mountains National Park",
