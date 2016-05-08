@@ -91,17 +91,20 @@ def update_attribute_command(bucket, table, id, key, value)
 end
 
 # Returns array of commands
-def update_park_attributes(bucket, park_id, attributes)
+def update_attributes(bucket, table, id, attributes)
   attributes.map do |key, value|
-    update_attribute_command(bucket, "park", park_id, key.to_s, value)
+    update_attribute_command(bucket, table, id, key.to_s, value)
   end
 end
 
 # Returns array of commands
-def update_campsite_attributes(bucket, campsite_id, attributes)
-  attributes.map do |key, value|
-    update_attribute_command(bucket, "campsite", campsite_id, key.to_s, value)
-  end
+def update_park_attributes(bucket, id, attributes)
+  update_attributes(bucket, "park", id, attributes)
+end
+
+# Returns array of commands
+def update_campsite_attributes(bucket, id, attributes)
+  update_attributes(bucket, "campsite", id, attributes)
 end
 
 # TODO Check return codes on batch command
