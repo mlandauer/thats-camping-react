@@ -80,23 +80,22 @@ park1 = SecureRandom.uuid
 campsite1 = SecureRandom.uuid
 campsite2 = SecureRandom.uuid
 
-def update_park_attribute_command(bucket, park_id, key, value)
-  KintoCommand.new(:post, KintoPath.records(bucket, "park_attributes"), {
+def update_attribute_command(bucket, table, id, key, value)
+  KintoCommand.new(:post, KintoPath.records(bucket, "#{table}_attributes"), {
       data: {
-        park_id: park_id,
-        key: key,
-        value: value
+        "#{table}_id" => id,
+        "key" => key,
+        "value" => value
       }
     })
 end
 
-def update_campsite_attribute_command(bucket, campsite_id, key, value)
-  KintoCommand.new(:post, KintoPath.records(bucket, "campsite_attributes"),
-    {data: {
-      campsite_id: campsite_id,
-      key: key,
-      value: value
-    }})
+def update_park_attribute_command(bucket, id, key, value)
+  update_attribute_command(bucket, "park", id, key, value)
+end
+
+def update_campsite_attribute_command(bucket, id, key, value)
+  update_attribute_command(bucket, "campsite", id, key, value)
 end
 
 # Returns array of commands
