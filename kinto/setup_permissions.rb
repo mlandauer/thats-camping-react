@@ -99,22 +99,44 @@ def update_campsite_attribute_command(bucket, campsite_id, key, value)
     }})
 end
 
+# Returns array of commands
+def update_park_attributes(bucket, park_id, attributes)
+  attributes.map do |key, value|
+    update_park_attribute_command(bucket, park_id, key.to_s, value)
+  end
+end
+
+# Returns array of commands
+def update_campsite_attributes(bucket, campsite_id, attributes)
+  attributes.map do |key, value|
+    update_campsite_attribute_command(bucket, campsite_id, key.to_s, value)
+  end
+end
+
 # TODO Check return codes on batch command
-runner.batch([
+commands = [
   KintoCommand.new(:post, KintoPath.collections(bucket),
     {data: {id: "park_attributes"}}),
   KintoCommand.new(:post, KintoPath.collections(bucket),
-    {data: {id: "campsite_attributes"}}),
-  update_park_attribute_command(bucket, park1, "name", "Blue Mountains National Park"),
-  update_park_attribute_command(bucket, park1, "description", "More than three million people come to Blue Mountains National Park each year. For many it's enough just to find a lookout and gaze across the park's chiselled sandstone outcrops and hazy blue forests. Others walk or cycle along the cliff-tops and in the valleys, following paths that were created for Victorian-era honeymooners, or discovered by Aboriginal hunters many thousands of years ago. Over 140 km of walking tracks of all grades (some accessible for people with a disability) in diverse settings make the Blue Mountains a bushwalker's paradise.\n\nThis park, which is part of the Greater Blue Mountains World Heritage Area, protects an unusually diverse range of vegetation communities. There are rare and ancient plants and isolated animal populations tucked away in its deep gorges. The Greater Blue Mountains Drive, winner of the 2008 Australian Tourism Award for New Tourism Development, links a vast and spectacular world heritage landscape and a number of national parks to the regions that surround it."),
-  update_campsite_attribute_command(bucket, campsite1, "park_id", park1),
-  update_campsite_attribute_command(bucket, campsite1, "name", "Acacia Flat"),
-  update_campsite_attribute_command(bucket, campsite1, "description", "Explore the \"cradle of conservation\", the Blue Gum Forest. Enjoy birdwatching, long walks and plenty of photogenic flora."),
+    {data: {id: "campsite_attributes"}})
+]
 
-  update_campsite_attribute_command(bucket, campsite2, "park_id", park1),
-  update_campsite_attribute_command(bucket, campsite2, "name", "Burralow Creek camping ground"),
-  update_campsite_attribute_command(bucket, campsite2, "description", "Burralow is a beautiful picnic and camping area - so close to Sydney yet so far away. Set in a grassed open area among the scribbly gums this campground is ideally suited to families or small groups. Look out for the rare giant dragonfly on the Bulcamatta Falls convict walking track (one hour return; easy grade).\n\nYou'll need to bring drinking water and firewood with you - gathering native vegetation is strictly prohibited as it is valuable habitat for wildlife. You can buy firewood from local service stations at Richmond, North Richmond or Kurmond. Please take all garbage when you leave.")
-])
+commands += update_park_attributes(bucket, park1,
+  name: "Blue Mountains National Park",
+  description: "More than three million people come to Blue Mountains National Park each year. For many it's enough just to find a lookout and gaze across the park's chiselled sandstone outcrops and hazy blue forests. Others walk or cycle along the cliff-tops and in the valleys, following paths that were created for Victorian-era honeymooners, or discovered by Aboriginal hunters many thousands of years ago. Over 140 km of walking tracks of all grades (some accessible for people with a disability) in diverse settings make the Blue Mountains a bushwalker's paradise.\n\nThis park, which is part of the Greater Blue Mountains World Heritage Area, protects an unusually diverse range of vegetation communities. There are rare and ancient plants and isolated animal populations tucked away in its deep gorges. The Greater Blue Mountains Drive, winner of the 2008 Australian Tourism Award for New Tourism Development, links a vast and spectacular world heritage landscape and a number of national parks to the regions that surround it."
+)
+commands += update_campsite_attributes(bucket, campsite1,
+  park_id: park1,
+  name: "Acacia Flat",
+  description: "Explore the \"cradle of conservation\", the Blue Gum Forest. Enjoy birdwatching, long walks and plenty of photogenic flora."
+)
+commands += update_campsite_attributes(bucket, campsite2,
+  park_id: park1,
+  name: "Burralow Creek camping ground",
+  description: "Burralow is a beautiful picnic and camping area - so close to Sydney yet so far away. Set in a grassed open area among the scribbly gums this campground is ideally suited to families or small groups. Look out for the rare giant dragonfly on the Bulcamatta Falls convict walking track (one hour return; easy grade).\n\nYou'll need to bring drinking water and firewood with you - gathering native vegetation is strictly prohibited as it is valuable habitat for wildlife. You can buy firewood from local service stations at Richmond, North Richmond or Kurmond. Please take all garbage when you leave."
+)
+
+runner.batch(commands)
 
 # Now double check that this actually worked
 r = runner.run(KintoCommand.new(:get, KintoPath.records(bucket, "campsite_attributes") + "?key=name"))
