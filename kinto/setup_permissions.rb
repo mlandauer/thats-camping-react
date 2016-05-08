@@ -90,25 +90,17 @@ def update_attribute_command(bucket, table, id, key, value)
     })
 end
 
-def update_park_attribute_command(bucket, id, key, value)
-  update_attribute_command(bucket, "park", id, key, value)
-end
-
-def update_campsite_attribute_command(bucket, id, key, value)
-  update_attribute_command(bucket, "campsite", id, key, value)
-end
-
 # Returns array of commands
 def update_park_attributes(bucket, park_id, attributes)
   attributes.map do |key, value|
-    update_park_attribute_command(bucket, park_id, key.to_s, value)
+    update_attribute_command(bucket, "park", park_id, key.to_s, value)
   end
 end
 
 # Returns array of commands
 def update_campsite_attributes(bucket, campsite_id, attributes)
   attributes.map do |key, value|
-    update_campsite_attribute_command(bucket, campsite_id, key.to_s, value)
+    update_attribute_command(bucket, "campsite", campsite_id, key.to_s, value)
   end
 end
 
