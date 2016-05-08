@@ -74,10 +74,11 @@ puts "Delete all writeable collections..."
 runner.run(KintoCommand.new(:delete, KintoPath.collections(bucket)))
 
 puts "Create the collections..."
-puts "Create the first campsite record..."
+puts "Create the first campsite records..."
 
 park1 = SecureRandom.uuid
 campsite1 = SecureRandom.uuid
+campsite2 = SecureRandom.uuid
 
 # TODO Check return codes on batch command
 runner.batch([
@@ -116,9 +117,27 @@ runner.batch([
       campsite_id: campsite1,
       key: "description",
       value: "Explore the \"cradle of conservation\", the Blue Gum Forest. Enjoy birdwatching, long walks and plenty of photogenic flora."
+    }}),
+  KintoCommand.new(:post, KintoPath.records(bucket, "campsite_attributes"),
+    {data: {
+      campsite_id: campsite2,
+      key: "park_id",
+      value: park1
+    }}),
+  KintoCommand.new(:post, KintoPath.records(bucket, "campsite_attributes"),
+    {data: {
+      campsite_id: campsite2,
+      key: "name",
+      value: "Burralow Creek camping ground"
+    }}),
+  KintoCommand.new(:post, KintoPath.records(bucket, "campsite_attributes"),
+    {data: {
+      campsite_id: campsite2,
+      key: "description",
+      value: "Burralow is a beautiful picnic and camping area - so close to Sydney yet so far away. Set in a grassed open area among the scribbly gums this campground is ideally suited to families or small groups. Look out for the rare giant dragonfly on the Bulcamatta Falls convict walking track (one hour return; easy grade).\n\nYou'll need to bring drinking water and firewood with you - gathering native vegetation is strictly prohibited as it is valuable habitat for wildlife. You can buy firewood from local service stations at Richmond, North Richmond or Kurmond. Please take all garbage when you leave."
     }})
   ])
 
 # Now double check that this actually worked
 r = runner.run(KintoCommand.new(:get, KintoPath.records(bucket, "campsite_attributes") + "?key=name"))
-assert(r["data"].map{|r| r["value"]}.sort == ["Acacia Flat"])
+assert(r["data"].map{|r| r["value"]}.sort == ["Acacia Flat", "Burralow Creek camping ground"])
