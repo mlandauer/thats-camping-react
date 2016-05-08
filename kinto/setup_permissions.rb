@@ -46,15 +46,19 @@ class KintoRunner
   end
 
   def batch(commands)
-    requests = commands.map do |command|
-      v = {
-        method: command.method.upcase,
-        path: command.path,
-      }
-      v[:body] = command.body if command.body
-      v
+    # Kinto by default supports up to 25 commands in a batch operation
+    # This is configurable - we're assuming the default for the time being
+    commands.each_slice(25) do |commands_chunk|
+      requests = commands_chunk.map do |command|
+        v = {
+          method: command.method.upcase,
+          path: command.path,
+        }
+        v[:body] = command.body if command.body
+        v
+      end
+      run(KintoCommand.new(:post, KintoPath.batch, {requests: requests}))
     end
-    run(KintoCommand.new(:post, KintoPath.batch, {requests: requests}))
   end
 end
 
@@ -106,23 +110,36 @@ commands = []
 commands << create_attributes_collection(bucket, "park")
 commands << create_attributes_collection(bucket, "campsite")
 
-commands += update_attributes(bucket, "park", park1,
-  name: "Blue Mountains National Park",
-  description: "More than three million people come to Blue Mountains National Park each year. For many it's enough just to find a lookout and gaze across the park's chiselled sandstone outcrops and hazy blue forests. Others walk or cycle along the cliff-tops and in the valleys, following paths that were created for Victorian-era honeymooners, or discovered by Aboriginal hunters many thousands of years ago. Over 140 km of walking tracks of all grades (some accessible for people with a disability) in diverse settings make the Blue Mountains a bushwalker's paradise.\n\nThis park, which is part of the Greater Blue Mountains World Heritage Area, protects an unusually diverse range of vegetation communities. There are rare and ancient plants and isolated animal populations tucked away in its deep gorges. The Greater Blue Mountains Drive, winner of the 2008 Australian Tourism Award for New Tourism Development, links a vast and spectacular world heritage landscape and a number of national parks to the regions that surround it."
-)
-commands += update_attributes(bucket, "campsite", SecureRandom.uuid,
-  park_id: park1,
-  name: "Acacia Flat",
-  description: "Explore the \"cradle of conservation\", the Blue Gum Forest. Enjoy birdwatching, long walks and plenty of photogenic flora."
-)
-commands += update_attributes(bucket, "campsite", SecureRandom.uuid,
-  park_id: park1,
-  name: "Burralow Creek camping ground",
-  description: "Burralow is a beautiful picnic and camping area - so close to Sydney yet so far away. Set in a grassed open area among the scribbly gums this campground is ideally suited to families or small groups. Look out for the rare giant dragonfly on the Bulcamatta Falls convict walking track (one hour return; easy grade).\n\nYou'll need to bring drinking water and firewood with you - gathering native vegetation is strictly prohibited as it is valuable habitat for wildlife. You can buy firewood from local service stations at Richmond, North Richmond or Kurmond. Please take all garbage when you leave."
-)
+# Let's load the real data
+data = JSON.parse(File.read("../data_simplified.json"))
+# Let's shuffle the campsites so that they are findable by id
+campsites = {}
+data["campsites"].each do |c|
+  campsites[c["id"]] = c
+end
+data["parks"].each do |p|
+  park_id = SecureRandom.uuid
+  commands += update_attributes(bucket, "park", park_id,
+    name: p["name"],
+    description: p["description"]
+  )
+  # Now let's add all the campsites for this park
+  p["campsite_ids"].each do |i|
+    campsite_data = campsites[i]
+    commands += update_attributes(bucket, "campsite", SecureRandom.uuid,
+      park_id: park_id,
+      name: campsite_data["name"],
+      description: campsite_data["description"],
+      position: campsite_data["position"],
+      facilities: campsite_data["facilities"],
+      access: campsite_data["access"]
+    )
+  end
+end
 
 runner.batch(commands)
 
 # Now double check that this actually worked
 r = runner.run(KintoCommand.new(:get, KintoPath.records(bucket, "campsite_attributes") + "?key=name"))
-assert(r["data"].map{|r| r["value"]}.sort == ["Acacia Flat", "Burralow Creek camping ground"])
+names = r["data"].map{|r| r["value"]}.sort
+#assert(names == ["Acacia Flat", "Burralow Creek camping ground"])
