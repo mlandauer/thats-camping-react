@@ -10,6 +10,7 @@
 # WHERE PEOPLE HAVE EDITED INFORMATION - BECAUSE THAT INFORMATION WILL BE LOST!
 
 require 'yaml'
+require 'securerandom'
 require './lib/kinto_path'
 require './lib/json_client'
 
@@ -72,29 +73,52 @@ runner.run(KintoCommand.new(:post, KintoPath.buckets,
 puts "Delete all writeable collections..."
 runner.run(KintoCommand.new(:delete, KintoPath.collections(bucket)))
 
-puts "Create the collection campsite_versions..."
+puts "Create the collections..."
 puts "Create the first campsite record..."
+
+park1 = SecureRandom.uuid
+campsite1 = SecureRandom.uuid
 
 # TODO Check return codes on batch command
 runner.batch([
   KintoCommand.new(:post, KintoPath.collections(bucket),
-    {data: {id: "campsite_versions"}}),
-  KintoCommand.new(:post, KintoPath.records(bucket, "campsite_versions"),
+    {data: {id: "park_attributes"}}),
+  KintoCommand.new(:post, KintoPath.collections(bucket),
+    {data: {id: "campsite_attributes"}}),
+  KintoCommand.new(:post, KintoPath.records(bucket, "park_attributes"), {
+      data: {
+        park_id: park1,
+        key: "name",
+        value: "Blue Mountains National Park"
+      }
+    }),
+  KintoCommand.new(:post, KintoPath.records(bucket, "park_attributes"), {
+      data: {
+        park_id: park1,
+        key: "description",
+        value: "More than three million people come to Blue Mountains National Park each year. For many it's enough just to find a lookout and gaze across the park's chiselled sandstone outcrops and hazy blue forests. Others walk or cycle along the cliff-tops and in the valleys, following paths that were created for Victorian-era honeymooners, or discovered by Aboriginal hunters many thousands of years ago. Over 140 km of walking tracks of all grades (some accessible for people with a disability) in diverse settings make the Blue Mountains a bushwalker's paradise.\n\nThis park, which is part of the Greater Blue Mountains World Heritage Area, protects an unusually diverse range of vegetation communities. There are rare and ancient plants and isolated animal populations tucked away in its deep gorges. The Greater Blue Mountains Drive, winner of the 2008 Australian Tourism Award for New Tourism Development, links a vast and spectacular world heritage landscape and a number of national parks to the regions that surround it."
+      }
+    }),
+  KintoCommand.new(:post, KintoPath.records(bucket, "campsite_attributes"),
     {data: {
-      id: SecureRandom.uuid,
-      park_id: 1,
-      name: "Acacia Flat",
-      description: "Explore the \"cradle of conservation\", the Blue Gum Forest. Enjoy birdwatching, long walks and plenty of photogenic flora.",
+      campsite_id: campsite1,
+      key: "park_id",
+      value: park1
     }}),
-  KintoCommand.new(:post, KintoPath.records(bucket, "campsite_versions"),
+  KintoCommand.new(:post, KintoPath.records(bucket, "campsite_attributes"),
     {data: {
-      id: SecureRandom.uuid,
-      park_id: 2,
-      name: "Alexanders Hut",
-      description: "An historic timber slab hut that was occupied until the 1980s. Today it provides shelter and very basic facilities for bushwalkers and visitors. Camping on the grounds of the hut is also permitted.\n\nNunnock Swamp walking trail is nearby and there are opportunities for bird-watching and seeing wildflowers. It's an important site for early European cultural heritage."
+      campsite_id: campsite1,
+      key: "name",
+      value: "Acacia Flat"
+    }}),
+  KintoCommand.new(:post, KintoPath.records(bucket, "campsite_attributes"),
+    {data: {
+      campsite_id: campsite1,
+      key: "description",
+      value: "Explore the \"cradle of conservation\", the Blue Gum Forest. Enjoy birdwatching, long walks and plenty of photogenic flora."
     }})
   ])
 
 # Now double check that this actually worked
-r = runner.run(KintoCommand.new(:get, KintoPath.records(bucket, "campsite_versions")))
-assert(r["data"].map{|r| r["name"]}.sort == ["Acacia Flat", "Alexanders Hut"])
+r = runner.run(KintoCommand.new(:get, KintoPath.records(bucket, "campsite_attributes") + "?key=name"))
+assert(r["data"].map{|r| r["value"]}.sort == ["Acacia Flat"])
