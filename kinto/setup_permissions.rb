@@ -117,6 +117,11 @@ campsites = {}
 data["campsites"].each do |c|
   campsites[c["id"]] = c
 end
+
+# For the time being only add the first park (to make things faster
+# while testing)
+data["parks"] = data["parks"][0..1]
+
 data["parks"].each do |p|
   park_id = SecureRandom.uuid
   commands += update_attributes(bucket, "park", park_id,
@@ -142,4 +147,9 @@ runner.batch(commands)
 # Now double check that this actually worked
 r = runner.run(KintoCommand.new(:get, KintoPath.records(bucket, "campsite_attributes") + "?key=name"))
 names = r["data"].map{|r| r["value"]}.sort
-#assert(names == ["Acacia Flat", "Burralow Creek camping ground"])
+assert(names == ["Acacia Flat", "Alexanders Hut",
+  "Burralow Creek camping ground", "Euroka campground",
+  "Euroka campground - Appletree Flat campervan and camper trailer area",
+  "Ingar campground", "Mount Werong campground", "Murphys Glen campground",
+  "Nunnock campground", "Perrys Lookdown campground", "Postman's camping area",
+  "Six Mile Creek campground", "Waratah Gully campground"])
