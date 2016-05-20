@@ -85,8 +85,12 @@ def create_attributes_collection(bucket, table)
 end
 
 url = 'http://admin:foo2@thatscamping-kinto.herokuapp.com/v1'
-bucket = "thatscamping4"
+bucket = "thatscamping7"
 runner = KintoRunner.new(url)
+
+# First get userid from the admin auth pair
+user_id = runner.run(KintoCommand.new(:get, KintoPath.server))["user"]["id"]
+puts "In Heroku ensure that KINTO_BUCKET_CREATE_PRINCIPALS is set to #{user_id}"
 
 puts "Create the bucket called #{bucket} and make it readable by everyone..."
 runner.run(KintoCommand.new(:post, KintoPath.buckets,
