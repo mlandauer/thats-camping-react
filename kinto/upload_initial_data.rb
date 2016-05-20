@@ -84,7 +84,11 @@ def create_attributes_collection(bucket, table)
     {data: {id: "#{table}_attributes"}})
 end
 
-url = 'http://admin:foo2@thatscamping-kinto.herokuapp.com/v1'
+require 'dotenv'
+Dotenv.load
+
+password = ENV['THATSCAMPING_ADMIN_PASSWORD']
+url = "http://admin:#{password}@thatscamping-kinto.herokuapp.com/v1"
 bucket = "thatscamping7"
 runner = KintoRunner.new(url)
 

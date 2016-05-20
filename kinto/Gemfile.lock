@@ -1,5 +1,7 @@
 GEM
+  remote: https://rubygems.org/
   specs:
+    dotenv (2.1.1)
     mime-types (1.25.1)
     rdoc (4.2.0)
     rest-client (1.6.8)
@@ -10,6 +12,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  dotenv
   rest-client
 
 BUNDLED WITH
