@@ -11,7 +11,6 @@
 
 require 'yaml'
 require 'securerandom'
-require_relative 'lib/kinto_path'
 require_relative 'lib/json_client'
 require_relative 'lib/kinto_runner'
 require_relative 'lib/kinto_runner'
@@ -21,13 +20,11 @@ def assert(test)
 end
 
 def update_attribute_command(bucket, table, id, key, value)
-  KintoCommand.new(:post, KintoPath.records(bucket, "#{table}_attributes"), {
-      data: {
-        "#{table}_id" => id,
-        "key" => key,
-        "value" => value
-      }
-    })
+  KintoCommand.create_record(bucket, "#{table}_attributes", {
+    "#{table}_id" => id,
+    "key" => key,
+    "value" => value
+  })
 end
 
 # Returns array of commands
@@ -38,8 +35,7 @@ def update_attributes(bucket, table, id, attributes)
 end
 
 def create_attributes_collection(bucket, table)
-  KintoCommand.new(:post, KintoPath.collections(bucket),
-    {data: {id: "#{table}_attributes"}})
+  KintoCommand.create_collection(bucket, "#{table}_attributes")
 end
 
 require 'dotenv'
@@ -54,15 +50,14 @@ user_id = admin_runner.run(KintoCommand.new(:get, KintoPath.server))["user"]["id
 puts "In Heroku ensure that KINTO_BUCKET_CREATE_PRINCIPALS is set to #{user_id}"
 
 puts "Create the bucket called #{bucket} and make it readable by everyone..."
-admin_runner.run(KintoCommand.new(:post, KintoPath.buckets,
-  {data: {id: bucket}, permissions: {read: ["system.Everyone"]}}))
+admin_runner.run(KintoCommand.create_bucket(bucket, {read: ["system.Everyone"]}))
 
 # There appears to be a problem with running this delete command in the same batch
 # as a bunch of commands to add records. Very strange.
 # TODO Need to investigate
 # For the time being keep it out of the batch
 puts "Delete all writeable collections..."
-admin_runner.run(KintoCommand.new(:delete, KintoPath.collections(bucket)))
+admin_runner.run(KintoCommand.delete_all_collections(bucket))
 
 puts "Create the collections..."
 puts "Create the first campsite records..."
