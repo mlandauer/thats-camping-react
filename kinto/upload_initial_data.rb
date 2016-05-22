@@ -46,7 +46,7 @@ bucket = "thatscamping7"
 admin_runner = KintoRunner.new("http://#{admin_auth}@thatscamping-kinto.herokuapp.com/v1")
 
 # First get userid from the admin auth pair
-user_id = admin_runner.run(KintoCommand.new(:get, KintoPath.server))["user"]["id"]
+user_id = admin_runner.run(KintoCommand.get_server)["user"]["id"]
 puts "In Heroku ensure that KINTO_BUCKET_CREATE_PRINCIPALS is set to #{user_id}"
 
 puts "Create the bucket called #{bucket} and make it readable by everyone..."

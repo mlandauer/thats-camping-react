@@ -26,4 +26,12 @@ class KintoCommand
   def self.get_records(bucket, collection, filter)
     KintoCommand.new(:get, KintoPath.records(bucket, collection) + "?#{filter}")
   end
+
+  def self.get_server
+    KintoCommand.new(:get, KintoPath.server)
+  end
+
+  def self.batch(requests)
+    KintoCommand.new(:post, KintoPath.batch, {requests: requests})
+  end
 end
