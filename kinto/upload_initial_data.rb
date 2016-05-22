@@ -103,7 +103,7 @@ end
 admin_runner.batch(commands)
 
 # Now double check that this actually worked
-r = admin_runner.run(KintoCommand.new(:get, KintoPath.records(bucket, "campsite_attributes") + "?key=name"))
+r = admin_runner.run(KintoCommand.get_records(bucket, "campsite_attributes", "key=name"))
 names = r["data"].map{|r| r["value"]}.sort
 assert(names == ["Acacia Flat", "Alexanders Hut",
   "Burralow Creek camping ground", "Euroka campground",

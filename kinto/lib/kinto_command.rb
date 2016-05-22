@@ -22,4 +22,8 @@ class KintoCommand
   def self.delete_all_collections(bucket)
     KintoCommand.new(:delete, KintoPath.collections(bucket))
   end
+
+  def self.get_records(bucket, collection, filter)
+    KintoCommand.new(:get, KintoPath.records(bucket, collection) + "?#{filter}")
+  end
 end
