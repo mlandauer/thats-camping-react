@@ -87,17 +87,16 @@ end
 require 'dotenv'
 Dotenv.load
 
-password = ENV['THATSCAMPING_ADMIN_PASSWORD']
-url = "http://admin:#{password}@thatscamping-kinto.herokuapp.com/v1"
+admin_auth = "admin:#{ENV['THATSCAMPING_ADMIN_PASSWORD']}"
 bucket = "thatscamping7"
-runner = KintoRunner.new(url)
+admin_runner = KintoRunner.new("http://#{admin_auth}@thatscamping-kinto.herokuapp.com/v1")
 
 # First get userid from the admin auth pair
-user_id = runner.run(KintoCommand.new(:get, KintoPath.server))["user"]["id"]
+user_id = admin_runner.run(KintoCommand.new(:get, KintoPath.server))["user"]["id"]
 puts "In Heroku ensure that KINTO_BUCKET_CREATE_PRINCIPALS is set to #{user_id}"
 
 puts "Create the bucket called #{bucket} and make it readable by everyone..."
-runner.run(KintoCommand.new(:post, KintoPath.buckets,
+admin_runner.run(KintoCommand.new(:post, KintoPath.buckets,
   {data: {id: bucket}, permissions: {read: ["system.Everyone"]}}))
 
 # There appears to be a problem with running this delete command in the same batch
@@ -105,12 +104,10 @@ runner.run(KintoCommand.new(:post, KintoPath.buckets,
 # TODO Need to investigate
 # For the time being keep it out of the batch
 puts "Delete all writeable collections..."
-runner.run(KintoCommand.new(:delete, KintoPath.collections(bucket)))
+admin_runner.run(KintoCommand.new(:delete, KintoPath.collections(bucket)))
 
 puts "Create the collections..."
 puts "Create the first campsite records..."
-
-park1 = SecureRandom.uuid
 
 # TODO Check return codes on batch command
 commands = []
@@ -150,10 +147,10 @@ data["parks"].each do |p|
   end
 end
 
-runner.batch(commands)
+admin_runner.batch(commands)
 
 # Now double check that this actually worked
-r = runner.run(KintoCommand.new(:get, KintoPath.records(bucket, "campsite_attributes") + "?key=name"))
+r = admin_runner.run(KintoCommand.new(:get, KintoPath.records(bucket, "campsite_attributes") + "?key=name"))
 names = r["data"].map{|r| r["value"]}.sort
 assert(names == ["Acacia Flat", "Alexanders Hut",
   "Burralow Creek camping ground", "Euroka campground",
