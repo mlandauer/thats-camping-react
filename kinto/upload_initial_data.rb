@@ -45,7 +45,7 @@ Dotenv.load
 admin_auth = "admin:#{ENV['THATSCAMPING_ADMIN_PASSWORD']}"
 # system is the creator of the initial content
 system_auth = "user:system"
-bucket = "thatscamping7"
+bucket = "thatscamping"
 admin_runner = KintoRunner.new("http://#{admin_auth}@thatscamping-kinto.herokuapp.com/v1")
 system_runner = KintoRunner.new("http://#{system_auth}@thatscamping-kinto.herokuapp.com/v1")
 
@@ -80,10 +80,6 @@ data["campsites"].each do |c|
   campsites[c["id"]] = c
 end
 
-# For the time being only add the first park (to make things faster
-# while testing)
-data["parks"] = data["parks"][0..1]
-
 data["parks"].each do |p|
   park_id = SecureRandom.uuid
   commands += update_attributes(bucket, "park", park_id,
@@ -109,9 +105,7 @@ system_runner.batch(commands)
 # Now double check that this actually worked
 r = admin_runner.run(KintoCommand.get_records(bucket, "campsite_attributes", "key=name"))
 names = r["data"].map{|r| r["value"]}.sort
-assert(names == ["Acacia Flat", "Alexanders Hut",
-  "Burralow Creek camping ground", "Euroka campground",
-  "Euroka campground - Appletree Flat campervan and camper trailer area",
-  "Ingar campground", "Mount Werong campground", "Murphys Glen campground",
-  "Nunnock campground", "Perrys Lookdown campground", "Postman's camping area",
-  "Six Mile Creek campground", "Waratah Gully campground"])
+assert(names[0..10] == ["Abercrombie Caves campground", "Acacia Flat",
+  "Alexanders Hut", "Apsley Falls campground", "Aragunnu campground",
+  "Bald Rock camping area", "Balor Hut campground", "Bangalow campground",
+  "Banksia Green campground", "Bark Hut campground", "Barokee campground"])
