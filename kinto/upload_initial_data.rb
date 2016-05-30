@@ -35,15 +35,19 @@ def update_attributes(bucket, table, id, attributes)
 end
 
 def create_attributes_collection(bucket, table)
-  KintoCommand.create_collection(bucket, "#{table}_attributes")
+  KintoCommand.create_collection(bucket, "#{table}_attributes", {"record:create": ["system.Authenticated"]})
 end
 
 require 'dotenv'
 Dotenv.load
 
+# admin is the owner of the bucket and collections
 admin_auth = "admin:#{ENV['THATSCAMPING_ADMIN_PASSWORD']}"
+# system is the creator of the initial content
+system_auth = "user:system"
 bucket = "thatscamping7"
 admin_runner = KintoRunner.new("http://#{admin_auth}@thatscamping-kinto.herokuapp.com/v1")
+system_runner = KintoRunner.new("http://#{system_auth}@thatscamping-kinto.herokuapp.com/v1")
 
 # First get userid from the admin auth pair
 user_id = admin_runner.run(KintoCommand.get_server)["user"]["id"]
@@ -60,12 +64,13 @@ puts "Delete all writeable collections..."
 admin_runner.run(KintoCommand.delete_all_collections(bucket))
 
 puts "Create the collections..."
-puts "Create the first campsite records..."
-
 commands = []
-
 commands << create_attributes_collection(bucket, "park")
 commands << create_attributes_collection(bucket, "campsite")
+admin_runner.batch(commands)
+
+puts "Create the first campsite records..."
+commands = []
 
 # Let's load the real data
 data = JSON.parse(File.read("../data_simplified.json"))
@@ -99,7 +104,7 @@ data["parks"].each do |p|
   end
 end
 
-admin_runner.batch(commands)
+system_runner.batch(commands)
 
 # Now double check that this actually worked
 r = admin_runner.run(KintoCommand.get_records(bucket, "campsite_attributes", "key=name"))

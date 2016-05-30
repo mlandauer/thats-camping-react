@@ -11,8 +11,9 @@ class KintoCommand
     KintoCommand.new(:post, KintoPath.records(bucket, collection), {data: data})
   end
 
-  def self.create_collection(bucket, collection)
-    KintoCommand.new(:post, KintoPath.collections(bucket), {data: {id: collection}})
+  def self.create_collection(bucket, collection, permissions)
+    KintoCommand.new(:post, KintoPath.collections(bucket),
+      {data: {id: collection}, permissions: permissions})
   end
 
   def self.create_bucket(bucket, permissions)
