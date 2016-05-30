@@ -31,7 +31,10 @@ class KintoRunner
         v[:body] = command.body if command.body
         v
       end
-      run(KintoCommand.batch(requests))
+      r = run(KintoCommand.batch(requests))
+      # Find the first response that is an error
+      error = r["responses"].find{|r| r["status"] != 201}
+      raise error.to_s if error
     end
   end
 end

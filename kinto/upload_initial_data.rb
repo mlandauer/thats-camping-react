@@ -62,7 +62,6 @@ admin_runner.run(KintoCommand.delete_all_collections(bucket))
 puts "Create the collections..."
 puts "Create the first campsite records..."
 
-# TODO Check return codes on batch command
 commands = []
 
 commands << create_attributes_collection(bucket, "park")
