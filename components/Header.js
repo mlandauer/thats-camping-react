@@ -1,6 +1,6 @@
 import React from 'react'
 import BackButton from './BackButton'
-import AboutButton from './AboutButton'
+import {AboutButton} from './AboutButton'
 
 export default class Header extends React.Component {
   render() {
