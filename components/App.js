@@ -4,6 +4,11 @@ import { addParks } from '../actions/ParksActions'
 import { addCampsites, startSync } from '../actions/CampsitesActions'
 import { startUpdatePosition } from '../actions/PositionActions'
 import { toggleStarredCampsite } from '../actions/StarredActions'
+import CampsiteIndexPage from './CampsiteIndexPage';
+import { Route, Redirect } from 'react-router-dom';
+import AboutPage from './AboutPage'
+import CampsiteDetailPage from './CampsiteDetailPage';
+import ParkDetailPage from './ParkDetailPage';
 
 export class App extends React.Component {
   componentWillMount() {
@@ -16,19 +21,24 @@ export class App extends React.Component {
   }
 
   render() {
-    let children = React.cloneElement(this.props.children, {
-      onStarClick: this.props.onStarClick,
-      position: this.props.position,
-      campsites: this.props.campsites,
-      parks: this.props.parks
-    });
     // If this application is running in fullscreen on mobile
     // then set class on top level div so that we can easily adjust layout
     // for this case
+    let onStarClick = this.props.onStarClick;
+    let position = this.props.position;
+    let campsites = this.props.campsites;
+    let parks = this.props.parks;
+
     let fullscreen = window.navigator.standalone
     return (
       <div id="app" className={fullscreen ? 'fullscreen' : null}>
-        {children}
+        <Route exact path="/">
+          <Redirect to="/campsites" />
+        </Route>
+        <Route exact path="/campsites" component={() => (<CampsiteIndexPage campsites={campsites} parks={parks} position={position}/>)}/>
+        <Route path="/campsites/:id" component={({match}) => (<CampsiteDetailPage id={match.params.id} campsites={campsites} parks={parks} onStarClick={onStarClick}/>)} />
+        <Route path="/parks/:id" component={({match}) => (<ParkDetailPage id={match.params.id} campsites={campsites} parks={parks} position={position}/>)}/>
+        <Route path="/about" component={AboutPage} />
       </div>
     )
   }

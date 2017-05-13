@@ -1,7 +1,7 @@
 // main.js
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, IndexRoute, Redirect, useRouterHistory } from 'react-router';
+import { HashRouter, Route, IndexRoute, Redirect } from 'react-router-dom';
 import { createStore, applyMiddleware, compose } from 'redux'
 import { Provider } from 'react-redux'
 import thunkMiddleware from 'redux-thunk'
@@ -28,7 +28,6 @@ import './styles/style.scss'
 // require('bootstrap/js/affix.js')
 
 import App from './components/App';
-import CampsiteIndexPage from './components/CampsiteIndexPage';
 import CampsiteDetailPage from './components/CampsiteDetailPage';
 import ParkDetailPage from './components/ParkDetailPage';
 import AboutPage from './components/AboutPage'
@@ -36,11 +35,6 @@ import reducer from './reducers'
 
 import attachFastClick from 'fastclick'
 attachFastClick.attach(document.body)
-
-import createHistory from 'history/lib/createHashHistory'
-
-// Opt-out of persistent state, not recommended.
-const history = useRouterHistory(createHistory)({queryKey: false})
 
 const reducerWithStorage = storage.reducer(reducer)
 var engine = createEngine('thats-camping')
@@ -81,19 +75,11 @@ window.addEventListener('load', function(e) {
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={history}>
-      <Redirect from="/" to="/campsites" />
-      <Route path="/" component={App}>
-        <Route path="/campsites">
-          <IndexRoute component={CampsiteIndexPage} />
-          <Route path=":id" component={CampsiteDetailPage} />
-        </Route>
-        <Route path="/parks">
-          <Route path=":id" component={ParkDetailPage} />
-        </Route>
-        <Route path="/about" component={AboutPage} />
-      </Route>
-    </Router>
+    <div>
+      <HashRouter>
+        <Route path="/" component={App} />
+      </HashRouter>
+    </div>
   </Provider>,
   document.getElementById('root')
 );

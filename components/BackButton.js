@@ -1,7 +1,7 @@
 import React from 'react'
 
 // Ugh
-import createBrowserHistory from 'history/lib/createBrowserHistory';
+import createBrowserHistory from 'history/createBrowserHistory';
 var browserHistory = createBrowserHistory();
 
 export default class Header extends React.Component {

@@ -11,7 +11,7 @@ export default class ParkDetailPage extends React.Component {
     if (Object.keys(this.props.parks).length == 0 || Object.keys(this.props.campsites).length == 0) {
       return (<div></div>)
     }
-    let park = this.props.parks[this.props.params.id]
+    let park = this.props.parks[this.props.id]
     let campsites = park.campsite_ids.map((campsite_id) => {
       return this.props.campsites[campsite_id]
     })

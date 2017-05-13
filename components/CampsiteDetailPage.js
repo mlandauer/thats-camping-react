@@ -6,7 +6,7 @@ import shortenName from '../libs/shortenName'
 
 class CampsiteDetailPage extends React.Component {
   render() {
-    let campsite = this.props.campsites[this.props.params.id]
+    let campsite = this.props.campsites[this.props.id]
     if (campsite == undefined) {
       return (<div></div>)
     }
