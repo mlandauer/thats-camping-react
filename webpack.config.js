@@ -57,22 +57,34 @@ module.exports = {
         path: path.resolve(__dirname + '/public'),
         filename: "bundle.js"
     },
+    resolve: {
+        // Add '.ts' and '.tsx' as resolvable extensions.
+        extensions: [".ts", ".tsx", ".js", ".json"]
+    },
     module: {
-        loaders: [
-            {
-                test:   /\.js/,
-                loader: 'babel-loader',
-                exclude: /(node_modules|bower_components)/,
-            },
-            {
-                test:   /\.scss/,
-                loader: ExtractPlugin.extract({fallback: 'style-loader', use: 'css-loader!sass-loader'}),
-            },
-            // the url-loader uses DataUrls.
-            // the file-loader emits files.
-            { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&minetype=application/font-woff" },
-            { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader" }
-        ],
+        rules: [
+          {
+            test: /\.tsx?$/,
+            loader: "awesome-typescript-loader"
+          },
+          {
+            test: /\.js/,
+            loader: 'babel-loader',
+            exclude: /(node_modules|bower_components)/ },
+          {
+              test:   /\.scss/,
+              loader: ExtractPlugin.extract({fallback: 'style-loader', use: 'css-loader!sass-loader'}),
+          },
+          // the url-loader uses DataUrls.
+          // the file-loader emits files.
+          {
+            test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+            loader: "url-loader?limit=10000&minetype=application/font-woff" },
+          {
+            test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+            loader: "file-loader"
+          }
+        ]
     },
     plugins: plugins,
     devtool: production ? false : 'eval'

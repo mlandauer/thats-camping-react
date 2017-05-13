@@ -8,6 +8,9 @@
     "url": "https://github.com/mlandauer/thats-camping-react"
   },
   "dependencies": {
+    "@types/react": "^15.0.24",
+    "@types/react-dom": "^15.5.0",
+    "awesome-typescript-loader": "^3.1.3",
     "babel-core": "^6.0.0",
     "babel-loader": "^7.0.0",
     "babel-preset-es2015": "^6.3.13",
@@ -38,8 +41,10 @@
     "redux-storage-engine-localstorage": "^1.0.1",
     "redux-thunk": "^2.0.1",
     "sass-loader": "^6.0.0",
+    "source-map-loader": "^0.2.1",
     "style-loader": "^0.17.0",
     "through2": "^2.0.1",
+    "typescript": "^2.3.2",
     "uglify-js": "^3.0.0",
     "url-loader": "^0.5.7",
     "webpack": "^2.0.0"
