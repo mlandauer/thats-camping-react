@@ -5,7 +5,7 @@ import { addCampsites, startSync } from '../actions/CampsitesActions'
 import { startUpdatePosition } from '../actions/PositionActions'
 import { toggleStarredCampsite } from '../actions/StarredActions'
 
-export default class App extends React.Component {
+export class App extends React.Component {
   componentWillMount() {
     this.props.dispatch(startSync())
     this.props.dispatch(startUpdatePosition())
