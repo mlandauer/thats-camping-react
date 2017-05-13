@@ -10,7 +10,7 @@
   "dependencies": {
     "babel-loader": "^6.2.4",
     "babel-preset-es2015": "^6.3.13",
-    "babel-preset-react": "~6.5.0",
+    "babel-preset-react": "^6.5.0",
     "bootstrap": "^3.3.6",
     "connect-cache-manifest": "^0.2.2",
     "css-loader": "^0.23.1",
@@ -26,8 +26,8 @@
     "less": "^2.6.1",
     "node-sass": "^3.4.2",
     "promised-location": "^1.0.1",
-    "react": "~15.0.1",
-    "react-dom": "~15.0.1",
+    "react": "^15.0.1",
+    "react-dom": "^15.0.1",
     "react-redux": "^4.0.6",
     "react-router": "^2.0.1",
     "redux": "^3.0.5",
@@ -49,7 +49,7 @@
     "git-rev-sync": "^1.5.0",
     "mocha": "^2.3.4",
     "nodemon": "^1.8.1",
-    "react-addons-test-utils": "^15.0.1",
+    "react-addons-test-utils": "^15.5.1",
     "watchify": "^3.6.1"
   },
   "scripts": {
