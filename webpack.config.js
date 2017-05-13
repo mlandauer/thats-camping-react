@@ -1,3 +1,4 @@
+var path = require("path")
 var webpack = require('webpack')
 var git = require('git-rev-sync')
 var ExtractPlugin = require('extract-text-webpack-plugin')
@@ -53,19 +54,19 @@ if (production) {
 module.exports = {
     entry: "./main.js",
     output: {
-        path: "public",
+        path: path.resolve(__dirname + '/public'),
         filename: "bundle.js"
     },
     module: {
         loaders: [
             {
                 test:   /\.js/,
-                loader: 'babel',
+                loader: 'babel-loader',
                 exclude: /(node_modules|bower_components)/,
             },
             {
                 test:   /\.scss/,
-                loader: ExtractPlugin.extract('style', 'css!sass'),
+                loader: ExtractPlugin.extract({fallback: 'style-loader', use: 'css-loader!sass-loader'}),
             },
             // the url-loader uses DataUrls.
             // the file-loader emits files.
@@ -74,6 +75,5 @@ module.exports = {
         ],
     },
     plugins: plugins,
-    debug: !production,
     devtool: production ? false : 'eval'
 };
