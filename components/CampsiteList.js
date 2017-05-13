@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import CampsiteListItem from './CampsiteListItem';
 import { Link } from 'react-router';
 import PositionRelationship from '../libs/PositionRelationship';
