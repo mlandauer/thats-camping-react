@@ -1,7 +1,7 @@
 // main.js
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, IndexRoute, Redirect } from 'react-router';
+import { Router, Route, IndexRoute, Redirect, hashHistory } from 'react-router';
 import { createStore, applyMiddleware, compose } from 'redux'
 import { Provider } from 'react-redux'
 import thunkMiddleware from 'redux-thunk'
@@ -36,12 +36,6 @@ import reducer from './reducers'
 
 import attachFastClick from 'fastclick'
 attachFastClick.attach(document.body)
-
-import createHistory from 'history/lib/createHashHistory'
-import useScroll from 'scroll-behavior/lib/useStandardScroll'
-
-// Opt-out of persistent state, not recommended.
-const historyWithScroll = useScroll(createHistory)({queryKey: false})
 
 const reducerWithStorage = storage.reducer(reducer)
 var engine = createEngine('thats-camping')
@@ -82,7 +76,7 @@ window.addEventListener('load', function(e) {
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={historyWithScroll}>
+    <Router history={hashHistory}>
       <Redirect from="/" to="/campsites" />
       <Route path="/" component={App}>
         <Route path="/campsites">
