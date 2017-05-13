@@ -1,19 +1,27 @@
-var toRad = function(deg) {
+var toRad = function(deg: number): number {
   return (deg * Math.PI / 180);
 }
 
-var toDeg = function(rad) {
+var toDeg = function(rad: number): number {
   return (rad * 180 / Math.PI);
 }
 
+interface Position {
+  lat: number;
+  lng: number;
+}
+
 export default class PositionRelationship {
-  constructor(position1, position2) {
+  position1: Position;
+  position2: Position;
+
+  constructor(position1: Position, position2: Position) {
     this.position1 = position1
     this.position2 = position2
   }
 
   // Distance in metres between two positions given as lat longs
-  distanceInMetres() {
+  distanceInMetres(): number {
     if (this.position1.lat == undefined || this.position1.lng == undefined || this.position2.lat == undefined || this.position2.lng == undefined) {
       return undefined;
     }
@@ -27,7 +35,7 @@ export default class PositionRelationship {
     return d;
   }
 
-  bearingInDegrees() {
+  bearingInDegrees(): number {
     if (this.position1.lat == undefined || this.position1.lng == undefined || this.position2.lat == undefined || this.position2.lng == undefined) {
       return undefined;
     }
