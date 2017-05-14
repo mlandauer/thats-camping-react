@@ -44,6 +44,7 @@
     "source-map-loader": "^0.2.1",
     "style-loader": "^0.17.0",
     "through2": "^2.0.1",
+    "ts-node": "^3.0.4",
     "typescript": "^2.3.2",
     "uglify-js": "^3.0.0",
     "url-loader": "^0.5.7",
@@ -59,7 +60,7 @@
     "watchify": "^3.6.1"
   },
   "scripts": {
-    "test": "mocha --compilers js:babel-core/register --recursive",
+    "test": "mocha -r ts-node/register -r babel-core/register --recursive",
     "test:watch": "npm test -- --watch",
     "watch": "webpack --watch",
     "webpack": "webpack",
