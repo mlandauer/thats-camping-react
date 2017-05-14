@@ -1,13 +1,16 @@
-import React from 'react'
+import * as React from 'react'
 import Header from './Header'
 
-export default class AboutPage extends React.Component {
+// Move this somewhere else (.d.ts)
+var REVISION: string;
+
+export default class AboutPage extends React.Component<{},{}> {
   render() {
     var githubURL = "https://github.com/mlandauer/thats-camping-react/commit/" + REVISION
 
     return (
       <div className="about">
-        <Header title="About"/>
+        <Header title="About" hideBackButton={false} showAboutButton={false}/>
         <div className="content">
           <div className="container">
             <h2>About That's Camping</h2>

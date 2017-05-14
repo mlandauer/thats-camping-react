@@ -1,8 +1,14 @@
-import React from 'react'
+import * as React from 'react'
 import BackButton from './BackButton'
 import {AboutButton} from './AboutButton'
 
-export default class Header extends React.Component {
+interface HeaderProps {
+  hideBackButton: boolean;
+  showAboutButton: boolean;
+  title: string;
+}
+
+export default class Header extends React.Component<HeaderProps, {}> {
   render() {
     return (
       <nav className="navbar navbar-default navbar-fixed-top">
