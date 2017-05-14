@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import simpleFormat from '../libs/simpleFormat'
-import Star from './Star'
+import { Star } from './Star'
 
 export default class CampsiteDetail extends React.Component {
   getDescription() {
