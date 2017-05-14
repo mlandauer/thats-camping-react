@@ -1,11 +1,11 @@
-import React from 'react'
+import * as React from 'react'
 
 // Ugh
 import createBrowserHistory from 'history/createBrowserHistory';
 var browserHistory = createBrowserHistory();
 
-export default class Header extends React.Component {
-  navigateBack() {
+export default class Header extends React.Component<{}, {}> {
+  navigateBack(): boolean {
     browserHistory.goBack();
     return false;
   }
