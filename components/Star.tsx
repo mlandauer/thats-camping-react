@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 interface StarProps {
-  onClick: () => boolean;
+  onClick?: (() => boolean);
   starred: boolean;
 }
 

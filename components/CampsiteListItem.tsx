@@ -1,9 +1,16 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import { Star } from './Star'
 
-export default class CampsiteListItem extends React.Component {
-  distanceText() {
+interface CampsiteListItemProps {
+  campsiteName: string;
+  parkName: string;
+  distance: number;
+  bearing: number;
+  starred: boolean;
+}
+
+export default class CampsiteListItem extends React.Component<CampsiteListItemProps, {}> {
+  distanceText(): string {
     var distance = this.props.distance;
     if (distance == undefined) {
       return "";
@@ -21,7 +28,7 @@ export default class CampsiteListItem extends React.Component {
     return(distance.toFixed(0) + " " + units);
   }
 
-  bearingText() {
+  bearingText(): string {
     var bearing = this.props.bearing;
     // Dividing the compass into 8 sectors that are centred on north
     var sector = Math.floor(((bearing + 22.5) % 360.0) / 45.0);
@@ -39,11 +46,4 @@ export default class CampsiteListItem extends React.Component {
       </div>
     );
   }
-}
-
-CampsiteListItem.propTypes = {
-  campsiteName: PropTypes.string.isRequired,
-  parkName: PropTypes.string,
-  distance: PropTypes.number,
-  bearing: PropTypes.number
 }
