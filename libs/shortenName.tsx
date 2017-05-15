@@ -1,7 +1,8 @@
-// Using old school syntax so that I can use it in transform_data.js
-// without having to figure out how to do it properly
+// shortenName used to be exported using the old school syntax.
+// Changed this so we can move to typescript but this probably will
+// break transform_data.js
 
-var shortenName = module.exports = function(name) {
+export default function shortenName(name: string): string {
   return name.replace(" campground and picnic area", "")
     .replace(" large group campground", "")
     .replace(" campgrounds", "")
