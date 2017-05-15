@@ -1,4 +1,4 @@
-export default function simpleFormat(str) {
+export default function simpleFormat(str: string): string {
   // Not sure why we're replacing \r when it doesn't seem to appear in data.json
   str = str.replace(/\r\n?/, "\n");
   str = str.trim();
