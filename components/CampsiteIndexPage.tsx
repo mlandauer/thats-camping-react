@@ -1,8 +1,25 @@
-import React from 'react';
+import * as React from 'react';
 import CampsiteList from './CampsiteList'
 import Header from './Header'
+import { Position, Park } from '../libs/types'
 
-export default class CampsiteIndexPage extends React.Component {
+// Note that this is currently a little bit different than the Campsite type
+// defined in libs/types
+interface Campsite {
+  id: string;
+  name: string;
+  starred: boolean;
+  position: Position;
+  park_id: number;
+}
+
+interface CampsiteIndexPageProps {
+  position: Position;
+  campsites: Campsite[];
+  parks: Park[];
+}
+
+export default class CampsiteIndexPage extends React.Component<CampsiteIndexPageProps, {}> {
   render() {
     var position = this.props.position;
     var campsites = this.props.campsites;
