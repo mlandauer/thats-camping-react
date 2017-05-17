@@ -1,9 +1,21 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import simpleFormat from '../libs/simpleFormat'
 import CampsiteList from './CampsiteList'
+import { Position, Campsite } from '../libs/types'
 
-export default class ParkDetail extends React.Component {
+// Note that this Park is different at the moment than the one in libs/types
+interface Park {
+  description: string;
+  name: string;
+  campsites: Campsite[];
+}
+
+interface ParkDetailProps {
+  position: Position;
+  park: Park;
+}
+
+export default class ParkDetail extends React.Component<ParkDetailProps, {}> {
   getDescription() {
     return {__html: simpleFormat(this.props.park.description)};
   }
@@ -21,13 +33,4 @@ export default class ParkDetail extends React.Component {
       </div>
     )
   }
-}
-
-ParkDetail.propTypes = {
-  park: PropTypes.shape({
-    description: PropTypes.string,
-    name: PropTypes.string,
-    campsites: PropTypes.array
-  }).isRequired,
-  position: PropTypes.object
 }
