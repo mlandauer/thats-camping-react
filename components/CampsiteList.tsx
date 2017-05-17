@@ -12,13 +12,7 @@ interface Campsite {
   position: Position;
 }
 
-// TODO: Extend Campsite rather than duplicating everything
-interface CampsiteWithDistanceAndBearing {
-  id: string;
-  name: string;
-  starred: boolean;
-  park: Park;
-  position: Position;
+interface CampsiteWithDistanceAndBearing extends Campsite {
   distance: number | undefined;
   bearing: number | undefined;
 }
