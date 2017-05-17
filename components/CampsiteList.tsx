@@ -12,7 +12,6 @@ interface CampsiteWithDistanceAndBearing extends Campsite {
 
 interface CampsiteListProps {
   campsites: Campsite[];
-  parks: Park[];
   position: Position;
 }
 
@@ -68,7 +67,6 @@ export default class CampsiteList extends React.Component<CampsiteListProps, {}>
   render() {
     var position = this.props.position;
     var campsitesArray = this.props.campsites;
-    var parks = this.props.parks;
 
     let sortedCampsites = this.sortCampsitesArrayByDistance(campsitesArray, position)
     return (
