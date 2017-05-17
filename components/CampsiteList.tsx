@@ -3,28 +3,11 @@ import CampsiteListItem from './CampsiteListItem';
 import { Link } from 'react-router-dom';
 import PositionRelationship from '../libs/PositionRelationship';
 import shortenName from '../libs/shortenName'
-
-interface Campsite {
-  id: string;
-  name: string;
-  starred: boolean;
-  park: Park;
-  position: Position;
-}
+import { Position, Park, Campsite } from '../libs/types'
 
 interface CampsiteWithDistanceAndBearing extends Campsite {
   distance: number | undefined;
   bearing: number | undefined;
-}
-
-interface Park {
-  name: string;
-}
-
-// TODO: This is also defined elsewhere. Make there only one place
-interface Position {
-  lat: number;
-  lng: number;
 }
 
 interface CampsiteListProps {

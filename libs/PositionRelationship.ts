@@ -1,14 +1,11 @@
+import { Position } from './types'
+
 var toRad = function(deg: number): number {
   return (deg * Math.PI / 180);
 }
 
 var toDeg = function(rad: number): number {
   return (rad * 180 / Math.PI);
-}
-
-interface Position {
-  lat: number;
-  lng: number;
 }
 
 export default class PositionRelationship {
