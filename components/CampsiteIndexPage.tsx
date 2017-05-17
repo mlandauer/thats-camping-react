@@ -1,13 +1,16 @@
 import * as React from 'react';
 import CampsiteList from './CampsiteList'
 import Header from './Header'
-import { Position, Park } from '../libs/types'
+import { Position, Park, Access, Facilities } from '../libs/types'
 
 // Note that this is currently a little bit different than the Campsite type
 // defined in libs/types
 interface Campsite {
   id: string;
   name: string;
+  description: string;
+  access: Access;
+  facilities: Facilities;
   starred: boolean;
   position: Position;
   park_id: number;

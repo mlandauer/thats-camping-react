@@ -2,41 +2,7 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import simpleFormat from '../libs/simpleFormat'
 import { Star } from './Star'
-
-interface Park {
-  id: number;
-  name: string;
-}
-
-interface Access {
-  caravans: boolean;
-  trailers: boolean;
-  car: boolean;
-}
-
-interface Facilities {
-  toilets: string;
-  picnicTables: boolean;
-  barbecues: string;
-  showers: string;
-  drinkingWater: boolean;
-}
-
-interface Position {
-  lat: number;
-  lng: number;
-}
-
-interface Campsite {
-  id: string;
-  name: string;
-  starred: boolean;
-  description: string;
-  park: Park;
-  access: Access;
-  facilities: Facilities;
-  position: Position;
-}
+import { Position, Access, Facilities, Park, Campsite } from '../libs/types'
 
 interface CampsiteDetailProps {
   campsite: Campsite;
