@@ -1,15 +1,64 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import { Link } from 'react-router-dom';
 import simpleFormat from '../libs/simpleFormat'
 import { Star } from './Star'
 
-export default class CampsiteDetail extends React.Component {
+interface Park {
+  id: number;
+  name: string;
+}
+
+interface Access {
+  caravans: boolean;
+  trailers: boolean;
+  car: boolean;
+}
+
+interface Facilities {
+  toilets: string;
+  picnicTables: boolean;
+  barbecues: string;
+  showers: string;
+  drinkingWater: boolean;
+}
+
+interface Position {
+  lat: number;
+  lng: number;
+}
+
+interface Campsite {
+  id: string;
+  name: string;
+  starred: boolean;
+  description: string;
+  park: Park;
+  access: Access;
+  facilities: Facilities;
+  position: Position;
+}
+
+interface CampsiteDetailProps {
+  campsite: Campsite;
+  onStarClick: (id: string) => boolean;
+}
+
+interface Fields {
+  have: string[];
+  notHave: string[];
+}
+
+interface Field {
+  have?: string;
+  notHave?: string;
+}
+
+export default class CampsiteDetail extends React.Component<CampsiteDetailProps, {}> {
   getDescription() {
     return {__html: simpleFormat(this.props.campsite.description)};
   }
 
-  sentenceFromFields(fields, haveWord, notHaveWord) {
+  sentenceFromFields(fields: Fields, haveWord: string, notHaveWord: string): string {
     var have = fields.have;
     var notHave = fields.notHave;
 
@@ -26,19 +75,19 @@ export default class CampsiteDetail extends React.Component {
     return this.capitaliseFirstLetter(r)
   }
 
-  facilitiesText(facilities) {
+  facilitiesText(facilities: Facilities): string {
     return this.sentenceFromFields(this.facilitiesFields(facilities), "has", "no")
   }
 
-  accessText(access) {
+  accessText(access: Access): string {
     return this.sentenceFromFields(this.accessFields(access), "for", "not for")
   }
 
-  capitaliseFirstLetter(text) {
+  capitaliseFirstLetter(text: string): string {
     return text.charAt(0).toUpperCase() + text.slice(1)
   }
 
-  caravans(caravans) {
+  caravans(caravans: boolean) {
     switch(caravans) {
       case true:  return {"have":    "caravans"}
       case false: return {"notHave": "caravans"}
@@ -46,7 +95,7 @@ export default class CampsiteDetail extends React.Component {
     }
   }
 
-  trailers(trailers) {
+  trailers(trailers: boolean) {
     switch(trailers) {
       case true:  return {"have":    "trailers"}
       case false: return {"notHave": "trailers"}
@@ -54,7 +103,7 @@ export default class CampsiteDetail extends React.Component {
     }
   }
 
-  car(car) {
+  car(car: boolean) {
     switch(car) {
       case true:  return {"have":    "car camping"}
       case false: return {"notHave": "car camping"}
@@ -62,8 +111,8 @@ export default class CampsiteDetail extends React.Component {
     }
   }
 
-  accessFields(access) {
-    var r = {"have": [], "notHave": []}
+  accessFields(access: Access): Fields {
+    var r: Fields = {"have": [], "notHave": []}
     this.merge(r, this.caravans(access.caravans))
     this.merge(r, this.trailers(access.trailers))
     this.merge(r, this.car(access.car))
@@ -71,7 +120,7 @@ export default class CampsiteDetail extends React.Component {
   }
 
   // WARNING changes r
-  merge(r, t) {
+  merge(r: Fields, t: Field): Fields {
     // TODO Generalise this
     if (t["have"]) {
       r["have"].push(t["have"])
@@ -82,7 +131,7 @@ export default class CampsiteDetail extends React.Component {
     return r
   }
 
-  toilets(toilets) {
+  toilets(toilets: string) {
     switch(toilets) {
       case "flush":     return {"have":    "flush toilets"}
       case "non_flush": return {"have":    "non-flush toilets"}
@@ -91,7 +140,7 @@ export default class CampsiteDetail extends React.Component {
     }
   }
 
-  picnicTables(picnicTables) {
+  picnicTables(picnicTables: boolean) {
     switch(picnicTables) {
       case true:  return {"have":    "picnic tables"}
       case false: return {"notHave": "picnic tables"}
@@ -99,7 +148,7 @@ export default class CampsiteDetail extends React.Component {
     }
   }
 
-  barbecues(barbecues) {
+  barbecues(barbecues: string) {
     switch(barbecues) {
       // TODO: show whether you need to bring your own firewood elsewhere
       // Like "You will need to bring firewood (if you want to use the wood BBQs) and drinking water"
@@ -110,7 +159,7 @@ export default class CampsiteDetail extends React.Component {
     }
   }
 
-  showers(showers) {
+  showers(showers: string) {
     switch(showers) {
       case "hot":  return {"have":    "hot showers"}
       case "cold": return {"have":    "cold showers"}
@@ -119,7 +168,7 @@ export default class CampsiteDetail extends React.Component {
     }
   }
 
-  drinkingWater(drinkingWater) {
+  drinkingWater(drinkingWater: boolean) {
     switch(drinkingWater) {
       case true:  return {"have":    "drinking water"}
       case false: return {"notHave": "drinking water"}
@@ -127,8 +176,8 @@ export default class CampsiteDetail extends React.Component {
     }
   }
 
-  facilitiesFields(facilities) {
-    var r = {"have": [], "notHave": []}
+  facilitiesFields(facilities: Facilities): Fields {
+    let r : Fields = {"have": [], "notHave": []}
     this.merge(r, this.toilets(facilities.toilets))
     this.merge(r, this.picnicTables(facilities.picnicTables))
     this.merge(r, this.barbecues(facilities.barbecues))
@@ -137,7 +186,7 @@ export default class CampsiteDetail extends React.Component {
     return r;
   }
 
-  mapUrl() {
+  mapUrl(): string {
     return "https://maps.google.com/maps?" +
       "daddr=" +
       this.props.campsite.position.lat + "," + this.props.campsite.position.lng;
@@ -145,14 +194,14 @@ export default class CampsiteDetail extends React.Component {
 
   // Returns true if the "directions to campsite" button should be enabled
   // For this we need an internet connection and the campsite needs a location
-  directionsEnabled() {
+  directionsEnabled(): boolean {
     return (this.props.campsite.position.lat != undefined && this.props.campsite.position.lng != undefined && navigator.onLine)
   }
 
   render() {
     return (
       <div className="campsite-detail">
-        <Star starred={this.props.campsite.starred} onClick={() => {this.props.onStarClick(this.props.campsite.id)}}/>
+        <Star starred={this.props.campsite.starred} onClick={() => {return this.props.onStarClick(this.props.campsite.id)}}/>
         <h2>{this.props.campsite.name}</h2>
         <p>in <Link to={"/parks/" + this.props.campsite.park.id}>{this.props.campsite.park.name}</Link>.</p>
         <div dangerouslySetInnerHTML={this.getDescription()}/>
@@ -160,12 +209,12 @@ export default class CampsiteDetail extends React.Component {
         <p>{this.facilitiesText(this.props.campsite.facilities)}</p>
         <h2>Access</h2>
         <p>{this.accessText(this.props.campsite.access)}</p>
-        <a href={this.mapUrl()} className="directions btn btn-default" disabled={this.directionsEnabled() ? "" : "disabled"}>Directions to campsite</a>
+        <a href={this.mapUrl()} className="directions btn btn-default" disabled={!this.directionsEnabled()}>Directions to campsite</a>
       </div>
     )
   }
 
-  listAsText(list) {
+  listAsText(list: string[]): string {
     if (list.length == 0) {
       return null;
     }
@@ -176,22 +225,4 @@ export default class CampsiteDetail extends React.Component {
       return list.slice(0, -1).join(", ") + " and " + list[list.length - 1];
     }
   }
-}
-
-CampsiteDetail.propTypes = {
-  onStarClick: PropTypes.func.isRequired,
-  campsite: PropTypes.shape({
-    description: PropTypes.string.isRequired,
-    facilities: PropTypes.object.isRequired,
-    access: PropTypes.object.isRequired,
-    // TODO If position is not present then position should be null, not position.lat
-    position: PropTypes.shape({
-      lat: PropTypes.number,
-      lng: PropTypes.number
-    }).isRequired,
-    park: PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired
-    }).isRequired
-  }).isRequired,
 }
