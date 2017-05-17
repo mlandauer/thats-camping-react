@@ -1,17 +1,56 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import CampsiteListItem from './CampsiteListItem';
 import { Link } from 'react-router-dom';
 import PositionRelationship from '../libs/PositionRelationship';
 import shortenName from '../libs/shortenName'
 
-export default class CampsiteList extends React.Component {
-  sortCampsitesArrayByDistance(campsites, position) {
+interface Campsite {
+  id: string;
+  name: string;
+  starred: boolean;
+  park: Park;
+  position: Position;
+}
+
+// TODO: Extend Campsite rather than duplicating everything
+interface CampsiteWithDistanceAndBearing {
+  id: string;
+  name: string;
+  starred: boolean;
+  park: Park;
+  position: Position;
+  distance: number | undefined;
+  bearing: number | undefined;
+}
+
+interface Park {
+  name: string;
+}
+
+// TODO: This is also defined elsewhere. Make there only one place
+interface Position {
+  lat: number;
+  lng: number;
+}
+
+interface CampsiteListProps {
+  campsites: Campsite[];
+  parks: Park[];
+  position: Position;
+}
+
+export default class CampsiteList extends React.Component<CampsiteListProps, {}> {
+  sortCampsitesArrayByDistance(campsites: Campsite[], position: Position | null): CampsiteWithDistanceAndBearing[] {
     if (position == null) {
       // TODO: Sort campsites by name
+      var campsites2 = campsites.map(function(c): CampsiteWithDistanceAndBearing {
+        return Object.assign({}, c, {
+          distance: undefined,
+          bearing: undefined})
+      });
     } else {
       // Add distance and bearing information
-      var campsites = campsites.map(function(c) {
+      var campsites2 = campsites.map(function(c): CampsiteWithDistanceAndBearing {
         let positions = new PositionRelationship(c.position, position)
         return Object.assign({}, c, {
           distance: positions.distanceInMetres(),
@@ -19,7 +58,7 @@ export default class CampsiteList extends React.Component {
       });
 
       // Sort campsites by distance
-      var campsites = campsites.sort(function(a, b) {
+      var campsites2 = campsites2.sort(function(a: CampsiteWithDistanceAndBearing, b: CampsiteWithDistanceAndBearing) {
         if (a.starred == b.starred) {
           if (a.distance == undefined && b.distance == undefined) {
             return a.name.localeCompare(b.name);
@@ -46,7 +85,7 @@ export default class CampsiteList extends React.Component {
         }
       });
     }
-    return campsites;
+    return campsites2;
   }
 
   render() {
@@ -70,10 +109,4 @@ export default class CampsiteList extends React.Component {
       </ul>
     )
   }
-}
-
-
-CampsiteList.propTypes = {
-  campsites: PropTypes.arrayOf(PropTypes.object).isRequired,
-  position: PropTypes.object
 }
