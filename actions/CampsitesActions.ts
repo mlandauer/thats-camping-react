@@ -1,8 +1,14 @@
-import fetch from 'isomorphic-fetch'
+import * as fetch from 'isomorphic-fetch'
 import * as types from '../constants/ActionTypes'
 import { addParks } from './ParksActions'
 
-export function addCampsites(campsites) {
+// This is obviously different than other definitions
+// TODO: Fix this
+interface Campsite {
+
+}
+
+export function addCampsites(campsites: Campsite[]) {
   return {
     type: types.ADD_CAMPSITES,
     campsites: campsites
@@ -10,7 +16,7 @@ export function addCampsites(campsites) {
 }
 
 export function startSync() {
-  return dispatch => {
+  return (dispatch: ((action: {}) => void)) => {
     // TODO Also dispatch something immediately to let the user know something is going on
     fetch('/api/data.json')
       .then(response => response.json())

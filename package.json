@@ -8,9 +8,11 @@
     "url": "https://github.com/mlandauer/thats-camping-react"
   },
   "dependencies": {
+    "@types/isomorphic-fetch": "0.0.34",
     "@types/react": "^15.0.24",
     "@types/react-dom": "^15.5.0",
     "@types/react-router-dom": "^4.0.4",
+    "@types/redux": "^3.6.0",
     "awesome-typescript-loader": "^3.1.3",
     "babel-core": "^6.0.0",
     "babel-loader": "^7.0.0",
