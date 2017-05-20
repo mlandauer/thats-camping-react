@@ -1,10 +1,21 @@
 import { ADD_CAMPSITES } from '../constants/ActionTypes'
 
-export default function campsites(state = {}, action) {
+interface Campsite {
+  id: string;
+}
+
+interface CampsitesAction {
+  type: string;
+  campsites: Campsite[];
+}
+
+type CampsitesState = {[index:string] : Campsite};
+
+export default function campsites(state: CampsitesState = {}, action: CampsitesAction): CampsitesState {
   switch(action.type) {
     case ADD_CAMPSITES:
       // Turn array in campsites into hash
-      let c = {}
+      let c: CampsitesState = {}
       action.campsites.forEach((campsite) => {
         c[campsite.id] = campsite
       })
