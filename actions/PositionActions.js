@@ -1,4 +1,3 @@
-import PromisedLocation from 'promised-location'
 import * as types from '../constants/ActionTypes'
 
 export function updatePosition(lat, lng) {
@@ -11,7 +10,9 @@ export function updatePosition(lat, lng) {
 export function startUpdatePosition() {
   return dispatch => {
     // TODO Also dispatch something immediately to let the user know something is going on
-    let locator = new PromisedLocation({enableHighAccuracy: true})
+    let locator = new Promise((resolve, reject) => {
+			navigator.geolocation.getCurrentPosition(resolve, reject, {enableHighAccuracy: true});
+		})
     locator.then((location) => {
       dispatch(updatePosition(location.coords.latitude, location.coords.longitude))
     })
