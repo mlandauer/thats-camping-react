@@ -9,9 +9,9 @@ interface ParksAction {
   parks: Park[];
 }
 
-type ParksState = {[index:number]: Park}
+export type ParksState = {[index:number]: Park}
 
-export default function parks(state: ParksState = {}, action: ParksAction): ParksState {
+export function parks(state: ParksState = {}, action: ParksAction): ParksState {
   switch(action.type) {
     case ADD_PARKS:
       // Turn array in parks into hash

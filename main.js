@@ -31,7 +31,7 @@ import App from './components/App';
 import CampsiteDetailPage from './components/CampsiteDetailPage';
 import ParkDetailPage from './components/ParkDetailPage';
 import AboutPage from './components/AboutPage'
-import reducer from './reducers'
+import { reducer } from './reducers'
 
 import attachFastClick from 'fastclick'
 attachFastClick.attach(document.body)

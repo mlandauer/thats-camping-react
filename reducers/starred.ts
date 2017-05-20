@@ -1,13 +1,13 @@
 import { TOGGLE_STARRED } from '../constants/ActionTypes'
 
-type StarredState = number[]
+export type StarredState = number[]
 
 interface StarredAction {
   type: string;
   campsite_id: number;
 }
 
-export default function starred(state: StarredState = [], action: StarredAction): StarredState {
+export function starred(state: StarredState = [], action: StarredAction): StarredState {
   switch(action.type) {
     case TOGGLE_STARRED:
       // TODO This all is very long winded. No doubt there is a more elegant way
