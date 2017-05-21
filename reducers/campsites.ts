@@ -1,7 +1,15 @@
 import { ADD_CAMPSITES } from '../constants/ActionTypes'
+import { Access, Facilities, Park, Position } from '../libs/types'
 
 interface Campsite {
   id: number;
+  description: string;
+  park_id: number;
+  name: string;
+  park: Park;
+  access: Access;
+  facilities: Facilities;
+  position: Position;
 }
 
 interface CampsitesAction {
@@ -9,7 +17,7 @@ interface CampsitesAction {
   campsites: Campsite[];
 }
 
-export type CampsitesState = {[index:string] : Campsite};
+export type CampsitesState = {[index:number] : Campsite};
 
 export function campsites(state: CampsitesState = {}, action: CampsitesAction): CampsitesState {
   switch(action.type) {

@@ -5,6 +5,7 @@ import shortenName from '../libs/shortenName'
 import { Position, Campsite } from '../libs/types'
 
 interface Park {
+  id: number;
   name: string;
   description: string;
   campsite_ids: number[];

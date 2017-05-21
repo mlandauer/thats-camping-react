@@ -17,6 +17,8 @@ export interface Position {
 export interface Park {
   id: number;
   name: string;
+  description: string;
+  campsite_ids: number[];
 }
 
 export interface Access {

@@ -18,13 +18,14 @@ interface Campsite {
 
 interface Park {
   id: number;
+  description: string;
   name: string;
+  campsite_ids: number[];
 }
 
 interface CampsiteDetailPageProps {
   campsites: Campsite[];
   id: number;
-  park: Park;
   parks: Park[];
   onStarClick: (id: number) => boolean;
 }

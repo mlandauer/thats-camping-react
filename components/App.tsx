@@ -1,5 +1,5 @@
-import React from 'react';
-import { connect } from 'react-redux'
+import * as React from 'react';
+import { connect, Dispatch } from 'react-redux'
 import { addParks } from '../actions/ParksActions'
 import { addCampsites, startSync } from '../actions/CampsitesActions'
 import { startUpdatePosition } from '../actions/PositionActions'
@@ -9,14 +9,45 @@ import { Route, Redirect } from 'react-router-dom';
 import AboutPage from './AboutPage'
 import CampsiteDetailPage from './CampsiteDetailPage';
 import ParkDetailPage from './ParkDetailPage';
+import { State } from '../reducers/index'
+import { Position, Access, Facilities, Park } from '../libs/types'
 
-export class App extends React.Component {
+interface AppAction {
+
+}
+
+// Note that this is currently a little bit different than the Campsite type
+// defined in libs/types
+interface Campsite {
+  id: number;
+  description: string;
+  park_id: number;
+  name: string;
+  park: Park;
+  access: Access;
+  facilities: Facilities;
+  position: Position;
+}
+
+interface CampsiteWithStarred extends Campsite {
+  starred: boolean;
+}
+
+interface AppProps {
+  dispatch: (action: AppAction) => void;
+  onStarClick: (id: number) => boolean;
+  position: Position;
+  campsites: CampsiteWithStarred[];
+  parks: Park[];
+}
+
+export class App extends React.Component<any, any> {
   componentWillMount() {
     this.props.dispatch(startSync())
     this.props.dispatch(startUpdatePosition())
   }
 
-  onStarClick(id) {
+  onStarClick(id: number) {
     console.log("The star for campsite " + id + " has been clicked!")
   }
 
@@ -29,16 +60,17 @@ export class App extends React.Component {
     let campsites = this.props.campsites;
     let parks = this.props.parks;
 
-    let fullscreen = window.navigator.standalone
+    // TODO: Fix this
+    //let fullscreen = window.navigator.standalone
+    let fullscreen = false
+
     return (
       <div id="app" className={fullscreen ? 'fullscreen' : null}>
-        <Route exact path="/">
-          <Redirect to="/campsites" />
-        </Route>
+        <Redirect from="/" to="/campsites" />
         <Route exact path="/campsites" component={() => (<CampsiteIndexPage campsites={campsites} parks={parks} position={position}/>)}/>
         <Route path="/campsites/:id" component={({match}) => (<CampsiteDetailPage id={match.params.id} campsites={campsites} parks={parks} onStarClick={onStarClick}/>)} />
         <Route path="/parks/:id" component={({match}) => (<ParkDetailPage id={match.params.id} campsites={campsites} parks={parks} position={position}/>)}/>
-        <Route path="/about" component={AboutPage} />
+        <Route path="/about" component={({match}) => (<AboutPage/>)} />
       </div>
     )
   }
@@ -46,24 +78,24 @@ export class App extends React.Component {
 
 // Which props do we want to inject, given the global state?
 // Note: use https://github.com/faassen/reselect for better performance.
-function mapStateToProps(state) {
+function mapStateToProps(state: State) {
   // Put the star state directly into each campsite object to make things easier
   // elsewhere
   // Ugh. This is all fairly horrible
-  let new_campsites = {}
+  let new_campsites : {[index:number]: CampsiteWithStarred} = {}
   for (var id in state.campsites) {
     // Don't want to use strict equality (with indexOf) as a workaround
-    let i = state.starred.findIndex((v) => {return v == id})
+    let i = state.starred.findIndex((v) => {return v.toString() == id})
     let starred = i != -1
     new_campsites[id] = Object.assign({}, state.campsites[id], {starred: starred})
   }
   return Object.assign({}, state, {campsites: new_campsites})
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch: Dispatch<State>) => {
   return {
     dispatch,
-    onStarClick: (id) => {
+    onStarClick: (id: number) => {
       dispatch(toggleStarredCampsite(id))
     }
   }
