@@ -1,5 +1,5 @@
 export interface Campsite {
-  id: string;
+  id: number;
   name: string;
   starred: boolean;
   description: string;

@@ -6,7 +6,7 @@ import { Position, Access, Facilities, Park, Campsite } from '../libs/types'
 
 interface CampsiteDetailProps {
   campsite: Campsite;
-  onStarClick: (id: string) => boolean;
+  onStarClick: (id: number) => boolean;
 }
 
 interface Fields {

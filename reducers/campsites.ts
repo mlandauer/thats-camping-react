@@ -1,7 +1,7 @@
 import { ADD_CAMPSITES } from '../constants/ActionTypes'
 
 interface Campsite {
-  id: string;
+  id: number;
 }
 
 interface CampsitesAction {

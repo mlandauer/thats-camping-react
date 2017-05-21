@@ -5,7 +5,7 @@ import shortenName from '../libs/shortenName'
 import { Access, Facilities, Position } from '../libs/types'
 
 interface Campsite {
-  id: string;
+  id: number;
   starred: boolean;
   description: string;
   park_id: number;
@@ -26,7 +26,7 @@ interface CampsiteDetailPageProps {
   id: number;
   park: Park;
   parks: Park[];
-  onStarClick: (id: string) => boolean;
+  onStarClick: (id: number) => boolean;
 }
 
 class CampsiteDetailPage extends React.Component<CampsiteDetailPageProps, {}> {

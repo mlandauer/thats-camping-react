@@ -6,7 +6,7 @@ import { Position, Park, Access, Facilities } from '../libs/types'
 // Note that this is currently a little bit different than the Campsite type
 // defined in libs/types
 interface Campsite {
-  id: string;
+  id: number;
   name: string;
   description: string;
   access: Access;
