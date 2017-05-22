@@ -1,5 +1,5 @@
 import expect from 'expect'
-import reducer from '../../reducers/parks'
+import { parks as reducer } from '../../reducers/parks'
 import * as types from '../../constants/ActionTypes'
 
 describe('parks reducer', () => {
