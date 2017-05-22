@@ -21,6 +21,7 @@ ever happen camping?) and you have no phone signal.
 
 To run:
 ```
+nvm use
 npm install
 npm run development
 ```
