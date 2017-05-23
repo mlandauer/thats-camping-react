@@ -1,6 +1,5 @@
 import * as expect from 'expect'
 import { parks as reducer } from '../../reducers/parks'
-import * as types from '../../constants/ActionTypes'
 
 describe('parks reducer', () => {
   it('should return the initial state', () => {
@@ -25,7 +24,7 @@ describe('parks reducer', () => {
 
     expect(
       reducer({1: park1}, {
-        type: types.ADD_PARKS,
+        type: 'ADD_PARKS',
         parks: [park2, park3]
       })
     ).toEqual({1: park1, 2: park2, 3: park3})

@@ -1,5 +1,4 @@
 import * as fetch from 'isomorphic-fetch'
-import * as types from '../constants/ActionTypes'
 import { addParks } from './ParksActions'
 
 // This is obviously different than other definitions
@@ -10,7 +9,7 @@ interface Campsite {
 
 export function addCampsites(campsites: Campsite[]) {
   return {
-    type: types.ADD_CAMPSITES,
+    type: 'ADD_CAMPSITES',
     campsites: campsites
   }
 }

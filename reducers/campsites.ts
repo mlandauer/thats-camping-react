@@ -1,4 +1,3 @@
-import { ADD_CAMPSITES } from '../constants/ActionTypes'
 import { Access, Facilities, Park, Position } from '../libs/types'
 
 interface Campsite {
@@ -27,7 +26,7 @@ export type CampsitesState = {[index:number] : Campsite};
 
 export function campsites(state: CampsitesState = {}, action: CampsitesAction): CampsitesState {
   switch(action.type) {
-    case ADD_CAMPSITES:
+    case 'ADD_CAMPSITES':
       // Turn array in campsites into hash
       let c: CampsitesState = {}
       action.campsites.forEach((campsite) => {

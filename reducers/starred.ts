@@ -1,5 +1,3 @@
-import { TOGGLE_STARRED } from '../constants/ActionTypes'
-
 export type StarredState = number[]
 
 type StarredAction = ToggleStarredAction | NoopAction;
@@ -15,7 +13,7 @@ interface ToggleStarredAction {
 
 export function starred(state: StarredState = [], action: StarredAction): StarredState {
   switch(action.type) {
-    case TOGGLE_STARRED:
+    case 'TOGGLE_STARRED':
       // TODO This all is very long winded. No doubt there is a more elegant way
       const i = state.find((v) => {return v == action.campsite_id})
       if (i == undefined) {

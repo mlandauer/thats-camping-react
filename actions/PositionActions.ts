@@ -1,8 +1,6 @@
-import * as types from '../constants/ActionTypes'
-
 export function updatePosition(lat: number, lng: number) {
   return {
-    type: types.UPDATE_POSITION,
+    type: 'UPDATE_POSITION',
     position: {lat: lat, lng: lng}
   }
 }

@@ -1,6 +1,5 @@
 import * as expect from 'expect'
 import { campsites as reducer } from '../../reducers/campsites'
-import * as types from '../../constants/ActionTypes'
 import { Park, Position } from '../../libs/types'
 
 describe('campsites reducer', () => {
@@ -45,7 +44,7 @@ describe('campsites reducer', () => {
 
     expect(
       reducer({1: campsite1}, {
-        type: types.ADD_CAMPSITES,
+        type: 'ADD_CAMPSITES',
         campsites: [campsite2, campsite3]
       })
     ).toEqual({1: campsite1, 2: campsite2, 3: campsite3})

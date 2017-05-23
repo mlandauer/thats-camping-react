@@ -1,5 +1,3 @@
-import { ADD_PARKS } from '../constants/ActionTypes'
-
 interface Park {
   id: number;
 }
@@ -19,7 +17,7 @@ export type ParksState = {[index:number]: Park}
 
 export function parks(state: ParksState = {}, action: ParksAction): ParksState {
   switch(action.type) {
-    case ADD_PARKS:
+    case 'ADD_PARKS':
       // Turn array in parks into hash
       let p: ParksState = {}
       action.parks.forEach((park) => {

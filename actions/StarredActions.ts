@@ -1,8 +1,6 @@
-import * as types from '../constants/ActionTypes'
-
 export function toggleStarredCampsite(campsite_id: number) {
   return {
-    type: types.TOGGLE_STARRED,
+    type: 'TOGGLE_STARRED',
     campsite_id: campsite_id
   }
 }
