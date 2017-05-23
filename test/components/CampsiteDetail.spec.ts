@@ -1,11 +1,11 @@
-import expect from 'expect'
+import * as expect from 'expect'
 import CampsiteDetail from '../../components/CampsiteDetail'
 
 describe('<CampsiteDetail />', () => {
   describe("access", () => {
     it('accessText', () => {
       var c = new CampsiteDetail
-      expect(c.accessText({caravans: true})).toEqual("For caravans")
+      expect(c.accessText({caravans: true, trailers: undefined, car: undefined})).toEqual("For caravans")
     })
 
     it('accessText', () => {
@@ -57,25 +57,25 @@ describe('<CampsiteDetail />', () => {
   describe("facilities", () => {
     it('facilitiesText', () => {
       var c = new CampsiteDetail
-      expect(c.facilitiesText({toilets: "flush", picnicTables: true, drinkingWater: true}))
+      expect(c.facilitiesText({toilets: "flush", picnicTables: true, drinkingWater: true, barbecues: undefined, showers: undefined}))
         .toEqual("Has flush toilets, picnic tables and drinking water")
     })
 
     it('facilitiesText', () => {
       var c = new CampsiteDetail
-      expect(c.facilitiesText({toilets: "flush", picnicTables: false, drinkingWater: true}))
+      expect(c.facilitiesText({toilets: "flush", picnicTables: false, drinkingWater: true, barbecues: undefined, showers: undefined}))
         .toEqual("Has flush toilets and drinking water but no picnic tables")
     })
 
     it('facilitiesText', () => {
       var c = new CampsiteDetail
-      expect(c.facilitiesText({toilets: "flush", picnicTables: false, drinkingWater: false}))
+      expect(c.facilitiesText({toilets: "flush", picnicTables: false, drinkingWater: false, barbecues: undefined, showers: undefined}))
         .toEqual("Has flush toilets but no picnic tables and drinking water")
     })
 
     it('facilitiesText', () => {
       var c = new CampsiteDetail
-      expect(c.facilitiesText({toilets: "none", picnicTables: false, drinkingWater: false}))
+      expect(c.facilitiesText({toilets: "none", picnicTables: false, drinkingWater: false, barbecues: undefined, showers: undefined}))
         .toEqual("No toilets, picnic tables and drinking water")
     })
 
