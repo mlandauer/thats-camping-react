@@ -2,8 +2,14 @@ import { TOGGLE_STARRED } from '../constants/ActionTypes'
 
 export type StarredState = number[]
 
-interface StarredAction {
-  type: string;
+type StarredAction = ToggleStarredAction | NoopAction;
+
+interface NoopAction {
+  type: 'NOOP'
+}
+
+interface ToggleStarredAction {
+  type: 'TOGGLE_STARRED';
   campsite_id: number;
 }
 
