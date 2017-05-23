@@ -65,7 +65,7 @@
     "watchify": "^3.6.1"
   },
   "scripts": {
-    "test": "mocha -r ts-node/register -r babel-core/register test/**/*.js test/**/*.ts test/**/*.tsx",
+    "test": "mocha -r ts-node/register -r babel-core/register test/**/*.ts test/**/*.tsx",
     "test:watch": "npm test -- --watch",
     "watch": "webpack --watch",
     "webpack": "webpack",

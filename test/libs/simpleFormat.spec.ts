@@ -1,4 +1,4 @@
-import expect from 'expect'
+import * as expect from 'expect'
 import simpleFormat from '../../libs/simpleFormat'
 
 describe('simpleFormat', () => {
