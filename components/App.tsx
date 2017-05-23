@@ -41,6 +41,18 @@ interface AppProps {
   parks: Park[];
 }
 
+// Doing this to workaround that Navigator type doesn't seem to have
+// standalone on it which is used later on
+interface ExtendedNavigator extends Navigator {
+  standalone: boolean;
+}
+
+interface ExtendedWindow extends Window {
+  navigator: ExtendedNavigator;
+}
+
+declare var window: ExtendedWindow;
+
 export class App extends React.Component<any, any> {
   componentWillMount() {
     this.props.dispatch(startSync())
@@ -60,9 +72,7 @@ export class App extends React.Component<any, any> {
     let campsites = this.props.campsites;
     let parks = this.props.parks;
 
-    // TODO: Fix this
-    //let fullscreen = window.navigator.standalone
-    let fullscreen = false
+    let fullscreen = window.navigator.standalone
 
     return (
       <div id="app" className={fullscreen ? 'fullscreen' : null}>
