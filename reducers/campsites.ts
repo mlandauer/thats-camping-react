@@ -12,8 +12,14 @@ interface Campsite {
   position: Position;
 }
 
-interface CampsitesAction {
-  type: string;
+type CampsitesAction = AddCampsitesAction | NoopAction;
+
+interface NoopAction {
+  type: 'NOOP'
+}
+
+interface AddCampsitesAction {
+  type: 'ADD_CAMPSITES';
   campsites: Campsite[];
 }
 
