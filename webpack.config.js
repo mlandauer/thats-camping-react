@@ -52,7 +52,7 @@ if (production) {
 }
 
 module.exports = {
-    entry: "./main.js",
+    entry: "./main",
     output: {
         path: path.resolve(__dirname + '/public'),
         filename: "bundle.js"
