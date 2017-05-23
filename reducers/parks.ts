@@ -4,8 +4,14 @@ interface Park {
   id: number;
 }
 
-interface ParksAction {
-  type: string;
+type ParksAction = AddParksAction | NoopAction;
+
+interface NoopAction {
+  type: 'NOOP';
+}
+
+interface AddParksAction {
+  type: 'ADD_PARKS';
   parks: Park[];
 }
 
