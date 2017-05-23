@@ -3,8 +3,14 @@ import { Position } from '../libs/types'
 
 export type PositionState = Position | null
 
-interface PositionAction {
-  type: string;
+type PositionAction = UpdatePositionAction | NoopAction;
+
+interface NoopAction {
+  type: 'NOOP';
+}
+
+interface UpdatePositionAction {
+  type: 'UPDATE_POSITION';
   position: Position;
 }
 
