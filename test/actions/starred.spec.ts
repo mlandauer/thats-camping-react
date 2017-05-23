@@ -1,4 +1,4 @@
-import expect from 'expect'
+import * as expect from 'expect'
 import * as actions from '../../actions/StarredActions'
 import * as types from '../../constants/ActionTypes'
 
