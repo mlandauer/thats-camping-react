@@ -1,7 +1,7 @@
 // main.js
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { HashRouter, Route, IndexRoute, Redirect } from 'react-router-dom';
+import { HashRouter, Route, Redirect } from 'react-router-dom';
 import { createStore, applyMiddleware, compose } from 'redux'
 import { Provider } from 'react-redux'
 import thunkMiddleware from 'redux-thunk'
