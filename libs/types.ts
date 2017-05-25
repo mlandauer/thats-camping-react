@@ -17,6 +17,10 @@ export interface ParkOriginal {
   campsite_ids: number[];
 }
 
+export interface Park extends ParkOriginal {
+  campsites: Campsite[];
+}
+
 export interface CampsiteWithStarred extends CampsiteOriginal {
   starred: boolean;
 }

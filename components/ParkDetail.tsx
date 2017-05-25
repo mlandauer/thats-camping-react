@@ -1,14 +1,7 @@
 import * as React from 'react';
 import simpleFormat from '../libs/simpleFormat'
 import CampsiteList from './CampsiteList'
-import { Position, Campsite } from '../libs/types'
-
-// Note that this Park is different at the moment than the one in libs/types
-interface Park {
-  description: string;
-  name: string;
-  campsites: Campsite[];
-}
+import { Position, Campsite, Park } from '../libs/types'
 
 interface ParkDetailProps {
   position: Position;
