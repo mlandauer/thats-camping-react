@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import simpleFormat from '../libs/simpleFormat'
 import { Star } from './Star'
-import { Position, Access, Facilities, Park, Campsite } from '../libs/types'
+import { Position, Access, Facilities, ParkOriginal, Campsite } from '../libs/types'
 
 interface CampsiteDetailProps {
   campsite: Campsite;

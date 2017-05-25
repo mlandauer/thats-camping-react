@@ -1,4 +1,4 @@
-import { Access, Facilities, Park, Position, CampsiteOriginal } from '../libs/types'
+import { CampsiteOriginal } from '../libs/types'
 import { CampsitesAction } from '../actions/CampsitesActions'
 
 export type CampsitesState = {[index:number] : CampsiteOriginal};

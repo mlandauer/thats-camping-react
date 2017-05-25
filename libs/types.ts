@@ -9,24 +9,25 @@ export interface CampsiteOriginal {
   park_id: number;
 }
 
+// This is the form of the park data as it is in data_simplified.json
+export interface ParkOriginal {
+  id: number;
+  name: string;
+  description: string;
+  campsite_ids: number[];
+}
+
 export interface CampsiteWithStarred extends CampsiteOriginal {
   starred: boolean;
 }
 
 export interface Campsite extends CampsiteWithStarred {
-  park: Park;
+  park: ParkOriginal;
 }
 
 export interface Position {
   lat: number;
   lng: number;
-}
-
-export interface Park {
-  id: number;
-  name: string;
-  description: string;
-  campsite_ids: number[];
 }
 
 export interface Access {

@@ -10,7 +10,7 @@ import AboutPage from './AboutPage'
 import CampsiteDetailPage from './CampsiteDetailPage';
 import ParkDetailPage from './ParkDetailPage';
 import { State } from '../reducers/index'
-import { Position, Access, Facilities, Park, CampsiteOriginal, CampsiteWithStarred } from '../libs/types'
+import { Position, Access, Facilities, ParkOriginal, CampsiteOriginal, CampsiteWithStarred } from '../libs/types'
 
 interface AppAction {
 
@@ -21,7 +21,7 @@ interface AppProps {
   onStarClick: (id: number) => boolean;
   position: Position;
   campsites: CampsiteWithStarred[];
-  parks: Park[];
+  parks: ParkOriginal[];
 }
 
 // Doing this to workaround that Navigator type doesn't seem to have
