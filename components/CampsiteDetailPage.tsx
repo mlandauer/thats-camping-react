@@ -2,19 +2,12 @@ import * as React from 'react'
 import Header from './Header'
 import CampsiteDetail from './CampsiteDetail';
 import shortenName from '../libs/shortenName'
-import { Access, Facilities, Position, CampsiteWithStarred } from '../libs/types'
-
-interface Park {
-  id: number;
-  description: string;
-  name: string;
-  campsite_ids: number[];
-}
+import { Access, Facilities, Position, CampsiteWithStarred, ParkOriginal } from '../libs/types'
 
 interface CampsiteDetailPageProps {
   campsites: CampsiteWithStarred[];
   id: number;
-  parks: Park[];
+  parks: ParkOriginal[];
   onStarClick: (id: number) => boolean;
 }
 
