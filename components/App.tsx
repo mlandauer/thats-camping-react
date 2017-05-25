@@ -23,7 +23,6 @@ interface Campsite {
   description: string;
   park_id: number;
   name: string;
-  park: Park;
   access: Access;
   facilities: Facilities;
   position: Position;

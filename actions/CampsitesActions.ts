@@ -2,7 +2,18 @@ import * as fetch from 'isomorphic-fetch'
 import { addParks } from './ParksActions'
 import { CampsiteOriginal } from '../libs/types'
 
-export function addCampsites(campsites: CampsiteOriginal[]) {
+interface NoopAction {
+  type: 'NOOP'
+}
+
+interface AddCampsitesAction {
+  type: 'ADD_CAMPSITES';
+  campsites: CampsiteOriginal[];
+}
+
+export type CampsitesAction = AddCampsitesAction | NoopAction;
+
+export function addCampsites(campsites: CampsiteOriginal[]): CampsitesAction {
   return {
     type: 'ADD_CAMPSITES',
     campsites: campsites

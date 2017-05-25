@@ -1,28 +1,7 @@
-import { Access, Facilities, Park, Position } from '../libs/types'
+import { Access, Facilities, Park, Position, CampsiteOriginal } from '../libs/types'
+import { CampsitesAction } from '../actions/CampsitesActions'
 
-interface Campsite {
-  id: number;
-  description: string;
-  park_id: number;
-  name: string;
-  park: Park;
-  access: Access;
-  facilities: Facilities;
-  position: Position;
-}
-
-type CampsitesAction = AddCampsitesAction | NoopAction;
-
-interface NoopAction {
-  type: 'NOOP'
-}
-
-interface AddCampsitesAction {
-  type: 'ADD_CAMPSITES';
-  campsites: Campsite[];
-}
-
-export type CampsitesState = {[index:number] : Campsite};
+export type CampsitesState = {[index:number] : CampsiteOriginal};
 
 export function campsites(state: CampsitesState = {}, action: CampsitesAction): CampsitesState {
   switch(action.type) {
