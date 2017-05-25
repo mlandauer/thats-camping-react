@@ -1,10 +1,17 @@
-// This is obviously a different definition than Park elsewhere.
-// TODO: Change this
-interface Park {
+import { ParkOriginal } from '../libs/types'
 
+export type ParksAction = AddParksAction | NoopAction;
+
+interface NoopAction {
+  type: 'NOOP';
 }
 
-export function addParks(parks: Park[]) {
+interface AddParksAction {
+  type: 'ADD_PARKS';
+  parks: ParkOriginal[];
+}
+
+export function addParks(parks: ParkOriginal[]): ParksAction {
   return {
     type: 'ADD_PARKS',
     parks: parks

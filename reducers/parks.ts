@@ -1,16 +1,7 @@
+import { ParksAction } from '../actions/ParksActions'
+
 interface Park {
   id: number;
-}
-
-type ParksAction = AddParksAction | NoopAction;
-
-interface NoopAction {
-  type: 'NOOP';
-}
-
-interface AddParksAction {
-  type: 'ADD_PARKS';
-  parks: Park[];
 }
 
 export type ParksState = {[index:number]: Park}
