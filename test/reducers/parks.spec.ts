@@ -11,15 +11,21 @@ describe('parks reducer', () => {
   it('should handle ADD_PARKS with existing parks', () => {
     const park1 = {
       id: 1,
-      name: "Blue Mountains National Park"
+      name: "Blue Mountains National Park",
+      description: "Fancy",
+      campsite_ids: <number[]>[]
     }
     const park2 = {
       id: 2,
-      name: "South East Forest National Park"
+      name: "South East Forest National Park",
+      description: "Fancy",
+      campsite_ids: <number[]>[]
     }
     const park3 = {
       id: 3,
-      name: "Oxley Wild Rivers National Park"
+      name: "Oxley Wild Rivers National Park",
+      description: "Fancy",
+      campsite_ids: <number[]>[]
     }
 
     expect(

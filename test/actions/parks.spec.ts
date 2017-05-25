@@ -5,7 +5,9 @@ describe('parks actions', () => {
   it('addParks', () => {
     const park = {
       id: 1,
-      name: "Blue Mountains National Park"
+      name: "Blue Mountains National Park",
+      description: "Pretty Fancy",
+      campsite_ids: <number[]>[]
     }
     const expectedAction = {
       type: 'ADD_PARKS',
