@@ -10,14 +10,10 @@ import AboutPage from './AboutPage'
 import CampsiteDetailPage from './CampsiteDetailPage';
 import ParkDetailPage from './ParkDetailPage';
 import { State } from '../reducers/index'
-import { Position, Access, Facilities, Park, CampsiteOriginal } from '../libs/types'
+import { Position, Access, Facilities, Park, CampsiteOriginal, CampsiteWithStarred } from '../libs/types'
 
 interface AppAction {
 
-}
-
-interface CampsiteWithStarred extends CampsiteOriginal {
-  starred: boolean;
 }
 
 interface AppProps {

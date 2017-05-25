@@ -9,14 +9,11 @@ export interface CampsiteOriginal {
   park_id: number;
 }
 
-export interface Campsite {
-  id: number;
-  name: string;
-  description: string;
-  position: Position;
-  access: Access;
-  facilities: Facilities;
+export interface CampsiteWithStarred extends CampsiteOriginal {
   starred: boolean;
+}
+
+export interface Campsite extends CampsiteWithStarred {
   park: Park;
 }
 
