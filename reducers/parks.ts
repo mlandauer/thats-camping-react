@@ -1,10 +1,7 @@
 import { ParksAction } from '../actions/ParksActions'
+import { ParkOriginal } from '../libs/types'
 
-interface Park {
-  id: number;
-}
-
-export type ParksState = {[index:number]: Park}
+export type ParksState = {[index:number]: ParkOriginal}
 
 export function parks(state: ParksState = {}, action: ParksAction): ParksState {
   switch(action.type) {
