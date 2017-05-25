@@ -1,15 +1,6 @@
+import { StarredAction } from '../actions/StarredActions'
+
 export type StarredState = number[]
-
-type StarredAction = ToggleStarredAction | NoopAction;
-
-interface NoopAction {
-  type: 'NOOP'
-}
-
-interface ToggleStarredAction {
-  type: 'TOGGLE_STARRED';
-  campsite_id: number;
-}
 
 export function starred(state: StarredState = [], action: StarredAction): StarredState {
   switch(action.type) {
