@@ -10,25 +10,13 @@ import AboutPage from './AboutPage'
 import CampsiteDetailPage from './CampsiteDetailPage';
 import ParkDetailPage from './ParkDetailPage';
 import { State } from '../reducers/index'
-import { Position, Access, Facilities, Park } from '../libs/types'
+import { Position, Access, Facilities, Park, CampsiteOriginal } from '../libs/types'
 
 interface AppAction {
 
 }
 
-// Note that this is currently a little bit different than the Campsite type
-// defined in libs/types
-interface Campsite {
-  id: number;
-  description: string;
-  park_id: number;
-  name: string;
-  access: Access;
-  facilities: Facilities;
-  position: Position;
-}
-
-interface CampsiteWithStarred extends Campsite {
+interface CampsiteWithStarred extends CampsiteOriginal {
   starred: boolean;
 }
 
