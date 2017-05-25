@@ -1,4 +1,17 @@
-export function updatePosition(lat: number, lng: number) {
+import { Position } from '../libs/types'
+
+export type PositionAction = UpdatePositionAction | NoopAction;
+
+interface NoopAction {
+  type: 'NOOP';
+}
+
+interface UpdatePositionAction {
+  type: 'UPDATE_POSITION';
+  position: Position;
+}
+
+export function updatePosition(lat: number, lng: number): PositionAction {
   return {
     type: 'UPDATE_POSITION',
     position: {lat: lat, lng: lng}
