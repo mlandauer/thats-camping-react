@@ -10,7 +10,6 @@ interface Campsite {
   description: string;
   park_id: number;
   name: string;
-  park: Park;
   access: Access;
   facilities: Facilities;
   position: Position;
@@ -37,13 +36,13 @@ class CampsiteDetailPage extends React.Component<CampsiteDetailPageProps, {}> {
       return (<div></div>)
     }
     let park = this.props.parks[campsite.park_id]
-    campsite = Object.assign({}, campsite, {park: park})
+    let campsite2 = Object.assign({}, campsite, {park: park})
     return (
       <div className="campsite-detail-page">
         <Header title={shortenName(campsite.name)} hideBackButton={false} showAboutButton={false}/>
         <div className="content">
           <div className="container">
-            <CampsiteDetail campsite={campsite} onStarClick={this.props.onStarClick}/>
+            <CampsiteDetail campsite={campsite2} onStarClick={this.props.onStarClick}/>
           </div>
         </div>
       </div>
