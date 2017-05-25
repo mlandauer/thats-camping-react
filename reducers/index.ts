@@ -7,10 +7,10 @@ import { starred, StarredState } from './starred'
 // Hmmm. I wonder if combineReducers already knows the shape of this type
 // so we can do this differently and more elegantly
 export interface State {
-    campsites: CampsitesState;
-    parks: ParksState;
-    position: PositionState;
-    starred: StarredState;
+    readonly campsites: CampsitesState;
+    readonly parks: ParksState;
+    readonly position: PositionState;
+    readonly starred: StarredState;
 }
 
 export let reducer = combineReducers({
