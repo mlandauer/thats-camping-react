@@ -1,12 +1,23 @@
+// This is the form of the campsite data as it is in data_simplified.json
+export interface CampsiteOriginal {
+  id: number;
+  name: string;
+  description: string;
+  position: Position;
+  facilities: Facilities;
+  access: Access;
+  park_id: number;
+}
+
 export interface Campsite {
   id: number;
   name: string;
-  starred: boolean;
   description: string;
-  park: Park;
+  position: Position;
   access: Access;
   facilities: Facilities;
-  position: Position;
+  starred: boolean;
+  park: Park;
 }
 
 export interface Position {

@@ -1,13 +1,8 @@
 import * as fetch from 'isomorphic-fetch'
 import { addParks } from './ParksActions'
+import { CampsiteOriginal } from '../libs/types'
 
-// This is obviously different than other definitions
-// TODO: Fix this
-interface Campsite {
-
-}
-
-export function addCampsites(campsites: Campsite[]) {
+export function addCampsites(campsites: CampsiteOriginal[]) {
   return {
     type: 'ADD_CAMPSITES',
     campsites: campsites

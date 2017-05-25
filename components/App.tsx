@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect, Dispatch } from 'react-redux'
 import { addParks } from '../actions/ParksActions'
-import { addCampsites, startSync } from '../actions/CampsitesActions'
+import { startSync } from '../actions/CampsitesActions'
 import { startUpdatePosition } from '../actions/PositionActions'
 import { toggleStarredCampsite } from '../actions/StarredActions'
 import CampsiteIndexPage from './CampsiteIndexPage';
