@@ -2,19 +2,12 @@ import * as React from 'react'
 import ParkDetail from './ParkDetail'
 import Header from './Header'
 import shortenName from '../libs/shortenName'
-import { Position, Campsite } from '../libs/types'
-
-interface Park {
-  id: number;
-  name: string;
-  description: string;
-  campsite_ids: number[];
-}
+import { Position, Campsite, ParkOriginal } from '../libs/types'
 
 interface ParkDetailPageProps {
   id: number;
   campsites: Campsite[];
-  parks: Park[];
+  parks: ParkOriginal[];
   position: Position;
 }
 
