@@ -31,12 +31,8 @@ export interface Park extends ParkOriginal {
   campsites: Campsite[];
 }
 
-export interface CampsiteWithStarred extends CampsiteOriginal {
+export interface Campsite extends CampsiteOriginalWithPark {
   starred: boolean;
-}
-
-export interface Campsite extends CampsiteWithStarred {
-  park: ParkOriginal;
 }
 
 export interface Position {

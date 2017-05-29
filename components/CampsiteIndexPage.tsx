@@ -1,7 +1,7 @@
 import * as React from 'react';
 import CampsiteList from './CampsiteList'
 import Header from './Header'
-import { Position, ParkOriginal, Access, Facilities, CampsiteWithStarred, Campsite } from '../libs/types'
+import { Position, ParkOriginal, Access, Facilities, Campsite } from '../libs/types'
 
 interface CampsiteIndexPageProps {
   position: Position;
