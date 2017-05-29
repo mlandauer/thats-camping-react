@@ -169,7 +169,7 @@ export default class CampsiteDetail extends React.Component<CampsiteDetailProps,
       <div className="campsite-detail">
         <Star starred={this.props.campsite.starred} onClick={() => {return this.props.onStarClick(this.props.campsite.id)}}/>
         <h2>{this.props.campsite.name}</h2>
-        <p>in {this.props.campsite.park.name}.</p>
+        <p>in {this.props.campsite.parkName}.</p>
         <div dangerouslySetInnerHTML={this.getDescription()}/>
         <h2>Facilities</h2>
         <p>{this.facilitiesText(this.props.campsite.facilities)}</p>

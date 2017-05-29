@@ -17,7 +17,7 @@ export function campsites(state: CampsitesState = {}, action: CampsitesAction): 
       let c: {[index: number]: CampsiteOriginalWithPark} = {}
       action.json.campsites.forEach((campsite) => {
         let park = parksHash[campsite.park_id]
-        c[campsite.id] = Object.assign({}, campsite, {park: park})
+        c[campsite.id] = Object.assign({}, campsite, {parkName: park.name})
       })
       return Object.assign({}, state, c)
     default:

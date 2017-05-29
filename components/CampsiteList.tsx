@@ -73,7 +73,7 @@ export default class CampsiteList extends React.Component<CampsiteListProps, {}>
       <ul className="list-group">
         {
           sortedCampsites.map(function(campsite) {
-            let parkName = campsite.park == undefined ? "" : shortenName(campsite.park.name)
+            let parkName = shortenName(campsite.parkName)
             return (
               <Link to={"/campsites/" + campsite.id} className="list-group-item" key={campsite.id}>
                 <CampsiteListItem campsiteName={shortenName(campsite.name)} parkName={parkName} distance={campsite.distance} bearing={campsite.bearing} starred={campsite.starred}/>

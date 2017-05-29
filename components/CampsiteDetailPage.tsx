@@ -16,14 +16,12 @@ class CampsiteDetailPage extends React.Component<CampsiteDetailPageProps, {}> {
     if (campsite == undefined) {
       return (<div></div>)
     }
-    let park = campsite.park
-    let campsite2 = Object.assign({}, campsite, {park: park})
     return (
       <div className="campsite-detail-page">
         <Header title={shortenName(campsite.name)} hideBackButton={false} showAboutButton={false}/>
         <div className="content">
           <div className="container">
-            <CampsiteDetail campsite={campsite2} onStarClick={this.props.onStarClick}/>
+            <CampsiteDetail campsite={campsite} onStarClick={this.props.onStarClick}/>
           </div>
         </div>
       </div>

@@ -47,9 +47,9 @@ describe('campsites reducer', () => {
       description: "A nice park",
       campsite_ids: [1]
     }
-    const campsiteInState1 = Object.assign({}, campsite1, {park: park})
-    const campsiteInState2 = Object.assign({}, campsite2, {park: park})
-    const campsiteInState3 = Object.assign({}, campsite3, {park: park})
+    const campsiteInState1 = Object.assign({}, campsite1, {parkName: park.name})
+    const campsiteInState2 = Object.assign({}, campsite2, {parkName: park.name})
+    const campsiteInState3 = Object.assign({}, campsite3, {parkName: park.name})
     expect(
       reducer({1: campsiteInState1}, {
         type: 'ADD_CAMPSITES_JSON',
