@@ -19,8 +19,7 @@ describe('campsites reducer', () => {
     }
     const templateCampsite = {
       description: "",
-      park_id: <number>undefined,
-      park: <Park>undefined,
+      park_id: 1,
       access: {
         caravans: false,
         trailers: false,
@@ -42,11 +41,18 @@ describe('campsites reducer', () => {
       id: 3,
       name: "And another"
     })
+    const park = {
+      id: 1,
+      name: "A park",
+      description: "A nice park",
+      campsite_ids: [1]
+    }
 
     expect(
       reducer({1: campsite1}, {
         type: 'ADD_CAMPSITES',
-        campsites: [campsite2, campsite3]
+        campsites: [campsite2, campsite3],
+        parks: [park]
       })
     ).toEqual({1: campsite1, 2: campsite2, 3: campsite3})
   })

@@ -1,6 +1,6 @@
 import * as fetch from 'isomorphic-fetch'
 import { addParks } from './ParksActions'
-import { CampsiteOriginal } from '../libs/types'
+import { CampsiteOriginal, ParkOriginal } from '../libs/types'
 
 interface NoopAction {
   type: 'NOOP'
@@ -9,14 +9,16 @@ interface NoopAction {
 interface AddCampsitesAction {
   type: 'ADD_CAMPSITES';
   campsites: CampsiteOriginal[];
+  parks: ParkOriginal[];
 }
 
 export type CampsitesAction = AddCampsitesAction | NoopAction;
 
-export function addCampsites(campsites: CampsiteOriginal[]): CampsitesAction {
+export function addCampsites(campsites: CampsiteOriginal[], parks: ParkOriginal[]): CampsitesAction {
   return {
     type: 'ADD_CAMPSITES',
-    campsites: campsites
+    campsites: campsites,
+    parks: parks
   }
 }
 
@@ -27,7 +29,7 @@ export function startSync() {
       .then(response => response.json())
       .then(json => {
         dispatch(addParks(json.parks))
-        dispatch(addCampsites(json.campsites))
+        dispatch(addCampsites(json.campsites, json.parks))
       })
   }
 }

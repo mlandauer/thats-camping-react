@@ -22,12 +22,19 @@ describe('campsites actions', () => {
         trailers: false,
         car: false
       },
-      park_id: <number>undefined
+      park_id: 1
+    }
+    const park = {
+      id: 1,
+      name: "A park",
+      description: "A nice park",
+      campsite_ids: [1]
     }
     const expectedAction = {
       type: 'ADD_CAMPSITES',
-      campsites: [campsite]
+      campsites: [campsite],
+      parks: [park]
     }
-    expect(actions.addCampsites([campsite])).toEqual(expectedAction)
+    expect(actions.addCampsites([campsite], [park])).toEqual(expectedAction)
   })
 })
