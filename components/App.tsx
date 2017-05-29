@@ -8,7 +8,6 @@ import CampsiteIndexPage from './CampsiteIndexPage';
 import { Route, Redirect } from 'react-router-dom';
 import AboutPage from './AboutPage'
 import CampsiteDetailPage from './CampsiteDetailPage';
-import ParkDetailPage from './ParkDetailPage';
 import { State } from '../reducers/index'
 import { Position, Access, Facilities, ParkOriginal, CampsiteOriginal, CampsiteWithStarred } from '../libs/types'
 
@@ -62,7 +61,6 @@ export class App extends React.Component<any, any> {
         <Redirect from="/" to="/campsites" />
         <Route exact path="/campsites" component={() => (<CampsiteIndexPage campsites={campsites} parks={parks} position={position}/>)}/>
         <Route path="/campsites/:id" component={({match}) => (<CampsiteDetailPage id={match.params.id} campsites={campsites} parks={parks} onStarClick={onStarClick}/>)} />
-        <Route path="/parks/:id" component={({match}) => (<ParkDetailPage id={match.params.id} campsites={campsites} parks={parks} position={position}/>)}/>
         <Route path="/about" component={({match}) => (<AboutPage/>)} />
       </div>
     )

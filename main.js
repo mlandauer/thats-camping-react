@@ -29,7 +29,6 @@ import './styles/style.scss'
 
 import App from './components/App';
 import CampsiteDetailPage from './components/CampsiteDetailPage';
-import ParkDetailPage from './components/ParkDetailPage';
 import AboutPage from './components/AboutPage'
 import { reducer } from './reducers'
 
