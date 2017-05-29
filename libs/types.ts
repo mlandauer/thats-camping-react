@@ -25,7 +25,6 @@ export interface Campsite {
   position: Position;
   facilities: Facilities;
   access: Access;
-  park_id: number;
   parkName: string;
 }
 
