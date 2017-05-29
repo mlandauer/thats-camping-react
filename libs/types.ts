@@ -15,16 +15,16 @@ interface CampsiteOriginal {
   park_id: number;
 }
 
-export interface CampsiteOriginalWithPark extends CampsiteOriginal {
-  parkName: string;
-}
-
 // This is the form of the park data as it is in data_simplified.json
 interface ParkOriginal {
   id: number;
   name: string;
   description: string;
   campsite_ids: number[];
+}
+
+export interface CampsiteOriginalWithPark extends CampsiteOriginal {
+  parkName: string;
 }
 
 export interface Campsite extends CampsiteOriginalWithPark {
