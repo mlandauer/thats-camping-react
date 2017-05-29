@@ -32,9 +32,6 @@ import CampsiteDetailPage from './components/CampsiteDetailPage';
 import AboutPage from './components/AboutPage'
 import { reducer } from './reducers'
 
-import attachFastClick from 'fastclick'
-attachFastClick.attach(document.body)
-
 const reducerWithStorage = storage.reducer(reducer)
 var engine = createEngine('thats-camping')
 engine = migrate(engine, 1)
