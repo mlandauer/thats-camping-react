@@ -1,6 +1,6 @@
 import * as expect from 'expect'
 import { campsites as reducer } from '../../reducers/campsites'
-import { Park, Position, Facilities } from '../../libs/types'
+import { Position, Facilities } from '../../libs/types'
 
 describe('campsites reducer', () => {
   it('should return the initial state', () => {
