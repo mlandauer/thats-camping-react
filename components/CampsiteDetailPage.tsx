@@ -2,12 +2,11 @@ import * as React from 'react'
 import Header from './Header'
 import CampsiteDetail from './CampsiteDetail';
 import shortenName from '../libs/shortenName'
-import { Access, Facilities, Position, CampsiteWithStarred, ParkOriginal } from '../libs/types'
+import { Access, Facilities, Position, Campsite, ParkOriginal } from '../libs/types'
 
 interface CampsiteDetailPageProps {
-  campsites: {[index: number]: CampsiteWithStarred};
+  campsites: {[index: number]: Campsite};
   id: number;
-  parks: {[index: number]: ParkOriginal};
   onStarClick: (id: number) => boolean;
 }
 
@@ -17,7 +16,7 @@ class CampsiteDetailPage extends React.Component<CampsiteDetailPageProps, {}> {
     if (campsite == undefined) {
       return (<div></div>)
     }
-    let park = this.props.parks[campsite.park_id]
+    let park = campsite.park
     let campsite2 = Object.assign({}, campsite, {park: park})
     return (
       <div className="campsite-detail-page">

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { connect, Dispatch } from 'react-redux'
-import { addParks } from '../actions/ParksActions'
 import { startSync } from '../actions/CampsitesActions'
 import { startUpdatePosition } from '../actions/PositionActions'
 import { toggleStarredCampsite } from '../actions/StarredActions'
@@ -9,7 +8,7 @@ import { Route, Redirect } from 'react-router-dom';
 import AboutPage from './AboutPage'
 import CampsiteDetailPage from './CampsiteDetailPage';
 import { State } from '../reducers/index'
-import { Position, Access, Facilities, ParkOriginal, CampsiteOriginal, CampsiteWithStarred } from '../libs/types'
+import { Position, Access, Facilities, ParkOriginal, Campsite, CampsiteOriginal, CampsiteWithStarred } from '../libs/types'
 
 interface AppAction {
 
@@ -19,8 +18,7 @@ interface AppProps {
   dispatch: (action: AppAction) => void;
   onStarClick: (id: number) => boolean;
   position: Position;
-  campsites: {[index: number]: CampsiteWithStarred};
-  parks: {[index: number]: ParkOriginal};
+  campsites: {[index: number]: Campsite};
 }
 
 // Doing this to workaround that Navigator type doesn't seem to have
@@ -52,15 +50,14 @@ export class App extends React.Component<AppProps, any> {
     let onStarClick = this.props.onStarClick;
     let position = this.props.position;
     let campsites = this.props.campsites;
-    let parks = this.props.parks;
 
     let fullscreen = window.navigator.standalone
 
     return (
       <div id="app" className={fullscreen ? 'fullscreen' : null}>
         <Redirect from="/" to="/campsites" />
-        <Route exact path="/campsites" component={() => (<CampsiteIndexPage campsites={campsites} parks={parks} position={position}/>)}/>
-        <Route path="/campsites/:id" component={({match}) => (<CampsiteDetailPage id={match.params.id} campsites={campsites} parks={parks} onStarClick={onStarClick}/>)} />
+        <Route exact path="/campsites" component={() => (<CampsiteIndexPage campsites={campsites} position={position}/>)}/>
+        <Route path="/campsites/:id" component={({match}) => (<CampsiteDetailPage id={match.params.id} campsites={campsites} onStarClick={onStarClick}/>)} />
         <Route path="/about" component={({match}) => (<AboutPage/>)} />
       </div>
     )
@@ -73,7 +70,7 @@ function mapStateToProps(state: State): AppProps {
   // Put the star state directly into each campsite object to make things easier
   // elsewhere
   // Ugh. This is all fairly horrible
-  let new_campsites : {[index:number]: CampsiteWithStarred} = {}
+  let new_campsites : {[index:number]: Campsite} = {}
   for (var id in state.campsites) {
     // Don't want to use strict equality (with indexOf) as a workaround
     let i = state.starred.findIndex((v) => {return v.toString() == id})
@@ -81,7 +78,6 @@ function mapStateToProps(state: State): AppProps {
     new_campsites[id] = Object.assign({}, state.campsites[id], {starred: starred})
   }
   return Object.assign({}, {
-    parks: state.parks,
     position: state.position
   }, {
     campsites: new_campsites,

@@ -1,5 +1,4 @@
 import * as fetch from 'isomorphic-fetch'
-import { addParks } from './ParksActions'
 import { CampsiteOriginal, ParkOriginal } from '../libs/types'
 
 interface NoopAction {
@@ -28,7 +27,6 @@ export function startSync() {
     fetch('/api/data.json')
       .then(response => response.json())
       .then(json => {
-        dispatch(addParks(json.parks))
         dispatch(addCampsites(json.campsites, json.parks))
       })
   }
