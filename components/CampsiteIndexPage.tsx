@@ -1,11 +1,11 @@
 import * as React from 'react';
 import CampsiteList from './CampsiteList'
 import Header from './Header'
-import { Position, Access, Facilities, Campsite } from '../libs/types'
+import { Position, Access, Facilities, CampsiteWithStarred } from '../libs/types'
 
 interface CampsiteIndexPageProps {
   position: Position;
-  campsites: {[index: number]: Campsite};
+  campsites: {[index: number]: CampsiteWithStarred};
 }
 
 export default class CampsiteIndexPage extends React.Component<CampsiteIndexPageProps, {}> {

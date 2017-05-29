@@ -27,7 +27,7 @@ export interface CampsiteOriginalWithPark extends CampsiteOriginal {
   parkName: string;
 }
 
-export interface Campsite extends CampsiteOriginalWithPark {
+export interface CampsiteWithStarred extends CampsiteOriginalWithPark {
   starred: boolean;
 }
 

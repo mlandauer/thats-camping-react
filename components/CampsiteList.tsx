@@ -3,20 +3,20 @@ import CampsiteListItem from './CampsiteListItem';
 import { Link } from 'react-router-dom';
 import PositionRelationship from '../libs/PositionRelationship';
 import shortenName from '../libs/shortenName'
-import { Position, Campsite } from '../libs/types'
+import { Position, CampsiteWithStarred } from '../libs/types'
 
-interface CampsiteWithDistanceAndBearing extends Campsite {
+interface CampsiteWithDistanceAndBearing extends CampsiteWithStarred {
   distance: number | undefined;
   bearing: number | undefined;
 }
 
 interface CampsiteListProps {
-  campsites: Campsite[];
+  campsites: CampsiteWithStarred[];
   position: Position;
 }
 
 export default class CampsiteList extends React.Component<CampsiteListProps, {}> {
-  sortCampsitesArrayByDistance(campsites: Campsite[], position: Position | null): CampsiteWithDistanceAndBearing[] {
+  sortCampsitesArrayByDistance(campsites: CampsiteWithStarred[], position: Position | null): CampsiteWithDistanceAndBearing[] {
     if (position == null) {
       // TODO: Sort campsites by name
       var campsites2 = campsites.map(function(c): CampsiteWithDistanceAndBearing {

@@ -8,7 +8,7 @@ import { Route, Redirect } from 'react-router-dom';
 import AboutPage from './AboutPage'
 import CampsiteDetailPage from './CampsiteDetailPage';
 import { State } from '../reducers/index'
-import { Position, Access, Facilities, Campsite } from '../libs/types'
+import { Position, Access, Facilities, CampsiteWithStarred } from '../libs/types'
 
 interface AppAction {
 
@@ -18,7 +18,7 @@ interface AppProps {
   dispatch: (action: AppAction) => void;
   onStarClick: (id: number) => boolean;
   position: Position;
-  campsites: {[index: number]: Campsite};
+  campsites: {[index: number]: CampsiteWithStarred};
 }
 
 // Doing this to workaround that Navigator type doesn't seem to have
@@ -70,7 +70,7 @@ function mapStateToProps(state: State): AppProps {
   // Put the star state directly into each campsite object to make things easier
   // elsewhere
   // Ugh. This is all fairly horrible
-  let new_campsites : {[index:number]: Campsite} = {}
+  let new_campsites : {[index:number]: CampsiteWithStarred} = {}
   for (var id in state.campsites) {
     // Don't want to use strict equality (with indexOf) as a workaround
     let i = state.starred.findIndex((v) => {return v.toString() == id})

@@ -2,10 +2,10 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import simpleFormat from '../libs/simpleFormat'
 import { Star } from './Star'
-import { Position, Access, Facilities, Campsite } from '../libs/types'
+import { Position, Access, Facilities, CampsiteWithStarred } from '../libs/types'
 
 interface CampsiteDetailProps {
-  campsite: Campsite;
+  campsite: CampsiteWithStarred;
   onStarClick: (id: number) => boolean;
 }
 
