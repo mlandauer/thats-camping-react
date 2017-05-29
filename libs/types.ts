@@ -23,11 +23,11 @@ interface ParkOriginal {
   campsite_ids: number[];
 }
 
-export interface CampsiteOriginalWithPark extends CampsiteOriginal {
+export interface Campsite extends CampsiteOriginal {
   parkName: string;
 }
 
-export interface CampsiteWithStarred extends CampsiteOriginalWithPark {
+export interface CampsiteWithStarred extends Campsite {
   starred: boolean;
 }
 
