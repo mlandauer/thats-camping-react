@@ -1,11 +1,24 @@
 // This is the form of the data as it is in data_simplified.json
 export interface CampsitesJson {
-  campsites: CampsiteOriginal[];
-  parks: ParkOriginal[];
+  campsites: {
+    id: number;
+    name: string;
+    description: string;
+    position: Position;
+    facilities: Facilities;
+    access: Access;
+    park_id: number;
+  }[];
+  parks: {
+    id: number;
+    name: string;
+    description: string;
+    campsite_ids: number[];
+  }[];
 }
 
-// This is the form of the campsite data as it is in data_simplified.json
-interface CampsiteOriginal {
+// This is the how campsites are stored in the state
+export interface Campsite {
   id: number;
   name: string;
   description: string;
@@ -13,20 +26,10 @@ interface CampsiteOriginal {
   facilities: Facilities;
   access: Access;
   park_id: number;
-}
-
-// This is the form of the park data as it is in data_simplified.json
-interface ParkOriginal {
-  id: number;
-  name: string;
-  description: string;
-  campsite_ids: number[];
-}
-
-export interface Campsite extends CampsiteOriginal {
   parkName: string;
 }
 
+// This is how campsites are in the props
 export interface CampsiteWithStarred extends Campsite {
   starred: boolean;
 }
