@@ -1,3 +1,9 @@
+// This is the form of the data as it is in data_simplified.json
+export interface CampsitesJson {
+  campsites: CampsiteOriginal[];
+  parks: ParkOriginal[];
+}
+
 // This is the form of the campsite data as it is in data_simplified.json
 export interface CampsiteOriginal {
   id: number;

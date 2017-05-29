@@ -3,7 +3,7 @@ import * as actions from '../../actions/CampsitesActions'
 import { Position, Facilities } from '../../libs/types'
 
 describe('campsites actions', () => {
-  it('addCampsites', () => {
+  it('addCampsitesJson', () => {
     const facilities: Facilities = {
       toilets: "none",
       picnicTables: false,
@@ -30,11 +30,14 @@ describe('campsites actions', () => {
       description: "A nice park",
       campsite_ids: [1]
     }
-    const expectedAction = {
-      type: 'ADD_CAMPSITES',
+    const json = {
       campsites: [campsite],
       parks: [park]
     }
-    expect(actions.addCampsites([campsite], [park])).toEqual(expectedAction)
+    const expectedAction = {
+      type: 'ADD_CAMPSITES_JSON',
+      json: json
+    }
+    expect(actions.addCampsitesJson(json)).toEqual(expectedAction)
   })
 })

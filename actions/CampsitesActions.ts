@@ -1,23 +1,21 @@
 import * as fetch from 'isomorphic-fetch'
-import { CampsiteOriginal, ParkOriginal } from '../libs/types'
+import { CampsitesJson } from '../libs/types'
 
 interface NoopAction {
   type: 'NOOP'
 }
 
-interface AddCampsitesAction {
-  type: 'ADD_CAMPSITES';
-  campsites: CampsiteOriginal[];
-  parks: ParkOriginal[];
+interface AddCampsitesJsonAction {
+  type: 'ADD_CAMPSITES_JSON';
+  json: CampsitesJson;
 }
 
-export type CampsitesAction = AddCampsitesAction | NoopAction;
+export type CampsitesAction = AddCampsitesJsonAction | NoopAction;
 
-export function addCampsites(campsites: CampsiteOriginal[], parks: ParkOriginal[]): CampsitesAction {
+export function addCampsitesJson(json: CampsitesJson): CampsitesAction {
   return {
-    type: 'ADD_CAMPSITES',
-    campsites: campsites,
-    parks: parks
+    type: 'ADD_CAMPSITES_JSON',
+    json: json
   }
 }
 
@@ -27,7 +25,7 @@ export function startSync() {
     fetch('/api/data.json')
       .then(response => response.json())
       .then(json => {
-        dispatch(addCampsites(json.campsites, json.parks))
+        dispatch(addCampsitesJson(json))
       })
   }
 }
