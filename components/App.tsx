@@ -16,6 +16,7 @@ interface AppAction {
 }
 
 interface AppProps {
+  dispatch: (action: AppAction) => void;
   onStarClick: (id: number) => boolean;
   position: Position;
   campsites: {[index: number]: CampsiteWithStarred};
@@ -34,7 +35,7 @@ interface ExtendedWindow extends Window {
 
 declare var window: ExtendedWindow;
 
-export class App extends React.Component<any, any> {
+export class App extends React.Component<AppProps, any> {
   componentWillMount() {
     this.props.dispatch(startSync())
     this.props.dispatch(startUpdatePosition())
@@ -84,7 +85,8 @@ function mapStateToProps(state: State): AppProps {
     position: state.position
   }, {
     campsites: new_campsites,
-    onStarClick: undefined
+    onStarClick: undefined,
+    dispatch: undefined
   })
 }
 

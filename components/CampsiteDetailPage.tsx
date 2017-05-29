@@ -5,9 +5,9 @@ import shortenName from '../libs/shortenName'
 import { Access, Facilities, Position, CampsiteWithStarred, ParkOriginal } from '../libs/types'
 
 interface CampsiteDetailPageProps {
-  campsites: CampsiteWithStarred[];
+  campsites: {[index: number]: CampsiteWithStarred};
   id: number;
-  parks: ParkOriginal[];
+  parks: {[index: number]: ParkOriginal};
   onStarClick: (id: number) => boolean;
 }
 

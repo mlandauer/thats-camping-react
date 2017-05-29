@@ -5,8 +5,8 @@ import { Position, ParkOriginal, Access, Facilities, CampsiteWithStarred } from 
 
 interface CampsiteIndexPageProps {
   position: Position;
-  campsites: CampsiteWithStarred[];
-  parks: ParkOriginal[];
+  campsites: {[index: number]: CampsiteWithStarred};
+  parks: {[index: number]: ParkOriginal};
 }
 
 export default class CampsiteIndexPage extends React.Component<CampsiteIndexPageProps, {}> {
