@@ -1,4 +1,4 @@
-import { CampsiteOriginalWithPark, ParkOriginal } from '../libs/types'
+import { CampsiteOriginalWithPark } from '../libs/types'
 import { CampsitesAction } from '../actions/CampsitesActions'
 
 export interface CampsitesState {
@@ -9,7 +9,7 @@ export function campsites(state: CampsitesState = {}, action: CampsitesAction): 
   switch(action.type) {
     case 'ADD_CAMPSITES_JSON':
       // Turn parks array into hash
-      let parksHash: {[index: number]: ParkOriginal} = {}
+      let parksHash: {[index: number]: any} = {}
       action.json.parks.forEach((park) => {
         parksHash[park.id] = park
       })

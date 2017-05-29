@@ -20,7 +20,7 @@ export interface CampsiteOriginalWithPark extends CampsiteOriginal {
 }
 
 // This is the form of the park data as it is in data_simplified.json
-export interface ParkOriginal {
+interface ParkOriginal {
   id: number;
   name: string;
   description: string;

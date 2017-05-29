@@ -8,7 +8,7 @@ import { Route, Redirect } from 'react-router-dom';
 import AboutPage from './AboutPage'
 import CampsiteDetailPage from './CampsiteDetailPage';
 import { State } from '../reducers/index'
-import { Position, Access, Facilities, ParkOriginal, Campsite } from '../libs/types'
+import { Position, Access, Facilities, Campsite } from '../libs/types'
 
 interface AppAction {
 

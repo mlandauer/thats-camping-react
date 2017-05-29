@@ -3,7 +3,7 @@ import CampsiteListItem from './CampsiteListItem';
 import { Link } from 'react-router-dom';
 import PositionRelationship from '../libs/PositionRelationship';
 import shortenName from '../libs/shortenName'
-import { Position, ParkOriginal, Campsite } from '../libs/types'
+import { Position, Campsite } from '../libs/types'
 
 interface CampsiteWithDistanceAndBearing extends Campsite {
   distance: number | undefined;
