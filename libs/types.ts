@@ -5,7 +5,7 @@ export interface CampsitesJson {
 }
 
 // This is the form of the campsite data as it is in data_simplified.json
-export interface CampsiteOriginal {
+interface CampsiteOriginal {
   id: number;
   name: string;
   description: string;
