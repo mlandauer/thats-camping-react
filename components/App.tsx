@@ -16,11 +16,10 @@ interface AppAction {
 }
 
 interface AppProps {
-  dispatch: (action: AppAction) => void;
   onStarClick: (id: number) => boolean;
   position: Position;
-  campsites: CampsiteWithStarred[];
-  parks: ParkOriginal[];
+  campsites: {[index: number]: CampsiteWithStarred};
+  parks: {[index: number]: ParkOriginal};
 }
 
 // Doing this to workaround that Navigator type doesn't seem to have
@@ -69,7 +68,7 @@ export class App extends React.Component<any, any> {
 
 // Which props do we want to inject, given the global state?
 // Note: use https://github.com/faassen/reselect for better performance.
-function mapStateToProps(state: State) {
+function mapStateToProps(state: State): AppProps {
   // Put the star state directly into each campsite object to make things easier
   // elsewhere
   // Ugh. This is all fairly horrible
@@ -80,7 +79,13 @@ function mapStateToProps(state: State) {
     let starred = i != -1
     new_campsites[id] = Object.assign({}, state.campsites[id], {starred: starred})
   }
-  return Object.assign({}, state, {campsites: new_campsites})
+  return Object.assign({}, {
+    parks: state.parks,
+    position: state.position
+  }, {
+    campsites: new_campsites,
+    onStarClick: undefined
+  })
 }
 
 const mapDispatchToProps = (dispatch: Dispatch<State>) => {
