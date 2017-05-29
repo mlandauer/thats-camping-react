@@ -16,7 +16,6 @@ interface CampsiteOriginal {
 }
 
 export interface CampsiteOriginalWithPark extends CampsiteOriginal {
-  // park: ParkOriginal;
   parkName: string;
 }
 
