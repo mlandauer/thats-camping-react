@@ -1,6 +1,6 @@
 import * as expect from 'expect'
 import { campsites as reducer } from '../../reducers/campsites'
-import { Park, Position } from '../../libs/types'
+import { Park, Position, Facilities } from '../../libs/types'
 
 describe('campsites reducer', () => {
   it('should return the initial state', () => {
@@ -10,6 +10,13 @@ describe('campsites reducer', () => {
   })
 
   it('should handle ADD_CAMPSITES with existing campsites', () => {
+    const facilities: Facilities = {
+      toilets: 'none',
+      picnicTables: false,
+      barbecues: 'none',
+      showers: 'none',
+      drinkingWater: false
+    }
     const templateCampsite = {
       description: "",
       park_id: <number>undefined,
@@ -19,13 +26,7 @@ describe('campsites reducer', () => {
         trailers: false,
         car: false
       },
-      facilities: {
-        toilets: 'none',
-        picnicTables: false,
-        barbecues: 'none',
-        showers: 'none',
-        drinkingWater: false
-      },
+      facilities: facilities,
       position: <Position>undefined
     }
 

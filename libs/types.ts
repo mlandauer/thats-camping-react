@@ -41,9 +41,9 @@ export interface Access {
 }
 
 export interface Facilities {
-  toilets: string;
+  toilets: "flush" | "non_flush" | "none";
   picnicTables: boolean;
-  barbecues: string;
-  showers: string;
+  barbecues: "wood" | "gas_electric" | "none";
+  showers: "hot" | "cold" | "none";
   drinkingWater: boolean;
 }
