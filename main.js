@@ -45,10 +45,12 @@ engine.addMigration(1, (state) => {
 
 const storageMiddleware = storage.createMiddleware(engine)
 
-const createStoreWithMiddleware = compose(
+let storeEnhancer = compose(
   applyMiddleware(thunkMiddleware, storageMiddleware),
   window.devToolsExtension ? window.devToolsExtension() : f => f
-)(createStore)
+);
+
+const createStoreWithMiddleware = storeEnhancer(createStore)
 
 let store = createStoreWithMiddleware(reducerWithStorage)
 
