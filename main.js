@@ -45,9 +45,8 @@ engine.addMigration(1, (state) => {
 
 const storageMiddleware = storage.createMiddleware(engine)
 
-let storeEnhancer = applyMiddleware(thunkMiddleware, storageMiddleware);
-
-let store = createStore(reducerWithStorage, storeEnhancer);
+let store = createStore(reducerWithStorage, 
+  applyMiddleware(thunkMiddleware, storageMiddleware));
 
 const load = storage.createLoader(engine)
 load(store)
