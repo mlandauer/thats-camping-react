@@ -47,9 +47,7 @@ const storageMiddleware = storage.createMiddleware(engine)
 
 let storeEnhancer = applyMiddleware(thunkMiddleware, storageMiddleware);
 
-const createStoreWithMiddleware = storeEnhancer(createStore)
-
-let store = createStoreWithMiddleware(reducerWithStorage)
+let store = createStore(reducerWithStorage, storeEnhancer);
 
 const load = storage.createLoader(engine)
 load(store)
