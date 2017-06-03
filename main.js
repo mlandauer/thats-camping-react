@@ -43,10 +43,8 @@ engine.addMigration(1, (state) => {
   return Object.assign({}, state, {parks: {}, campsites: {}})
 });
 
-const storageMiddleware = storage.createMiddleware(engine)
-
-let store = createStore(reducerWithStorage, 
-  applyMiddleware(thunkMiddleware, storageMiddleware));
+let store = createStore(reducerWithStorage,
+  applyMiddleware(thunkMiddleware, storage.createMiddleware(engine)));
 
 const load = storage.createLoader(engine)
 load(store)
