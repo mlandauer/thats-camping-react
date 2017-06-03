@@ -10,21 +10,6 @@ import {persistStore, autoRehydrate} from 'redux-persist'
 import 'font-awesome-webpack'
 import './styles/style.scss'
 
-// Uncomment the bits of bootstrap javascript belowwhen we need them
-//
-// require('bootstrap/js/transition.js')
-// require('bootstrap/js/alert.js')
-// require('bootstrap/js/button.js')
-// require('bootstrap/js/carousel.js')
-// require('bootstrap/js/collapse.js')
-// require('bootstrap/js/dropdown.js')
-// require('bootstrap/js/modal.js')
-// require('bootstrap/js/tooltip.js')
-// require('bootstrap/js/popover.js')
-// require('bootstrap/js/scrollspy.js')
-// require('bootstrap/js/tab.js')
-// require('bootstrap/js/affix.js')
-
 import App from './components/App';
 import CampsiteDetailPage from './components/CampsiteDetailPage';
 import AboutPage from './components/AboutPage'
