@@ -56,7 +56,9 @@ export class App extends React.Component<AppProps, any> {
     return (
       <HashRouter>
         <div id="app" className={fullscreen ? 'fullscreen' : null}>
-          <Redirect from="/" to="/campsites" />
+          <Route exact path="/" render={() => (
+            <Redirect to="/campsites" />
+          )} />
           <Route exact path="/campsites" component={() => (<CampsiteIndexPage campsites={campsites} position={position}/>)}/>
           <Route path="/campsites/:id" component={({match}) => (<CampsiteDetailPage id={match.params.id} campsites={campsites} onStarClick={onStarClick}/>)} />
           <Route path="/about" component={({match}) => (<AboutPage/>)} />
