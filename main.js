@@ -1,7 +1,6 @@
 // main.js
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { HashRouter, Route, Redirect } from 'react-router-dom';
 import { createStore, applyMiddleware, compose } from 'redux'
 import { Provider } from 'react-redux'
 import thunkMiddleware from 'redux-thunk'
@@ -43,11 +42,7 @@ window.addEventListener('load', function(e) {
 
 ReactDOM.render(
   <Provider store={store}>
-    <div>
-      <HashRouter>
-        <Route path="/" component={App} />
-      </HashRouter>
-    </div>
+    <App />
   </Provider>,
   document.getElementById('root')
 );

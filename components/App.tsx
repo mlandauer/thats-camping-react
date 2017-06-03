@@ -4,7 +4,7 @@ import { startSync } from '../actions/CampsitesActions'
 import { startUpdatePosition } from '../actions/PositionActions'
 import { toggleStarredCampsite } from '../actions/StarredActions'
 import CampsiteIndexPage from './CampsiteIndexPage';
-import { Route, Redirect } from 'react-router-dom';
+import { HashRouter, Route, Redirect } from 'react-router-dom';
 import AboutPage from './AboutPage'
 import CampsiteDetailPage from './CampsiteDetailPage';
 import { State } from '../reducers/index'
@@ -54,12 +54,14 @@ export class App extends React.Component<AppProps, any> {
     let fullscreen = window.navigator.standalone
 
     return (
-      <div id="app" className={fullscreen ? 'fullscreen' : null}>
-        <Redirect from="/" to="/campsites" />
-        <Route exact path="/campsites" component={() => (<CampsiteIndexPage campsites={campsites} position={position}/>)}/>
-        <Route path="/campsites/:id" component={({match}) => (<CampsiteDetailPage id={match.params.id} campsites={campsites} onStarClick={onStarClick}/>)} />
-        <Route path="/about" component={({match}) => (<AboutPage/>)} />
-      </div>
+      <HashRouter>
+        <div id="app" className={fullscreen ? 'fullscreen' : null}>
+          <Redirect from="/" to="/campsites" />
+          <Route exact path="/campsites" component={() => (<CampsiteIndexPage campsites={campsites} position={position}/>)}/>
+          <Route path="/campsites/:id" component={({match}) => (<CampsiteDetailPage id={match.params.id} campsites={campsites} onStarClick={onStarClick}/>)} />
+          <Route path="/about" component={({match}) => (<AboutPage/>)} />
+        </div>
+      </HashRouter>
     )
   }
 }
