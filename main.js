@@ -43,6 +43,8 @@ engine.addMigration(1, (state) => {
   return Object.assign({}, state, {parks: {}, campsites: {}})
 });
 
+// TODO: Move from redux-thunk to redux-saga (https://github.com/redux-saga/redux-saga)
+
 let store = createStore(reducerWithStorage,
   applyMiddleware(thunkMiddleware, storage.createMiddleware(engine)));
 
