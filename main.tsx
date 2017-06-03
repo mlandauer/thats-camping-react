@@ -9,7 +9,7 @@ import {persistStore, autoRehydrate} from 'redux-persist'
 import 'font-awesome-webpack'
 import './styles/style.scss'
 
-import App from './components/App';
+import { WrappedApp } from './components/App';
 import { reducer } from './reducers'
 
 // TODO: Move from redux-thunk to redux-saga (https://github.com/redux-saga/redux-saga)
@@ -42,7 +42,7 @@ window.addEventListener('load', function(e) {
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <WrappedApp />
   </Provider>,
   document.getElementById('root')
 );

@@ -100,4 +100,4 @@ const mapDispatchToProps = (dispatch: Dispatch<State>) => {
 }
 
 // Wrap the component to inject dispatch and state into it
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export const WrappedApp = connect(mapStateToProps, mapDispatchToProps)(App)
