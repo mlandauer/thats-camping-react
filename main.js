@@ -5,9 +5,7 @@ import { HashRouter, Route, Redirect } from 'react-router-dom';
 import { createStore, applyMiddleware, compose } from 'redux'
 import { Provider } from 'react-redux'
 import thunkMiddleware from 'redux-thunk'
-import * as storage from 'redux-storage'
-import createEngine from 'redux-storage-engine-localstorage'
-import migrate from 'redux-storage-decorator-migrate'
+import {persistStore, autoRehydrate} from 'redux-persist'
 // This loads everything (for font awesome) with the defaults
 import 'font-awesome-webpack'
 import './styles/style.scss'
@@ -32,24 +30,19 @@ import CampsiteDetailPage from './components/CampsiteDetailPage';
 import AboutPage from './components/AboutPage'
 import { reducer } from './reducers'
 
-const reducerWithStorage = storage.reducer(reducer)
-var engine = createEngine('thats-camping')
-engine = migrate(engine, 1)
-
-engine.addMigration(1, (state) => {
-  // We rename longName in parks and campsites to name
-  // We handle this by emptying out parks and campsites.
-  // It will get reloaded from the API
-  return Object.assign({}, state, {parks: {}, campsites: {}})
-});
-
 // TODO: Move from redux-thunk to redux-saga (https://github.com/redux-saga/redux-saga)
 
-let store = createStore(reducerWithStorage,
-  applyMiddleware(thunkMiddleware, storage.createMiddleware(engine)));
+const store = createStore(
+  reducer,
+  undefined,
+  compose(
+    applyMiddleware(thunkMiddleware),
+    autoRehydrate()
+  )
+)
 
-const load = storage.createLoader(engine)
-load(store)
+// begin periodically persisting the store
+persistStore(store)
 
 // Check if a new cache is available on page load.
 window.addEventListener('load', function(e) {
