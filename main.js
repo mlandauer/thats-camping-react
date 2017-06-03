@@ -9,7 +9,7 @@ import {persistStore, autoRehydrate} from 'redux-persist'
 import 'font-awesome-webpack'
 import './styles/style.scss'
 
-import { App } from './components/App';
+import App from './components/App';
 import { reducer } from './reducers'
 
 // TODO: Move from redux-thunk to redux-saga (https://github.com/redux-saga/redux-saga)

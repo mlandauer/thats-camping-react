@@ -33,7 +33,7 @@ interface ExtendedWindow extends Window {
 
 declare var window: ExtendedWindow;
 
-export class App extends React.Component<AppProps, any> {
+class App extends React.Component<AppProps, any> {
   componentWillMount() {
     this.props.dispatch(startSync())
     this.props.dispatch(startUpdatePosition())
