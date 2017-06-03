@@ -11,8 +11,6 @@ import 'font-awesome-webpack'
 import './styles/style.scss'
 
 import App from './components/App';
-import CampsiteDetailPage from './components/CampsiteDetailPage';
-import AboutPage from './components/AboutPage'
 import { reducer } from './reducers'
 
 // TODO: Move from redux-thunk to redux-saga (https://github.com/redux-saga/redux-saga)
