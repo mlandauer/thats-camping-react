@@ -18,7 +18,7 @@ export default class PositionRelationship {
   }
 
   // Distance in metres between two positions given as lat longs
-  distanceInMetres(): number {
+  distanceInMetres(): number | undefined {
     if (this.position1.lat == undefined || this.position1.lng == undefined || this.position2.lat == undefined || this.position2.lng == undefined) {
       return undefined;
     }
@@ -32,7 +32,7 @@ export default class PositionRelationship {
     return d;
   }
 
-  bearingInDegrees(): number {
+  bearingInDegrees(): number | undefined {
     if (this.position1.lat == undefined || this.position1.lng == undefined || this.position2.lat == undefined || this.position2.lng == undefined) {
       return undefined;
     }

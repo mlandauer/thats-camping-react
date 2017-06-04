@@ -88,11 +88,11 @@ export default class CampsiteDetail extends React.Component<CampsiteDetailProps,
   // WARNING changes r
   merge(r: Fields, t: Field): Fields {
     // TODO Generalise this
-    if (t["have"]) {
-      r["have"].push(t["have"])
+    if (t.have) {
+      r.have.push(t.have)
     }
-    if (t["notHave"]) {
-      r["notHave"].push(t["notHave"])
+    if (t.notHave) {
+      r.notHave.push(t.notHave)
     }
     return r
   }
@@ -180,7 +180,7 @@ export default class CampsiteDetail extends React.Component<CampsiteDetailProps,
     )
   }
 
-  listAsText(list: string[]): string {
+  listAsText(list: string[]): string | null {
     if (list.length == 0) {
       return null;
     }

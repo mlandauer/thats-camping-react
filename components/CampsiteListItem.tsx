@@ -4,8 +4,8 @@ import { Star } from './Star'
 interface CampsiteListItemProps {
   campsiteName: string;
   parkName: string;
-  distance: number;
-  bearing: number;
+  distance: number | undefined;
+  bearing: number | undefined;
   starred: boolean;
 }
 
@@ -30,6 +30,9 @@ export default class CampsiteListItem extends React.Component<CampsiteListItemPr
 
   bearingText(): string {
     var bearing = this.props.bearing;
+    if (bearing == undefined) {
+      return "";
+    }
     // Dividing the compass into 8 sectors that are centred on north
     var sector = Math.floor(((bearing + 22.5) % 360.0) / 45.0);
     var sectorNames = [ "N", "NE", "E", "SE", "S", "SW", "W", "NW" ];

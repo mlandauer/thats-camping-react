@@ -55,13 +55,13 @@ class App extends React.Component<AppProps, any> {
 
     return (
       <HashRouter>
-        <div id="app" className={fullscreen ? 'fullscreen' : null}>
+        <div id="app" className={fullscreen ? 'fullscreen' : undefined}>
           <Route exact path="/" render={() => (
             <Redirect to="/campsites" />
           )} />
-          <Route exact path="/campsites" component={() => (<CampsiteIndexPage campsites={campsites} position={position}/>)}/>
-          <Route path="/campsites/:id" component={({match}) => (<CampsiteDetailPage id={match.params.id} campsites={campsites} onStarClick={onStarClick}/>)} />
-          <Route path="/about" component={({match}) => (<AboutPage/>)} />
+          <Route exact path="/campsites" render={() => (<CampsiteIndexPage campsites={campsites} position={position}/>)}/>
+          <Route path="/campsites/:id" render={({match}) => (<CampsiteDetailPage id={match.params.id} campsites={campsites} onStarClick={onStarClick}/>)} />
+          <Route path="/about" render={({match}) => (<AboutPage/>)} />
         </div>
       </HashRouter>
     )
@@ -70,7 +70,7 @@ class App extends React.Component<AppProps, any> {
 
 // Which props do we want to inject, given the global state?
 // Note: use https://github.com/faassen/reselect for better performance.
-function mapStateToProps(state: State): AppProps {
+function mapStateToProps(state: State) {
   // Put the star state directly into each campsite object to make things easier
   // elsewhere
   // Ugh. This is all fairly horrible
@@ -84,9 +84,7 @@ function mapStateToProps(state: State): AppProps {
   return Object.assign({}, {
     position: state.position
   }, {
-    campsites: new_campsites,
-    onStarClick: undefined,
-    dispatch: undefined
+    campsites: new_campsites
   })
 }
 
