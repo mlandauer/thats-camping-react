@@ -1,4 +1,4 @@
-import { Campsite } from '../libs/types'
+import { Campsite, Position } from '../libs/types'
 import { CampsitesAction } from '../actions/CampsitesActions'
 
 export interface CampsitesState {
@@ -17,10 +17,24 @@ export function campsites(state: CampsitesState = {}, action: CampsitesAction): 
       let c: {[index: number]: Campsite} = {}
       action.json.campsites.forEach((campsite) => {
         let park = parksHash[campsite.park_id]
-        c[campsite.id] = Object.assign({}, campsite, {parkName: park.name})
+        // Convert weird representation of undefined position in json to how we should do it
+        let position : (Position | undefined) = convertPosition(campsite.position)
+        c[campsite.id] = Object.assign({}, campsite, {parkName: park.name, position: position})
       })
       return Object.assign({}, state, c)
     default:
       return state
+  }
+}
+
+function positionIsSet(position: Position | {}): position is Position {
+  return (position !== {});
+}
+
+function convertPosition(position: Position | {}): (Position | undefined) {
+  if (positionIsSet(position)) {
+    return position;
+  } else {
+    return undefined;
   }
 }

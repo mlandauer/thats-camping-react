@@ -9,6 +9,8 @@ describe('campsites reducer', () => {
     ).toEqual({})
   })
 
+  // TODO: Add test for Position {} getting converted to undefined
+
   it('should handle ADD_CAMPSITES with existing campsites', () => {
     const facilities: Facilities = {
       toilets: 'none',
@@ -26,7 +28,7 @@ describe('campsites reducer', () => {
         car: false
       },
       facilities: facilities,
-      position: <Position>undefined
+      position: {lat: 1.0, lng: 2.0}
     }
 
     const campsite1 = Object.assign({}, templateCampsite, {

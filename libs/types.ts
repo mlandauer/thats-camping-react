@@ -4,7 +4,7 @@ export interface CampsitesJson {
     id: number;
     name: string;
     description: string;
-    position: Position;
+    position: Position | {};
     facilities: Facilities;
     access: Access;
     park_id: number;
@@ -22,7 +22,7 @@ export interface Campsite {
   id: number;
   name: string;
   description: string;
-  position: Position;
+  position: Position | undefined;
   facilities: Facilities;
   access: Access;
   parkName: string;
@@ -39,15 +39,15 @@ export interface Position {
 }
 
 export interface Access {
-  caravans: boolean;
-  trailers: boolean;
-  car: boolean;
+  caravans: boolean | undefined;
+  trailers: boolean | undefined;
+  car: boolean | undefined;
 }
 
 export interface Facilities {
-  toilets: "flush" | "non_flush" | "none";
-  picnicTables: boolean;
-  barbecues: "wood" | "gas_electric" | "none";
-  showers: "hot" | "cold" | "none";
-  drinkingWater: boolean;
+  toilets: "flush" | "non_flush" | "none" | undefined;
+  picnicTables: boolean | undefined;
+  barbecues: "wood" | "gas_electric" | "none" | undefined;
+  showers: "hot" | "cold" | "none" | undefined;
+  drinkingWater: boolean | undefined;
 }

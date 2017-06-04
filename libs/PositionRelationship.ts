@@ -9,17 +9,17 @@ var toDeg = function(rad: number): number {
 }
 
 export default class PositionRelationship {
-  position1: Position;
-  position2: Position;
+  position1: Position | undefined;
+  position2: Position | undefined;
 
-  constructor(position1: Position, position2: Position) {
+  constructor(position1: Position | undefined, position2: Position | undefined) {
     this.position1 = position1
     this.position2 = position2
   }
 
   // Distance in metres between two positions given as lat longs
   distanceInMetres(): number | undefined {
-    if (this.position1.lat == undefined || this.position1.lng == undefined || this.position2.lat == undefined || this.position2.lng == undefined) {
+    if (this.position1 == undefined || this.position2 == undefined) {
       return undefined;
     }
 
@@ -33,7 +33,7 @@ export default class PositionRelationship {
   }
 
   bearingInDegrees(): number | undefined {
-    if (this.position1.lat == undefined || this.position1.lng == undefined || this.position2.lat == undefined || this.position2.lng == undefined) {
+    if (this.position1 == undefined || this.position2 == undefined) {
       return undefined;
     }
 

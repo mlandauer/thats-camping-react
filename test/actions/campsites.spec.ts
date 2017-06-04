@@ -15,7 +15,7 @@ describe('campsites actions', () => {
       id: 1,
       name: "A campsite",
       description: "A nice campsite",
-      position: <Position>undefined,
+      position: {},
       facilities: facilities,
       access: {
         caravans: false,

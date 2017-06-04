@@ -4,7 +4,7 @@ import { reducer } from '../../reducers/index'
 describe('index reducer', () => {
   it('should return the initial state', () => {
     expect(
-      reducer(undefined, {type: 'NOOP'})
+      reducer({}, {type: 'NOOP'})
     ).toEqual({campsites: {}, position: null, starred: []})
   })
 

@@ -53,7 +53,7 @@ export default class CampsiteDetail extends React.Component<CampsiteDetailProps,
     return text.charAt(0).toUpperCase() + text.slice(1)
   }
 
-  caravans(caravans: boolean) {
+  caravans(caravans: boolean | undefined) {
     switch(caravans) {
       case true:  return {"have":    "caravans"}
       case false: return {"notHave": "caravans"}
@@ -61,7 +61,7 @@ export default class CampsiteDetail extends React.Component<CampsiteDetailProps,
     }
   }
 
-  trailers(trailers: boolean) {
+  trailers(trailers: boolean | undefined) {
     switch(trailers) {
       case true:  return {"have":    "trailers"}
       case false: return {"notHave": "trailers"}
@@ -69,7 +69,7 @@ export default class CampsiteDetail extends React.Component<CampsiteDetailProps,
     }
   }
 
-  car(car: boolean) {
+  car(car: boolean | undefined) {
     switch(car) {
       case true:  return {"have":    "car camping"}
       case false: return {"notHave": "car camping"}
@@ -97,7 +97,7 @@ export default class CampsiteDetail extends React.Component<CampsiteDetailProps,
     return r
   }
 
-  toilets(toilets: string) {
+  toilets(toilets: string | undefined) {
     switch(toilets) {
       case "flush":     return {"have":    "flush toilets"}
       case "non_flush": return {"have":    "non-flush toilets"}
@@ -106,7 +106,7 @@ export default class CampsiteDetail extends React.Component<CampsiteDetailProps,
     }
   }
 
-  picnicTables(picnicTables: boolean) {
+  picnicTables(picnicTables: boolean | undefined) {
     switch(picnicTables) {
       case true:  return {"have":    "picnic tables"}
       case false: return {"notHave": "picnic tables"}
@@ -114,7 +114,7 @@ export default class CampsiteDetail extends React.Component<CampsiteDetailProps,
     }
   }
 
-  barbecues(barbecues: string) {
+  barbecues(barbecues: string | undefined) {
     switch(barbecues) {
       // TODO: show whether you need to bring your own firewood elsewhere
       // Like "You will need to bring firewood (if you want to use the wood BBQs) and drinking water"
@@ -125,7 +125,7 @@ export default class CampsiteDetail extends React.Component<CampsiteDetailProps,
     }
   }
 
-  showers(showers: string) {
+  showers(showers: string | undefined) {
     switch(showers) {
       case "hot":  return {"have":    "hot showers"}
       case "cold": return {"have":    "cold showers"}
@@ -134,7 +134,7 @@ export default class CampsiteDetail extends React.Component<CampsiteDetailProps,
     }
   }
 
-  drinkingWater(drinkingWater: boolean) {
+  drinkingWater(drinkingWater: boolean | undefined) {
     switch(drinkingWater) {
       case true:  return {"have":    "drinking water"}
       case false: return {"notHave": "drinking water"}
@@ -152,16 +152,20 @@ export default class CampsiteDetail extends React.Component<CampsiteDetailProps,
     return r;
   }
 
-  mapUrl(): string {
-    return "https://maps.google.com/maps?" +
-      "daddr=" +
-      this.props.campsite.position.lat + "," + this.props.campsite.position.lng;
+  mapUrl(): string | undefined {
+    if (this.props.campsite.position == undefined) {
+      return undefined;
+    } else {
+      return "https://maps.google.com/maps?" +
+        "daddr=" +
+        this.props.campsite.position.lat + "," + this.props.campsite.position.lng;
+    }
   }
 
   // Returns true if the "directions to campsite" button should be enabled
   // For this we need an internet connection and the campsite needs a location
   directionsEnabled(): boolean {
-    return (this.props.campsite.position.lat != undefined && this.props.campsite.position.lng != undefined && navigator.onLine)
+    return (this.props.campsite.position != undefined && navigator.onLine)
   }
 
   render() {
