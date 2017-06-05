@@ -8,7 +8,7 @@ import { HashRouter, Route, Redirect } from 'react-router-dom';
 import AboutPage from './AboutPage'
 import CampsiteDetailPage from './CampsiteDetailPage';
 import { State } from '../reducers/index'
-import { Position, Access, Facilities, CampsiteWithStarred } from '../libs/types'
+import { Position, CampsiteWithStarred } from '../libs/types'
 
 interface AppAction {
 
@@ -81,11 +81,10 @@ function mapStateToProps(state: State) {
     let starred = i != -1
     new_campsites[id] = Object.assign({}, state.campsites[id], {starred: starred})
   }
-  return Object.assign({}, {
-    position: state.position
-  }, {
+  return {
+    position: state.position,
     campsites: new_campsites
-  })
+  }
 }
 
 const mapDispatchToProps = (dispatch: Dispatch<State>) => {
