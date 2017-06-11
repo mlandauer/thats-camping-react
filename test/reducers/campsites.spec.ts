@@ -10,6 +10,59 @@ describe('campsites reducer', () => {
   })
 
   // TODO: Add test for Position {} getting converted to undefined
+  it('should convert empty position for campsite to undefined', () => {
+    let park = {
+      id: 1,
+      name: "A park",
+      description: "A nice park",
+      campsite_ids: []
+    }
+    let campsite = {
+      id: 1,
+      name: "A campsite",
+      description: "A nice campsite",
+      position: {},
+      facilities: {
+        toilets: 'none' as 'none',
+        picnicTables: false,
+        barbecues: 'none' as 'none',
+        showers: 'none' as 'none',
+        drinkingWater: false
+      },
+      access: {
+        caravans: false,
+        trailers: false,
+        car: false
+      },
+      park_id: 1
+    }
+    expect(reducer(undefined, {
+      type: 'ADD_CAMPSITES_JSON',
+      json: {
+        campsites: [campsite],
+        parks: [park]
+      }
+    })).toEqual({1: {
+      id: 1,
+      name: "A campsite",
+      description: "A nice campsite",
+      position: undefined,
+      facilities: {
+        toilets: 'none' as 'none',
+        picnicTables: false,
+        barbecues: 'none' as 'none',
+        showers: 'none' as 'none',
+        drinkingWater: false
+      },
+      access: {
+        caravans: false,
+        trailers: false,
+        car: false
+      },
+      park_id: 1,
+      parkName: "A park"
+    }})
+  })
 
   it('should handle ADD_CAMPSITES with existing campsites', () => {
     const facilities: Facilities = {
