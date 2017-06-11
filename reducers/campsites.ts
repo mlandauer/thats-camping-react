@@ -32,9 +32,9 @@ function positionIsSet(position: Position | {}): position is Position {
 }
 
 function convertPosition(position: Position | {}): (Position | undefined) {
-  if (positionIsSet(position)) {
-    return position;
+  if ((<Position>position).lat && (<Position>position).lng) {
+    return <Position>position
   } else {
-    return undefined;
+    return undefined
   }
 }
