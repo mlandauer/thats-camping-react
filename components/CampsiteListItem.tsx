@@ -10,8 +10,7 @@ interface CampsiteListItemProps {
 }
 
 export default class CampsiteListItem extends React.Component<CampsiteListItemProps, {}> {
-  distanceText(): string {
-    var distance = this.props.distance;
+  distanceText(distance: number | undefined): string {
     if (distance == undefined) {
       return "";
     }
@@ -28,8 +27,7 @@ export default class CampsiteListItem extends React.Component<CampsiteListItemPr
     return(distance.toFixed(0) + " " + units);
   }
 
-  bearingText(): string {
-    var bearing = this.props.bearing;
+  bearingText(bearing: number | undefined): string {
     if (bearing == undefined) {
       return "";
     }
@@ -43,7 +41,7 @@ export default class CampsiteListItem extends React.Component<CampsiteListItemPr
     return (
       <div className="campsite">
         <Star starred={this.props.starred}/>
-        <div className="pull-right distance">{this.distanceText()} {this.bearingText()}</div>
+        <div className="pull-right distance">{this.distanceText(this.props.distance)} {this.bearingText(this.props.bearing)}</div>
         <div className="name">{this.props.campsiteName}</div>
         <div className="park">{this.props.parkName}</div>
       </div>
