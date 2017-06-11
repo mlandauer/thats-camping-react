@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Star } from './Star'
 import * as TextFormatter from '../libs/TextFormatter'
 
-interface CampsiteListItemProps {
+interface Props {
   campsiteName: string;
   parkName: string;
   distance: number | undefined;
@@ -10,7 +10,7 @@ interface CampsiteListItemProps {
   starred: boolean;
 }
 
-export default class CampsiteListItem extends React.Component<CampsiteListItemProps, {}> {
+export default class CampsiteListItem extends React.Component<Props, {}> {
   render() {
     return (
       <div className="campsite">
